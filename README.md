@@ -34,7 +34,7 @@
 | [R36S-V21 2024-12-18 2551](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#genuine-r36s) | r36s | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing) | :white_check_mark: southoz |
 | [R36S-V21 2024-12-18 2552](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#genuine-r36s) | r36s | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing)  | :white_check_mark: Yayi23 |
 | [R36S-V22 2024-12-18](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#genuine-r36s) | r36s | :warning: untested |  |
-| [R36S-V30 2025-11-18](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#genuine-r36s) | r36s | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing) | :white_check_mark: 2jaym |
+| [R36S-V30 2025-11-18 2552](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#genuine-r36s) | r36s | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing) | :white_check_mark: 2jaym |
 | [R36S-Y02 2024-12-18](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#genuine-r36s) | r36s | :white_check_mark: completed | :white_check_mark: Lysander92 |
 | [R36S Plus-V20 2025-03-18](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#genuine-r36s) | r36s | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing) | :white_check_mark: southoz |
 | [R36XX-V21 2024-12-18](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#genuine-r36s)| r36s | :white_check_mark: completed | :white_check_mark: Jason_3x  |
