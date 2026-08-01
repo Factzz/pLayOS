@@ -1,111 +1,85 @@
-# dArkOSRE R36
+<h1 align="center">🔥 PLAY OS 🔥</h1>
 
 <p align="center">
-<img width="224" height="350" alt="image" src="https://github.com/user-attachments/assets/d0334598-9296-466f-8e6e-4ca2e15daf70" />
+  <strong>The Ultimate 1-Click Retro OS for R36H — Lighter, Faster, and 100% FREE!</strong><br>
+  <em>Proudly forked and supercharged from the amazing <a href="https://github.com/southoz/dArkOS-G80CA-RE">dArkOSRE</a> project.</em>
 </p>
 
-- **Customised dArkOS build** optimised for R36S devices and clones. 
-- **Guaranteed Virus and Malware free** - Scanned with 7th Feb 2026 ClamAV Daily update.
-- **Issues are off for a few days to allow me to catch up**
+<p align="center">
+  <img width="600" alt="PLAY OS Preview" src="https://via.placeholder.com/600x300?text=PLAY+OS+Preview+Image+Here" />
+</p>
 
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/southoz/dArkOS-G80CA-RE?style=flat-square)](https://github.com/southoz/dArkOS-G80CA-RE/releases)
-[![GitHub stars](https://img.shields.io/github/stars/southoz/dArkOS-G80CA-RE?style=flat-square)](https://github.com/southoz/dArkOS-G80CA-RE/stargazers)
+<!-- กรอบคำเตือนสีแดง (ใน GitHub จะเรนเดอร์เป็นกรอบ Alert ชัดเจนมาก) -->
+> [!WARNING]
+> ## 🚨 คำเตือนสำคัญทางกฎหมาย (STRICTLY NO COMMERCIAL USE) 🚨
+> **PLAY OS แจกฟรีสำหรับ "ผู้ใช้งานทั่วไป (End-Users)" เท่านั้น!** 
+> 
+> **ไม่อนุญาตให้นำไปใช้ในเชิงพาณิชย์ หรือเป็นส่วนประกอบทางการค้าเด็ดขาด โดยมีข้อห้ามดังนี้:**
+> 1. **ห้ามนำไปติดตั้งเพื่อขายพ่วง** กับเครื่องเกม Retro ทุกชนิด
+> 2. **ห้ามใช้ลูกเล่นหัวหมอ** เช่น อ้างว่า "ขายเครื่องแถม OS ฟรี" หรือ "คิดเฉพาะค่าบริการติดตั้ง"
+> 3. **ห้ามนำไปดัดแปลง** เปลี่ยนชื่อ แปะโลโก้ร้าน แล้วนำไปแจกจ่ายเพื่อดึงดูดลูกค้าเข้าเพจ/ร้านค้าของตนเอง
+> 4. **ห้ามแสวงหาผลกำไร** จากไฟล์นี้ไม่ว่าทางตรงหรือทางอ้อม
+> 
+> *หากตรวจพบการละเมิด ทีมผู้พัฒนาจะดำเนินการรวบรวมหลักฐานและฟ้องร้องตาม **กฎหมายทรัพย์สินทางปัญญาของไทยและสากล (DMCA & Thai Copyright Act)** ขั้นเด็ดขาด โดยไม่มีการยอมความ ภายใต้เงื่อนไขข้อตกลง PLAY OS Anti-Bundling License.*
 
-## News
-- **dArkOSRE-R36 03082026** [Release](https://github.com/southoz/dArkOSRE-R36/releases/tag/dArkOSRE-R36(03082026)) 
-- Upcoming device support:
-  - R36H - Framework is in place to support different control schemes, trying to decide on buttons.
-  - R36 Plus - Batch 2551 is working in the latest Beta; other batches will also work with battery capacity reporting issues.
-  - R36 Max - Working in latest Beta
-  - R36 Ultra - Working in the latest Beta
-  - V20 Clone - Working in latest Beta
+<br>
 
-[![Donate PayPal](https://img.shields.io/badge/Donate-PayPal-009cde?logo=paypal&style=for-the-badge)](https://www.paypal.com/donate/?hosted_button_id=XSKKNR837CGE4)
+<h3 align="center">
+  <a href="#-play-os-english">🇬🇧 Read in English</a> &nbsp; | &nbsp; <a href="#-play-os-ภาษาไทย">🇹🇭 อ่านภาษาไทย</a>
+</h3>
 
-## Supported Systems  
+<hr>
 
-| Motherboard ID (Variant/Panel) | Type | Status | Tester |
-|----------------|----------------|---------------|---------------|
-| [HL-R36H-V20 2024-05-18](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#genuine-r36s) | r36s | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing) | :white_check_mark: southoz  |
-| [HL-R36H-V21 2024-11-18](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#genuine-r36s) | r36s | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing) | :warning: untested  |
-| [R36S Plus-V20 2025-03-18 2551](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#genuine-r36s) | r36s | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing) | :warning: untested  |
-| [R36S-V12 2023-08-18 Panel 0](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#genuine-r36s) | r36s | :white_check_mark: completed | :white_check_mark: southoz  |
-| [R36S-V12 2023-08-18 Panel 4](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#genuine-r36s) | r36s | :white_check_mark: completed  | :white_check_mark: RoiArthurB |
-| [R36S-V21 2024-12-18 2550](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#genuine-r36s) | r36s | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing)  | :white_check_mark: southoz |
-| [R36S-V21 2024-12-18 2551](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#genuine-r36s) | r36s | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing) | :white_check_mark: southoz |
-| [R36S-V21 2024-12-18 2552](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#genuine-r36s) | r36s | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing)  | :white_check_mark: Yayi23 |
-| [R36S-V22 2024-12-18](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#genuine-r36s) | r36s | :warning: untested |  |
-| [R36S-V30 2025-11-18 2552](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#genuine-r36s) | r36s | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing) | :white_check_mark: 2jaym |
-| [R36S-Y02 2024-12-18](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#genuine-r36s) | r36s | :white_check_mark: completed | :white_check_mark: Lysander92 |
-| [R36S Plus-V20 2025-03-18](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#genuine-r36s) | r36s | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing) | :white_check_mark: southoz |
-| [R36XX-V21 2024-12-18](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#genuine-r36s)| r36s | :white_check_mark: completed | :white_check_mark: Jason_3x  |
-| [G80C-MB V1.1-20250319 Panel 8](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#r36s-clones)  | clone  | :warning: untested |  |
-| [G80C-MB V1.1-20250319 Panel 9](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#r36s-clones)  | clone  | :warning: untested |  |
-| [G80CA-MB V1.2-20250422 Panel 8](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#r36s-clones)  | clone  |:white_check_mark: completed | :white_check_mark: southoz |
-| [G80CA-MB V1.2-20250422 Panel 9](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#r36s-clones) | clone  | :warning: untested |  |
-| [G80CA-MB V1.2-20250423 Panel 8](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#r36s-clones) | clone  | :white_check_mark: completed | :white_check_mark: 66dude |
-| [G80CA-MB V1.2-20250423 Panel 9](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#r36s-clones) | clone  | :warning: untested |  |
-| [G80CA-MB V1.3-20251212 Panel 8](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#r36s-clones) | clone  | :white_check_mark: completed | :white_check_mark: Robadel  |
-| [G80D-MB V1.0-20250609 Panel 8](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#r36s-clones) | clone  | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing) | :white_check_mark: Juliancillo1310 |
-| [GR36S-MB V1.4-2025-07-30 R36 Ultra](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#r36s-clones) | clone  | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing) | :white_check_mark: southoz  |
-| [R36S-V12 2023-08-18 R36 MAX](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#r36s-clones) | clone  | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing) | :white_check_mark: southoz  |
-| [R36S-V12 2023-08-18 Variant 1 Panel 3 A](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#r36s-clones) | clone  | :warning: untested |  |
-| [R36S-V12 2023-08-18 Variant 1 Panel 8 A](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#r36s-clones) | clone  | :warning: untested |  |
-| [R36S-V12 2023-08-18 Variant 2 Panel 1](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#r36s-clones) | clone  | :white_check_mark: completed | :white_check_mark:  jawblade662 |
-| [R36S-V12 2023-08-18 Variant 2 Panel 1 A](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#r36s-clones) | clone  | :warning: untested |  |
-| [R36S-V12 2023-08-18 Variant 3 Panel A](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#r36s-clones) | clone  | :white_check_mark: completed | :white_check_mark: southoz |
-| [R36S-V12 2023-08-18 Variant 3 Panel 3](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#r36s-clones) | clone  | :white_check_mark: completed | :white_check_mark: dnmnhat |
-| [R36S-V20 2025-05-18 2541](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#r36s-clones) | clone | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing) | :white_check_mark: trofim601-create |
-| [R36S-V20 2025-05-18 2548](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#r36s-clones) | clone | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing) | :white_check_mark: southoz  |
-| [R36S-V20 2025-05-18 2549](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation/#r36s-clones) | clone | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing) | :warning: untested  |
-| [Y3506_V03_20241104](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation#soy-sauce-r36s) | soysauce   | :white_check_mark: completed | :white_check_mark: Gr33k |
-| [Y3506_v03_20241210](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation#soy-sauce-r36s) | soysauce   | :white_check_mark: completed | :white_check_mark: Gr33k |
-| [Y3506_V03_20250317](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation#soy-sauce-r36s) | soysauce   | :white_check_mark: completed | :white_check_mark: darrynmelck |
-| [Y3506_V04_20250529 2533](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation#soy-sauce-r36s) | soysauce   | :white_check_mark: completed | :white_check_mark: reinfo3-spec |
-| [Y3506_V04_20250529 2537](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation#soy-sauce-r36s) | soysauce   | :white_check_mark: completed | :white_check_mark: DeaconCole |
-| [Y3506_V04_20250529 2548](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation#soy-sauce-r36s) | soysauce   | :white_check_mark: completed | :white_check_mark: southoz |
-| [Y3506_V04_20250529 2548 Panel 2](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation#soy-sauce-r36s) | soysauce   | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing)  | :warning: untested |
-| [Y3506_V05_20251215 2551](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation#soy-sauce-r36s) | soysauce   | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing)  | :warning: untested |
-| [Y3506_V05_20251215 2601](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation#soy-sauce-r36s) | soysauce   | :warning: [Beta Testing](https://github.com/southoz/dArkOSRE-R36/wiki/Beta-Testing)  | :white_check_mark: southoz |
+<h2 id="-play-os-ภาษาไทย">🇹🇭 ยกระดับเครื่อง R36H ของคุณด้วย PLAY OS!</h2>
 
-## dArkOS Mods by Jason_3x
-- [Bluetooth Manager](https://github.com/Jason3x/Bluetooth-Manager-for-dArkOS-)
-- [Battery Voice Config](https://github.com/Jason3x/Battery-Voice-Config)
-- [Ghost Loader](https://github.com/Jason3x/GhostLoader) 
-- [ArkOS Dual SDCard Manager](https://github.com/Jason3x/Arkos-Dual-SD-Manager)
+เหนื่อยไหมกับ OS เดิมๆ ที่ทั้งหน่วง กินพื้นที่ และติดตั้งยาก? **PLAY OS** คือคำตอบสุดท้ายที่คุณตามหา! เราได้รื้อโครงสร้างระบบใหม่ทั้งหมด รีดไขมันส่วนเกินออก และสร้างประสบการณ์ที่ "ง่าย" ที่สุดเท่าที่วงการ Retro เคยมีมา 
 
-**Support Jason** [Here](https://github.com/Jason3x/Arkos-Dual-SD-Manager#-a-coffee-to-support-the-project)
+ทำไมคุณถึงต้องโหลด PLAY OS ทันที?
+- 🚀 **ชุบชีวิตเมม 16GB (พื้นที่กลับมามหาศาล):** เบื่อไหมที่เมม 16GB ลง OS เสร็จก็แทบไม่เหลือที่ใส่เกม? เราหั่นขนาด OS จาก 11GB **เหลือเพียง 5.4GB!** คืนพื้นที่ให้คุณใส่เกมเพิ่มได้จุใจถึง 10GB บนเมม 16GB ใบเดิม!
+- ⚡ **แค่คลิกเดียว... จบปิ๊ง (1-Click Install):** ลืมความปวดหัวกับโปรแกรม Rufus หรือการนั่งตั้งค่าพาร์ติชันไปได้เลย! แค่รันโปรแกรม `play.exe` โปรแกรมจะจัดการฟอร์แมต ติดตั้ง และฝังระบบให้เสร็จสรรพ นั่งจิบกาแฟรอได้เลย
+- 🇹🇭 **ภาษาไทยสมบูรณ์แบบ 100%:** ไม่ต้องทนกับสระลอย หรือฟอนต์สี่เหลี่ยมอีกต่อไป เราฝังภาษาไทยระดับ System-level ให้เมนู EmulationStation สวยงามและอ่านง่ายที่สุด
+- 🛡️ **ปลอดภัย ไร้สคริปต์ทำลายเมม:** หมดปัญหา "เครื่องจอดำ" เพราะเราลบสคริปต์ขยายพื้นที่อัตโนมัติบนตัวเครื่องทิ้ง แล้วให้ `play.exe` จัดการให้บนคอมพิวเตอร์อย่างปลอดภัย
 
-### In development:
-- ogage update to support Jason3x's Pulse Audio implementation.
-- Supporting community requests for device support.
+### 🛠️ วิธีติดตั้ง (ง่ายจนหลับตายังทำได้)
+1. ไปที่แท็บ **Releases** แล้วดาวน์โหลดไฟล์ **`PLAY_OS_v1.0.7z`** 
+2. แตกไฟล์ .7z ออกมา คุณจะพบโปรแกรมสุดอัจฉริยะของเรา
+3. เสียบเมมโมรี่การ์ดเข้าคอมพิวเตอร์ (จะการ์ดเก่าหรือใหม่ก็ได้)
+4. ดับเบิลคลิกที่ **`play.exe`** กดติดตั้ง แล้วรอโปรแกรมทำงานจนเสร็จ
+5. ถอดเมมเสียบเข้าเครื่อง R36H... **เปิดปุ๊บ เล่นได้ปั๊บ!**
 
-### User Wish List:
-- [Global Search Function](https://github.com/southoz/dArkOSRE-R36/issues/133)
-- [Kodi Widevine arm64 support](https://github.com/southoz/dArkOSRE-R36/issues/152)
+*(หมายเหตุ: ปรับแต่งมาเพื่อ R36H เป็นหลัก แต่สามารถใช้สคริปต์หน้าจอ .dtb ของโปรเจกต์ต้นฉบับเพื่อนำไปเล่นบนบอร์ด R36S หรือโคลนรุ่นอื่นๆ ได้เช่นกัน)*
 
-### If your Rk3326-based R36S, R36S Clone or Soy Sauce system is not listed
-Raise an [issue](https://github.com/southoz/dArkOS-G80CA-RE/issues) with the motherboard ID and attach your original SD card .dtb files and boot.ini in a zip file
+<hr>
 
-## ✅ Features
+<h2 id="-play-os-english">🇬🇧 PLAY OS: The Ultimate R36H Experience</h2>
 
-- Advanced Drastic
-- Kodi 21.3
-- Wi-Fi
-- USB Tethering (USB-C to USB-A adapter)
-- Joystick with per-emulator controls updates and hotkeys.
-- Function button support (Menu).
-- Sound (speakers + headphones)
-- LED Control
+Tired of bloated, slow, and complicated Custom Firmware? **PLAY OS** is here to revolutionize your retro handheld experience. We’ve stripped down the system to its core and built the most user-friendly installation process ever.
 
-## Important Installation Information
+- 🚀 **16GB SD Cards Reborn!:** We meticulously debloated the system, shrinking the core size from ~11GB down to **just 5.4GB**. This reclaims massive storage, leaving you with **~10GB of free space** for games on a standard 16GB card!
+- ⚡ **The Magic of `play.exe`:** Throw away your Rufus tutorials. Our fully automated Windows installer formats, flashes, and configures everything in one click. 
+- 🇹🇭 **Native Thai Localization:** Built-in flawless Thai typography for EmulationStation.
+- 🛡️ **Zero Brick Risk:** We removed the dangerous on-device auto-expand scripts that kill cheap SD cards. The installer safely handles partitioning on your PC.
 
-- [Operating System Installation](https://github.com/southoz/dArkOS-G80CA-RE/wiki/Firmware-Installation)
+### 🛠️ How to Install (It's ridiculously easy)
+1. Download **`PLAY_OS_v1.0.7z`** from the Releases tab.
+2. Extract the archive on your Windows PC.
+3. Insert your SD Card.
+4. Run **`play.exe`** and follow the simple on-screen instructions.
+5. Pop the card into your R36H and start playing immediately!
 
-## Related Projects & Thanks
+*(Note: Highly optimized for R36H, but compatible with other R36S/Clones by utilizing the standard .dtb screen scripts from the original dArkOSRE project.)*
 
-- [dArkOS main project](https://github.com/christianhaitian/dArkOS) – huge thanks to christianhaitian!
-- Community discussions: [r/R36S](https://www.reddit.com/r/R36S/) and [RetroHandhelds.gg](https://discord.com/channels/741895796315914271/1452057823927341196) R36S and clones discord channel.
+<hr>
 
-Feel free to report issues or suggest improvements in the [Issues tab](https://github.com/southoz/dArkOS-G80CA-RE/issues).  
-Happy retro gaming! 🎮
+## 📜 PLAY OS Anti-Bundling & Non-Commercial License (NC-AB)
+
+By downloading and using PLAY OS, you explicitly agree to the following terms:
+1. **End-User Freedom:** This software is provided 100% FREE of charge for personal, non-commercial use only.
+2. **Anti-Reseller Clause:** It is **STRICTLY PROHIBITED** to pre-install this OS on devices intended for sale. You may not bundle this software with any commercial product.
+3. **Loophole Clause:** Workarounds such as "Selling the device and gifting the OS for free" or "Charging a service fee for OS installation" are explicitly forbidden and constitute a breach of this license.
+4. **No Derivative Commercialization:** You may not modify, rebrand, or use parts of this OS to drive traffic or sales to a commercial entity.
+
+*Violators will face legal actions under international copyright laws (DMCA) and the intellectual property laws of Thailand.*
+
+---
+<p align="center"><i>Crafted with passion for the Retro Gaming Community, not for profit. 🎮</i></p>
