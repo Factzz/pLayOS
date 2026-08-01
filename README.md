@@ -1,4 +1,4 @@
-<h1 align="center"> PLAY OS </h1>
+<h1 align="center"> pLay OS </h1>
 
 <p align="center">
   <img width="600" alt="PLAY OS Logo" src="https://raw.githubusercontent.com/Factzz/pLayOS/main/files/logo.png" />
