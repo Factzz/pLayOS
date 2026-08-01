@@ -1,12 +1,12 @@
-<h1 align="center">🔥 PLAY OS 🔥</h1>
+<h1 align="center"> PLAY OS </h1>
+
+<p align="center">
+  <img width="600" alt="PLAY OS Logo" src="https://raw.githubusercontent.com/Factzz/pLayOS/main/files/logo.png" />
+</p>
 
 <p align="center">
   <strong>The Ultimate 1-Click Retro OS for R36H — Lighter, Faster, and 100% FREE!</strong><br>
   <em>Proudly forked and supercharged from the amazing <a href="https://github.com/southoz/dArkOS-G80CA-RE">dArkOSRE</a> project.</em>
-</p>
-
-<p align="center">
-  <img width="600" alt="PLAY OS Preview" src="https://via.placeholder.com/600x300?text=PLAY+OS+Preview+Image+Here" />
 </p>
 
 <!-- กรอบคำเตือนสีแดง (ใน GitHub จะเรนเดอร์เป็นกรอบ Alert ชัดเจนมาก) -->
@@ -41,7 +41,7 @@
 - 🛡️ **ปลอดภัย ไร้สคริปต์ทำลายเมม:** หมดปัญหา "เครื่องจอดำ" เพราะเราลบสคริปต์ขยายพื้นที่อัตโนมัติบนตัวเครื่องทิ้ง แล้วให้ `play.exe` จัดการให้บนคอมพิวเตอร์อย่างปลอดภัย
 
 ### 🛠️ วิธีติดตั้ง (ง่ายจนหลับตายังทำได้)
-1. ไปที่แท็บ **Releases** แล้วดาวน์โหลดไฟล์ **`PLAY_OS_v1.0.7z`** 
+1. ไปที่แท็บ **Releases** แล้วดาวน์โหลดไฟล์ **`PLAY_OSxxxx.7z`** 
 2. แตกไฟล์ .7z ออกมา คุณจะพบโปรแกรมสุดอัจฉริยะของเรา
 3. เสียบเมมโมรี่การ์ดเข้าคอมพิวเตอร์ (จะการ์ดเก่าหรือใหม่ก็ได้)
 4. ดับเบิลคลิกที่ **`play.exe`** กดติดตั้ง แล้วรอโปรแกรมทำงานจนเสร็จ
@@ -61,7 +61,7 @@ Tired of bloated, slow, and complicated Custom Firmware? **PLAY OS** is here to 
 - 🛡️ **Zero Brick Risk:** We removed the dangerous on-device auto-expand scripts that kill cheap SD cards. The installer safely handles partitioning on your PC.
 
 ### 🛠️ How to Install (It's ridiculously easy)
-1. Download **`PLAY_OS_v1.0.7z`** from the Releases tab.
+1. Download **`PLAY_OSxxxx.7z`** from the Releases tab.
 2. Extract the archive on your Windows PC.
 3. Insert your SD Card.
 4. Run **`play.exe`** and follow the simple on-screen instructions.
