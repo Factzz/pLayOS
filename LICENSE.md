@@ -1,57 +1,63 @@
 # PLAY OS Anti-Bundling & Non-Commercial License (NC-AB)
-**ใบอนุญาตการใช้งาน PLAY OS (ฉบับป้องกันการแสวงหาผลกำไรและการขายพ่วง)**
+**ใบอนุญาตการใช้งาน PLAY OS (ฉบับป้องกันพวกฉวยโอกาส และสนับสนุนคอมมูนิตี้)**
 
 This license governs the use, distribution, and modification of the "PLAY OS" software. By downloading, installing, or interacting with this software, you explicitly agree to the terms outlined below.
-(ใบอนุญาตฉบับนี้ครอบคลุมถึงการใช้งาน การแจกจ่าย และการดัดแปลงซอฟต์แวร์ "PLAY OS" การดาวน์โหลดหรือติดตั้งซอฟต์แวร์นี้ ถือว่าท่านยอมรับเงื่อนไขทั้งหมดด้านล่างนี้โดยสมบูรณ์)
+(ใบอนุญาตฉบับนี้ครอบคลุมถึงการใช้งาน การแจกจ่าย และการดัดแปลงซอฟต์แวร์ "PLAY OS" การดาวน์โหลดหรือติดตั้งซอฟต์แวร์ ถือว่าท่านยอมรับเงื่อนไขทั้งหมดด้านล่างนี้โดยสมบูรณ์)
 
 ---
 
-## 1. Granted Rights (สิทธิ์ที่ได้รับอนุญาต)
+## 1. Granted Rights (สิทธิ์ที่ได้รับอนุญาต: เปิดกว้างสำหรับผู้ใช้และนักรีวิว)
 You are completely free to:
-- Download, install, and use PLAY OS on your personal devices.
-- Share the original GitHub link or release files with friends and communities for **strictly personal, non-commercial use**.
-- Modify the OS for your own personal enjoyment.
+- **Use & Share:** Download, install, and share the official GitHub link with anyone.
+- **Content Creation (PROMOTING IS ALLOWED):** We highly encourage YouTubers, Bloggers, and TikTokers to review, create tutorials, and promote PLAY OS. You may monetize your videos/articles through ad revenue, provided you link back to our official GitHub for the free download.
+- **Modify & Fork:** Developers may tweak or build upon PLAY OS, provided they credit the original project and release their work under this exact same free, non-commercial license (Share-Alike).
 
-ผู้ใช้งานทั่วไปมีสิทธิ์อย่างเต็มที่ในการ:
-- ดาวน์โหลด ติดตั้ง และใช้งาน PLAY OS บนอุปกรณ์ส่วนตัว
-- แบ่งปันลิงก์ต้นทางให้กับเพื่อนหรือคอมมูนิตี้ เพื่อการใช้งานส่วนบุคคลโดยไม่แสวงหาผลกำไร
-- ดัดแปลงระบบเพื่อความบันเทิงส่วนตัว
-
----
-
-## 2. STRICTLY PROHIBITED ACTIONS (ข้อห้ามเด็ดขาด)
-To protect the integrity of this free community project, any form of commercialization is heavily restricted. **YOU MAY NOT:**
-(เพื่อปกป้องเจตนารมณ์ของโปรเจกต์แจกฟรีข้อนี้ การแสวงหาผลกำไรทุกรูปแบบถือเป็นข้อห้ามเด็ดขาด ท่านไม่ได้รับอนุญาตให้กระทำการดังต่อไปนี้:)
-
-1. **Hardware Bundling (ห้ามขายพ่วงเครื่อง):** 
-   Pre-installing PLAY OS on any retro handheld console, SD Card, or storage medium intended for sale.
-   (ห้ามติดตั้ง PLAY OS ลงบนเครื่องเกมเมมโมรี่การ์ด หรือสื่อบันทึกข้อมูลใดๆ เพื่อนำไปจำหน่าย)
-
-2. **The "Free Gift / Service Fee" Loophole (ห้ามใช้ช่องโหว่เลี่ยงบาลี):** 
-   Offering the OS as a "free bonus" with the purchase of hardware, or charging a "service fee," "setup fee," or "installation labor fee" to install this OS for a customer.
-   (ห้ามใช้ข้ออ้างหัวหมอ เช่น "ขายเครื่องแถม OS ฟรี", "คิดเฉพาะค่าแรงลงโปรแกรม", หรือ "ค่าบริการตั้งค่าเครื่อง" เพื่อหลีกเลี่ยงกฎ)
-
-3. **Commercial Redistribution (ห้ามแจกจ่ายเชิงพาณิชย์):** 
-   Re-uploading the installer or OS image behind paywalls, subscription models (e.g., Patreon), or ad-link shorteners.
-   (ห้ามนำไฟล์ไปอัปโหลดใหม่เพื่อหาเงินผ่านลิงก์ครอบโฆษณา, ระบบสมาชิก, หรือนำไปซ่อนไว้หลัง Paywall)
-
-4. **Brand Hijacking (ห้ามดัดแปลงเพื่อแอบอ้างทางการค้า):** 
-   Modifying the boot logos, text, or credits within PLAY OS to insert a store name, and then distributing it to promote a commercial business.
-   (ห้ามนำไปดัดแปลงโลโก้ หรือแก้เครดิตเป็นชื่อร้านค้าของตนเอง แล้วนำไปแจกจ่ายเพื่อโปรโมทร้าน)
+ผู้ใช้งาน นักรีวิว และนักพัฒนามีสิทธิ์อย่างเต็มที่ในการ:
+- **ใช้งานและแชร์:** ดาวน์โหลด ใช้งาน และแจกจ่ายลิงก์ต้นทางให้ใครก็ได้
+- **ทำคอนเทนต์และโปรโมท (อนุญาตเต็มที่):** เราสนับสนุนให้ YouTuber, นักเขียน หรือ Content Creator นำ PLAY OS ไปรีวิว ทำคลิปสอน หรือโปรโมทเชิญชวนให้คนมาใช้ (คุณสามารถรับรายได้จากค่าโฆษณาบนคลิปของคุณได้ตามปกติ) ขอเพียงแค่แปะลิงก์ดาวน์โหลดกลับมาที่ GitHub ของเรา
+- **ดัดแปลงและต่อยอด:** นักพัฒนาสามารถนำไปปรับปรุงต่อได้ แต่ต้องให้เครดิตและแจกจ่ายฟรีภายใต้ข้อห้ามเชิงพาณิชย์ฉบับนี้เท่านั้น
 
 ---
 
-## 3. Enforcement & Liability (การบังคับใช้กฎหมาย)
-The PLAY OS team reserves the right to enforce this license fully. Any individual, store, or corporate entity found violating the **STRICTLY PROHIBITED ACTIONS** will face:
-1. Immediate DMCA Takedown notices on their selling platforms (Shopee, Lazada, AliExpress, Facebook, etc.).
-2. Legal prosecution under the **Thai Copyright Act (B.E. 2537)** and international intellectual property laws.
-3. Public blacklisting within the Retro Gaming community.
+## 2. ZERO TOLERANCE FOR COMMERCIAL EXPLOITATION (ข้อห้ามเด็ดขาด: กฎเหล็กจัดการพวกหน้าเงิน)
+We have a **ZERO TOLERANCE** policy for anyone trying to directly profit from this free community project. **YOU MAY NOT:**
+(เราไม่อดทนต่อการแสวงหาผลกำไรจากโปรเจกต์ฟรีของคอมมูนิตี้ในทุกกรณี "ห้ามกระทำการดังต่อไปนี้เด็ดขาด":)
 
-(ทีมผู้พัฒนาขอสงวนสิทธิ์ในการบังคับใช้กฎหมายขั้นเด็ดขาด หากพบว่าบุคคล ร้านค้า หรือนิติบุคคลใดละเมิดข้อห้าม จะถูกดำเนินการดังนี้:
-1. รีพอร์ตระงับสินค้าในแพลตฟอร์ม (Shopee, Lazada, Facebook ฯลฯ) ทันที
-2. รวบรวมหลักฐานเพื่อดำเนินคดีตาม **พระราชบัญญัติลิขสิทธิ์ พ.ศ. 2537** และกฎหมายทรัพย์สินทางปัญญาสากล โดยไม่มีการยอมความ
-3. ขึ้นบัญชีดำ (Blacklist) ประจานในคอมมูนิตี้คนเล่นเกม Retro ทุกช่องทาง)
+1. **Hardware Bundling (ห้ามขายพ่วง):** Pre-installing PLAY OS on any console, SD Card, or storage medium intended for sale. (ห้ามนำ OS ไปติดตั้งในเครื่องเกมหรือเมมโมรี่การ์ดเพื่อนำไปจำหน่าย)
+2. **The "Service Fee" Excuse (ห้ามอ้างค่าแรง/ค่าบริการ):** You cannot charge a customer for "installing," "configuring," or "providing" PLAY OS. If a customer pays you money and receives PLAY OS in return, you are violating this license. (ห้ามใช้ข้ออ้างหัวหมอ เช่น "OS แจกฟรี แต่คิดค่าแรงลง", "คิดค่าจัดชุด", หรือ "คิดค่าตั้งค่าเครื่อง" ถ้าลูกค้าเสียเงินแล้วได้ PLAY OS กลับไป ถือว่าคุณละเมิดลิขสิทธิ์ทันที)
+3. **Paywalls & Links (ห้ามหากินกับลิงก์):** Re-uploading our files behind Patreon, VIP access, or ad-link shorteners. (ห้ามนำไฟล์ไปซ่อนหลังระบบสมาชิกเก็บเงิน หรือครอบลิงก์โฆษณาเพื่อหาเงิน)
+4. **Reseller Rebranding (ห้ามสวมรอย):** Modifying boot logos or credits to inject a store's name for commercial promotion. (ห้ามแก้โลโก้หรือชื่อระบบเป็นของร้านตัวเองเพื่อดึงดูดลูกค้า)
 
 ---
-*If you paid for this OS, you were scammed. Please report the seller immediately.*
-*(หากคุณเสียเงินเพื่อซื้อ OS นี้ แปลว่าคุณโดนหลอก รบกวนรีพอร์ตและประจานร้านค้านั้นทันที)*
+
+## 3. Global Legal Consequences & Penalties (บทลงโทษทางกฎหมายระดับสากล)
+Any individual, store, or corporate entity found violating the terms in Section 2 will face immediate legal action without prior warning or negotiation, enforced under the jurisdiction of the following international laws:
+(หากพบว่าบุคคล ร้านค้า หรือนิติบุคคลใด ละเมิดข้อห้ามในหมวดที่ 2 เพื่อแสวงหาผลกำไร ทางทีมผู้พัฒนาจะดำเนินการทางกฎหมายขั้นเด็ดขาดทันที โดยไม่มีการเตือนล่วงหน้า ภายใต้ขอบเขตอำนาจกฎหมายของประเทศต่างๆ ดังนี้:)
+
+### 🇹🇭 1. ประเทศไทย (Thailand)
+- **พระราชบัญญัติลิขสิทธิ์ พ.ศ. 2537 และที่แก้ไขเพิ่มเติม:**
+  - **มาตรา 27 และ 31:** การทำซ้ำ ดัดแปลง เผยแพร่ต่อสาธารณชน หรือนำออกให้เช่าซึ่งงานโปรแกรมคอมพิวเตอร์เพื่อการค้า โดยไม่ได้รับอนุญาต
+  - **บทลงโทษ (มาตรา 69):** ระวางโทษจำคุกตั้งแต่ 6 เดือน ถึง 4 ปี หรือปรับตั้งแต่ 100,000 บาท ถึง 800,000 บาท หรือทั้งจำทั้งปรับ
+- **พระราชบัญญัติว่าด้วยการกระทำความผิดเกี่ยวกับคอมพิวเตอร์ พ.ศ. 2550 และที่แก้ไขเพิ่มเติม:**
+  - **มาตรา 14 (1):** โดยทุจริต หรือโดยหลอกลวง นำเข้าสู่ระบบคอมพิวเตอร์ซึ่งข้อมูลคอมพิวเตอร์ที่บิดเบือนหรือปลอมไม่ว่าทั้งหมดหรือบางส่วน เพื่อแสวงหาประโยชน์ที่มิควรได้โดยชอบด้วยกฎหมาย
+  - **บทลงโทษ:** ระวางโทษจำคุกไม่เกิน 5 ปี หรือปรับไม่เกิน 100,000 บาท หรือทั้งจำทั้งปรับ
+
+### 🇺🇸 2. สหรัฐอเมริกา (United States)
+- **Digital Millennium Copyright Act (DMCA - 17 U.S.C. § 1201):** 
+  - Prohibition of circumvention of copyright protection systems and unauthorized commercial redistribution.
+- **Copyright Infringement (17 U.S.C. § 506 & § 504):**
+  - Willful copyright infringement for commercial advantage or private financial gain carries federal criminal penalties of up to **5 years imprisonment and fines up to $250,000**, plus statutory damages up to **$150,000 per work** in civil lawsuits.
+
+### 🇪🇺 3. สหภาพยุโรป (European Union)
+- **EU Copyright Directive (Directive 2019/790) & Computer Programs Directive (2009/24/EC):**
+  - Strict protection of software developers' exclusive rights to authorize or prohibit the commercial exploitation, adaptation, and distribution of their copyrighted software. Infringements are subject to severe civil injunctions, asset freezing, and statutory financial damages across all member states.
+
+### 🇨🇳 4. ประเทศจีน (China)
+- **中华人民共和国著作权法 (Copyright Law of the People's Republic of China):**
+  - Unauthorized commercial use, reproduction, or distribution of software code constitutes copyright infringement. Under Article 119 and the Criminal Law (Article 217), illegal business operations for profit purposes carry penalties of up to **3 to 7 years of imprisonment** and heavy criminal fines.
+
+---
+
+### 🛡️ Cross-Border Enforcement & Community Blacklist
+- **Platform Takedowns:** Issuing instant DMCA and local IP takedown notices to global e-commerce platforms (Shopee, Lazada, AliExpress, Amazon, Taobao, eBay).
+- **Public Blacklisting:** Permanent public shaming and blacklisting of offending stores and individuals across international Retro Gaming communities (Reddit, Discord, Bilibili, Thai Retro Communities).
