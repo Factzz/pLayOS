@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong>The Ultimate 1-Click Retro OS for R36H — Lighter, Faster, and 100% FREE!</strong><br>
-  <em>Proudly forked and supercharged from the amazing <a href="https://github.com/southoz/dArkOS-G80CA-RE">dArkOSRE</a> project.</em>
+  <em>Proudly forked and supercharged from the amazing <a https://github.com/christianhaitian/dArkOS">dArkOS</a> project.</em>
 </p>
 
 <!-- กรอบคำเตือนสีแดง (ใน GitHub จะเรนเดอร์เป็นกรอบ Alert ชัดเจนมาก) -->
