@@ -14,15 +14,14 @@ echo ">> [1/5] Installing APPS (YouTube Core & Kodi)..." | tee -a "$LOG_FILE"
 sudo mkdir -p /roms/apps/images
 sudo mkdir -p /roms/ports/Tubelite
 
-# 1.1 โหลดไส้ในแอป YouTube (TubeLite) จาก GitHub Releases ไปซ่อนไว้ที่ ports
+
 wget -q -t 3 -T 15 -O /tmp/TubeLite.zip "https://github.com/Factzz/pLayOS/releases/download/v.2.0/TubeLite.zip"
 if [ -f "/tmp/TubeLite.zip" ]; then
-    # แตกไฟล์ zip ทับลงไปในโฟลเดอร์ซ่อน
+ 
     sudo unzip -o /tmp/TubeLite.zip -d /roms/ports/Tubelite/
     sudo chmod -R +x /roms/ports/Tubelite/
 fi
 
-# 1.2 โหลดไฟล์สคริปต์ทางลัดหน้าบ้าน (YouTube.sh และ kodi.sh)
 wget -q -t 3 -T 15 -O /tmp/YouTube.sh "https://raw.githubusercontent.com/Factzz/pLayOS/main/26908/YouTube.sh"
 wget -q -t 3 -T 15 -O /tmp/kodi.sh "https://raw.githubusercontent.com/Factzz/pLayOS/main/26908/kodi.sh"
 if [ -f "/tmp/YouTube.sh" ]; then sudo cp -f /tmp/YouTube.sh /roms/apps/YouTube.sh; fi
@@ -34,11 +33,10 @@ sudo chmod +x /roms/apps/*.sh
 # ==========================================================
 echo ">> [2/5] Downloading Gamelist and Images..." | tee -a "$LOG_FILE"
 
-# โหลด Gamelist
+
 wget -q -t 3 -T 15 -O /tmp/gamelist.xml "https://raw.githubusercontent.com/Factzz/pLayOS/main/26908/gamelist.xml"
 if [ -f "/tmp/gamelist.xml" ]; then sudo cp -f /tmp/gamelist.xml /roms/apps/gamelist.xml; fi
 
-# โหลดรูปภาพปกทั้งหมดทีละไฟล์
 IMAGES=("YouTube-image.png" "YouTube-marquee.png" "YouTube-thumb.png" "Kodi-image.png" "Kodi-marquee.png" "Kodi-thumb.png")
 for img in "${IMAGES[@]}"; do
     wget -q -t 3 -T 15 -O "/roms/apps/images/$img" "https://raw.githubusercontent.com/Factzz/pLayOS/main/26908/images/$img"
@@ -58,10 +56,8 @@ fi
 # 4. Install New Theme (ครอบคลุม 1:1 Ratio และโลโก้ APPS)
 # ==========================================================
 echo ">> [4/5] Installing new PLAYOS-Theme (1:1 Ratio + APPS)..." | tee -a "$LOG_FILE"
-# หมายเหตุ: ถ้าอัปโหลด PLAYOS-Theme.zip ไว้ใน Releases ด้วย สามารถเปลี่ยนลิงก์ตรงนี้ได้เลยครับ
 wget -q -t 3 -T 15 -O /tmp/PLAYOS-Theme.zip "https://raw.githubusercontent.com/Factzz/pLayOS/main/26908/PLAYOS-Theme.zip"
 if [ -f "/tmp/PLAYOS-Theme.zip" ]; then
-    # แตกไฟล์ Zip ทับโฟลเดอร์ themes เดิมทั้งหมด
     sudo unzip -o /tmp/PLAYOS-Theme.zip -d /etc/emulationstation/themes/
 fi
 
@@ -73,14 +69,14 @@ echo "PLAY OS 2.0" | sudo tee /etc/playos_version > /dev/null
 
 echo ">> Update finished! Restarting..." | tee -a "$LOG_FILE"
 
-# แจ้งเตือนหน้าจอผู้ใช้
+
 if [ -x "$(command -v msgbox)" ]; then
     sudo msgbox "PLAY OS 2.0 Update Success!\n\nThe system has been updated successfully.\nRestarting UI..."
 elif [ -x "$(command -v dialog)" ]; then
     dialog --infobox "PLAY OS 2.0 Update Success!\nRestarting UI..." 10 40 > /dev/tty1
 fi
 
-# สั่งเริ่มระบบ EmulationStation ใหม่ให้โชว์ทุกอย่าง
+
 sudo systemctl restart emulationstation
 
 exit 187
