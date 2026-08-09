@@ -29,18 +29,20 @@ if [ -f "/tmp/kodi.sh" ]; then sudo cp -f /tmp/kodi.sh /roms/apps/kodi.sh; fi
 sudo chmod +x /roms/apps/*.sh
 
 # ==========================================================
-# 2. Setup Gamelist and Images
+# 2. Setup Gamelist and Images (แบบ Zip)
 # ==========================================================
 echo ">> [2/5] Downloading Gamelist and Images..." | tee -a "$LOG_FILE"
 
-
+# โหลด Gamelist
 wget -q -t 3 -T 15 -O /tmp/gamelist.xml "https://raw.githubusercontent.com/Factzz/pLayOS/main/26908/gamelist.xml"
 if [ -f "/tmp/gamelist.xml" ]; then sudo cp -f /tmp/gamelist.xml /roms/apps/gamelist.xml; fi
 
-IMAGES=("YouTube-image.png" "YouTube-marquee.png" "YouTube-thumb.png" "Kodi-image.png" "Kodi-marquee.png" "Kodi-thumb.png")
-for img in "${IMAGES[@]}"; do
-    wget -q -t 3 -T 15 -O "/roms/apps/images/$img" "https://raw.githubusercontent.com/Factzz/pLayOS/main/26908/images/$img"
-done
+# โหลดไฟล์ Zip รูปภาพปกทั้งหมดในครั้งเดียว
+wget -q -t 3 -T 15 -O /tmp/apps-images.zip "https://raw.githubusercontent.com/Factzz/pLayOS/main/26908/apps-images.zip"
+if [ -f "/tmp/apps-images.zip" ]; then
+    # แตกไฟล์ zip ลงไปที่ /roms/apps/ (มันจะสร้างโฟลเดอร์ images ให้เองอัตโนมัติ)
+    sudo unzip -o /tmp/apps-images.zip -d /roms/apps/
+fi
 
 # ==========================================================
 # 3. Update es_systems.cfg (เพิ่มหมวด APPS)
