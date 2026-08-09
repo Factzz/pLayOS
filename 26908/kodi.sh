@@ -1,0 +1,1 @@
+bash /usr/local/bin/kodi/*.sh
