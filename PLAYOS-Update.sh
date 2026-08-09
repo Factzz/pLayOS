@@ -58,9 +58,13 @@ fi
 # 4. Install New Theme (ครอบคลุม 1:1 Ratio และโลโก้ APPS)
 # ==========================================================
 echo ">> [4/5] Installing new PLAYOS-Theme (1:1 Ratio + APPS)..." | tee -a "$LOG_FILE"
-wget -q -t 3 -T 15 -O /tmp/PLAYOS-Theme.zip "https://raw.githubusercontent.com/Factzz/pLayOS/main/26908/PLAYOS-Theme.zip"
+wget -q -t 3 -T 15 -O /tmp/PLAYOS-Theme.zip "https://raw.githubusercontent.com/Factzz/pLayOS/main/26908/playos-theme.zip"
+
 if [ -f "/tmp/PLAYOS-Theme.zip" ]; then
+    # 1. แตกไฟล์ Zip ทับลงในโฟลเดอร์รากของระบบ
     sudo unzip -o /tmp/PLAYOS-Theme.zip -d /etc/emulationstation/themes/
+    sudo mkdir -p /roms/themes/
+    sudo unzip -o /tmp/PLAYOS-Theme.zip -d /roms/themes/
 fi
 
 # ==========================================================
