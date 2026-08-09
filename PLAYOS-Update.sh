@@ -1,11 +1,29 @@
 #!/bin/bash
 # ==========================================================
-# PLAY OS - OTA Update Script (v2.0)
-# Update Folder: 26908
+# PLAY OS - OTA Update Script (v2.0.1)
+# Build: 26908
 # ==========================================================
 
 LOG_FILE="/home/ark/playos-update.log"
-echo ">> Starting PLAY OS v2.0 OTA Update..." | tee -a "$LOG_FILE"
+VERSION_FILE="/etc/playos_version"
+
+# ==========================================================
+# 0. Check Current Version (เช็กเวอร์ชันกันอัปเดตซ้ำ)
+# ==========================================================
+if grep -q "26908" "$VERSION_FILE" 2>/dev/null; then
+    echo ">> System is already on build 26908. Update skipped." | tee -a "$LOG_FILE"
+    
+    # แจ้งเตือนผู้ใช้ว่าอัปเดตล่าสุดแล้ว
+    if [ -x "$(command -v msgbox)" ]; then
+        sudo msgbox "Already up to date!\n\nYour PLAY OS is already on the latest version."
+    elif [ -x "$(command -v dialog)" ]; then
+        dialog --infobox "Already up to date!\nYour PLAY OS is on the latest version." 8 40 > /dev/tty1
+    fi
+    
+    exit 0
+fi
+
+echo ">> Starting PLAY OS v2.0.1 (26908) OTA Update..." | tee -a "$LOG_FILE"
 
 # ==========================================================
 # 1. Setup APPS Directory, Scripts & Core Apps (YouTube)
@@ -71,18 +89,21 @@ fi
 # 5. Finalize and Restart
 # ==========================================================
 echo ">> [5/5] Finalizing update..." | tee -a "$LOG_FILE"
-echo "PLAY OS 2.0" | sudo tee /etc/playos_version > /dev/null
+
+# บันทึกชื่อเวอร์ชันใหม่ลงในระบบ
+echo "PLAY OS 2.0.1(26908)" | sudo tee "$VERSION_FILE" > /dev/null
 
 echo ">> Update finished! Restarting..." | tee -a "$LOG_FILE"
 
-
+# แจ้งเตือนหน้าจอผู้ใช้เมื่อทำเสร็จ
 if [ -x "$(command -v msgbox)" ]; then
-    sudo msgbox "PLAY OS 2.0 Update Success!\n\nThe system has been updated successfully.\nRestarting UI..."
+    sudo msgbox "PLAY OS 2.0.1 Update Success!\n\nThe system has been updated successfully.\nRestarting UI..."
 elif [ -x "$(command -v dialog)" ]; then
-    dialog --infobox "PLAY OS 2.0 Update Success!\nRestarting UI..." 10 40 > /dev/tty1
+    dialog --infobox "PLAY OS 2.0.1 Update Success!\nRestarting UI..." 10 40 > /dev/tty1
 fi
 
-
+# สั่งเริ่มระบบ EmulationStation ใหม่ให้โชว์ทุกอย่าง
 sudo systemctl restart emulationstation
 
+# ส่งรหัส 187 คืนสคริปต์แม่เพื่อยืนยันการติดตั้งสมบูรณ์
 exit 187
