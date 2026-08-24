@@ -1,0 +1,2514 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: recalbox-emulationstation\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: ไทย V.1.3 By Factz\n"
+"Language: th\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.9\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+msgid "QUICK SEARCH"
+msgstr "ค้นหาด่วน"
+
+msgid "GO TO LETTER"
+msgstr "ไปที่อักษร"
+
+msgid "COLLECTIONS"
+msgstr "คอลเลคชั่น"
+
+msgid "GO TO MANUFACTURER"
+msgstr "ไปที่ผู้ชื่อผู้ผลิต"
+
+msgid "GO TO HARDWARE"
+msgstr "ไปที่ฮาร์ดแวร์"
+
+msgid "GO TO DECADE"
+msgstr "ไปที่ปี"
+
+msgid "Unknown"
+msgstr "ไม่ทราบ"
+
+msgid "CONFIGURATION"
+msgstr "การตั้งค่า"
+
+msgid "CHOOSE"
+msgstr "เลื่อน"
+
+msgid "SELECT"
+msgstr "เลือก"
+
+msgid "RANDOM"
+msgstr "สุ่ม"
+
+msgid "SEARCH"
+msgstr "ค้นหา"
+
+msgid "LAUNCH SCREENSAVER"
+msgstr "พักหน้าจอ"
+
+msgid "Preloading UI"
+msgstr "UI สำเร็จรูป"
+
+msgid "Loading theme..."
+msgstr "กำลังโหลดธีม..."
+
+msgid "Loading..."
+msgstr "กำลังโหลด..."
+
+msgid "MENU"
+msgstr "เมนู"
+
+msgid "Rating"
+msgstr "คะแนน"
+
+msgid "Released"
+msgstr "วางขายเมื่อ"
+
+msgid "Developer"
+msgstr "ผู้พัฒนา"
+
+msgid "Publisher"
+msgstr "ผู้จัดจำหน่าย"
+
+msgid "Genre"
+msgstr "แนว"
+
+msgid "Players"
+msgstr "ผู้เล่น"
+
+msgid "Last played"
+msgstr "เล่นล่าสุดเมื่อ"
+
+msgid "Times played"
+msgstr "รวมเวลาที่เล่น"
+
+msgid "No Entries Found"
+msgstr "ไม่พบ"
+
+msgid "SYSTEM"
+msgstr "เครื่องเกม"
+
+msgid "LAUNCH"
+msgstr "เริ่ม"
+
+msgid "BACK"
+msgstr "กลับ"
+
+msgid "OPTIONS"
+msgstr "ตัวเลือก"
+
+msgid "FAVORITE"
+msgstr "รายการโปรด"
+
+msgid "FILENAME, ASCENDING"
+msgstr "ชื่อไฟล์, น้อยไปมาก"
+
+msgid "FILENAME, DESCENDING"
+msgstr "ชื่อไฟล์, มากไปน้อย"
+
+msgid "RATING, ASCENDING"
+msgstr "คะแนน, น้อยไปมาก"
+
+msgid "RATING, DESCENDING"
+msgstr "คะแนน, มากไปน้อย"
+
+msgid "TIMES PLAYED, ASCENDING"
+msgstr "เวลาที่เล่น, น้อยไปมาก"
+
+msgid "TIMES PLAYED, DESCENDING"
+msgstr "เวลาที่เล่น, มากไปน้อย"
+
+msgid "LAST PLAYED, ASCENDING"
+msgstr "เล่นล่าสุด, น้อยไปมาก"
+
+msgid "LAST PLAYED, DESCENDING"
+msgstr "เล่นล่าสุด, มากไปน้อย"
+
+msgid "NUMBER PLAYERS, ASCENDING"
+msgstr "จำนวนผู้เล่น, น้อยไปมาก"
+
+msgid "NUMBER PLAYERS, DESCENDING"
+msgstr "จำนวนผู้เล่น, มากไปน้อย"
+
+msgid "RELEASE DATE, ASCENDING"
+msgstr "วันที่ขาย, น้อยไปมาก"
+
+msgid "RELEASE DATE, DESCENDING"
+msgstr "วันที่ขาย, มากไปน้อย"
+
+msgid "GENRE, ASCENDING"
+msgstr "แนวเกม, น้อยไปมาก"
+
+msgid "GENRE, DESCENDING"
+msgstr "แนวเกม, มากไปน้อย"
+
+msgid "DEVELOPER, ASCENDING"
+msgstr "ผู้พัฒนา, น้อยไปมาก"
+
+msgid "DEVELOPER, DESCENDING"
+msgstr "ผู้พัฒนา, มากไปน้อย"
+
+msgid "PUBLISHER, ASCENDING"
+msgstr "ผู้จัดจำหน่าย, น้อยไปมาก"
+
+msgid "PUBLISHER, DESCENDING"
+msgstr "ผู้จัดจำหน่าย, มากไปน้อย"
+
+msgid "SYSTEM, ASCENDING"
+msgstr "เครื่องเกม, น้อยไปมาก"
+
+msgid "SYSTEM, DESCENDING"
+msgstr "เครื่องเกม, มากไปน้อย"
+
+msgid "A,AN,THE"
+msgstr "A,AN,THE"
+
+msgid "Editing the '%s' Collection. Add/remove games with Y."
+msgstr "แก้ไข '%s' คอลเลคชั่น เพิ่ม/ลบ กด Y"
+
+msgid "Finished editing the '%s' Collection."
+msgstr "แก้ไขสำเร็จ คอลเลคชั่น '%s'"
+
+msgid "Added '%s' to '%s'"
+msgstr "เพิ่ม '%s' ไปที่ '%s'"
+
+msgid "Removed '%s' from '%s'"
+msgstr "ลบ '%s' จาก '%s'"
+
+msgid "This collection is empty."
+msgstr "คอลเลคชั่นว่างเปล่า"
+
+msgid "None"
+msgstr "ไม่มี"
+
+msgid "Various"
+msgstr "หลากหลาย"
+
+msgid "among other titles."
+msgstr "กับเกมอื่นๆ"
+
+msgid "This collection contains"
+msgstr "คอลเลคชั่นนี้มี"
+
+msgid "games, including"
+msgstr "เกม, รวมถึง"
+
+msgid "DOWNLOADING"
+msgstr "กำลังดาวน์โหลด"
+
+msgid "THEME INSTALLED SUCCESSFULLY"
+msgstr "ติดตั้งธีมสำเร็จ"
+
+msgid "AN ERROR OCCURED"
+msgstr "มีข้อผิดพลาด"
+
+msgid "UPDATE AVAILABLE"
+msgstr "มีอัพเดท"
+
+msgid "SCRAPING"
+msgstr "กำลังโหลดปกเกม"
+
+msgid "Searching"
+msgstr "กำลังค้นหา"
+
+msgid "SCRAPE FAILED"
+msgstr "โหลดปกเกมไม่สำเร็จ"
+
+msgid "Downloading"
+msgstr "กำลังดาวน์โหลด"
+
+msgid "SCRAPING FINISHED. REFRESH UPDATE GAMES LISTS TO APPLY CHANGES."
+msgstr "โหลดปกเกมสำเร็จ โปรดรีเฟรชรายชื่อเกมเพื่อใช้งาน"
+
+msgid "MAIN MENU"
+msgstr "เมนูหลัก"
+
+msgid "KODI MEDIA CENTER"
+msgstr "ศูนย์สื่อโคดี้"
+
+msgid "DISPLAY SETTINGS AND INFO"
+msgstr "ตั้งค่าหน้าจอ"
+
+msgid "UI SETTINGS"
+msgstr "ตั้งค่า UI"
+
+msgid "CONFIGURE INPUT"
+msgstr "ตั้งค่าจอย"
+
+msgid "SOUND SETTINGS"
+msgstr "ตั้งค่าเสียง"
+
+msgid "GAME COLLECTION SETTINGS"
+msgstr "ตั้งค่าคอลเลคชั่น"
+
+msgid "EMULATOR SETTINGS"
+msgstr "ตั้งค่าอีมูเลเตอร์"
+
+msgid "SCRAPER"
+msgstr "ภาพปกเกม"
+
+msgid "DOWNLOADS AND UPDATES"
+msgstr "ดาวน์โหลดและอัพเดท"
+
+msgid "ADVANCED SETTINGS"
+msgstr "การตั้งค่าขั้นสูง"
+
+msgid "QUIT"
+msgstr "ออก"
+
+msgid "BAT"
+msgstr "แบต"
+
+msgid "SND"
+msgstr "เสียง"
+
+msgid "BRT"
+msgstr "สว่าง"
+
+msgid "BT"
+msgstr "บลูทูธ"
+
+msgid "WIFI"
+msgstr "WIFI"
+
+msgid "SSID"
+msgstr "หมายเลข"
+
+msgid "Distro Version"
+msgstr "เฟิร์มแวร์"
+
+msgid "IP"
+msgstr "ไอพี"
+
+msgid "DISPLAY"
+msgstr "หน้าจอ"
+
+msgid "BRIGHTNESS"
+msgstr "ความสว่าง"
+
+msgid "SHOW OVERLAY WHEN BRIGHTNESS CHANGES"
+msgstr "แสดงหน้าต่างเมื่อเพิ่มแสงจอ"
+
+msgid "PANEL BRIGHTNESS"
+msgstr "ความสว่างจอ"
+
+msgid "PANEL CONTRAST"
+msgstr "ความเข้มจอ"
+
+msgid "PANEL SATURATION"
+msgstr "ความสดของจอ"
+
+msgid "PANEL HUE"
+msgstr "โทนสีจอ"
+
+msgid "\"), false, [this] {  })"
+msgstr "ไม่ใช่"
+
+msgid "PANEL ID"
+msgstr "ID แผงจอ"
+
+msgid "SCRAPE FROM"
+msgstr "โหลดปกเกมจาก"
+
+msgid "IMAGE SOURCE"
+msgstr "รูปแบบภาพปกเกม"
+
+msgid "NONE"
+msgstr "ไม่มี"
+
+msgid "SCREENSHOT"
+msgstr "ภาพจากในเกม"
+
+msgid "TITLE SCREENSHOT"
+msgstr "ภาพจากในเกมพร้อมชื่อเกม"
+
+msgid "MIX V1"
+msgstr "แบบรวม 1"
+
+msgid "MIX V2"
+msgstr "แบบรวม 2"
+
+msgid "BOX 2D"
+msgstr "กล่องสองมิติ"
+
+msgid "BOX 3D"
+msgstr "กล่องสามมิติ"
+
+msgid "BOX SOURCE"
+msgstr "รูปแบบภาพกล่องเกม"
+
+msgid "LOGO SOURCE"
+msgstr "รูปแบบภาพโลโก้เกม"
+
+msgid "WHEEL"
+msgstr "กงล้อ"
+
+msgid "MARQUEE"
+msgstr "แถบชื่อแบบเกมตู้"
+
+msgid "SCRAPE RATINGS"
+msgstr "ปกพร้อมคะแนนเกม"
+
+msgid "SCRAPE VIDEOS"
+msgstr "ปกเกมแบบวิดีโอ"
+
+msgid "USERNAME"
+msgstr "ชื่อผู้ใช้"
+
+msgid "PASSWORD"
+msgstr "รหัสผ่าน"
+
+msgid "SCRAPING IS RUNNING. DO YOU WANT TO STOP IT ?"
+msgstr "กำลังโหลดปกเกม , ต้องการหยุดไหม"
+
+msgid "YES"
+msgstr "ใช่"
+
+msgid "NO"
+msgstr "ไม่"
+
+msgid "SCRAPE NOW"
+msgstr "ดาวน์โหลดปกเกม"
+
+msgid "SYSTEM VOLUME"
+msgstr "เสียงระบบ"
+
+msgid "AUDIO CARD"
+msgstr "การ์ดเสียง"
+
+msgid "AUDIO DEVICE"
+msgstr "อุปกรณ์เสียง"
+
+msgid "SHOW OVERLAY WHEN VOLUME CHANGES"
+msgstr "แสดงหน้าต่างเมื่อปรับเสียง"
+
+msgid "FLIP VOLUME BUTTONS"
+msgstr "สลับปุ่มเสียง"
+
+msgid "FRONTEND MUSIC"
+msgstr "เสียงเพลงเมนู"
+
+msgid "DISPLAY SONG TITLES"
+msgstr "เสียงเพลงปกเกม"
+
+msgid "ONLY PLAY SYSTEM-SPECIFIC MUSIC FOLDER"
+msgstr "เล่นเสียงเพลงจากโฟลเดอร์เท่านั้น"
+
+msgid "PLAY THEME MUSICS"
+msgstr "เปิดเสียงเพลงจากธีม"
+
+msgid "ENABLE NAVIGATION SOUNDS"
+msgstr "เปิดเสียงปุ่มหน้าเมนู"
+
+msgid "ENABLE VIDEO AUDIO"
+msgstr "เปิดเสียงวิดีโอ"
+
+msgid "LOWER MUSIC WHEN PLAYING VIDEO"
+msgstr "เบาเสียงเพลงขณะเล่นวิดีโอ"
+
+msgid "Verbal BATTERY Voice"
+msgstr "เสียงพูดแจ้งเตือนแบตเตอรี่"
+
+msgid "MALE 1"
+msgstr "ผู้ชาย 1"
+
+msgid "MALE 2"
+msgstr "ผู้ชาย 2"
+
+msgid "FEMALE"
+msgstr "ผู้หญิง"
+
+msgid "VERBAL BATTERY VOICE"
+msgstr "เสียงพูดแจ้งเตือนแบตเตอรี่"
+
+msgid "Verbal BATTERY Warning"
+msgstr "เสียงพูดแจ้งเตือนแบตเตอรี่อ่อน"
+
+msgid "OFF"
+msgstr "ปิด"
+
+msgid "ON"
+msgstr "เปิด"
+
+msgid "VERBAL BATTERY WARNING"
+msgstr "เสียงพูดแจ้งเตือนแบตเตอรี่อ่อน"
+
+msgid "YOU MUST APPLY THE THEME BEFORE EDIT CONFIGURATION"
+msgstr "โปรดใช้งานธีมก่อนตั้งค่า"
+
+msgid "OK"
+msgstr "ตกลง"
+
+msgid "THEME CONFIGURATION"
+msgstr "ตั้งค่าธีม"
+
+msgid "VIEW CUSTOMISATION"
+msgstr "ดูการตั้งค่า"
+
+msgid "GAMELIST VIEW STYLE"
+msgstr "รูปแบบรายชื่อเกม"
+
+msgid "AUTOMATIC"
+msgstr "อัตโนมัติ"
+
+msgid "BASIC"
+msgstr "เรียบง่าย"
+
+msgid "DETAILED"
+msgstr "มีรายละเอียด"
+
+msgid "DEFAULT GRID SIZE"
+msgstr "ค่าเดิมช่องตาราง"
+
+msgid "DEFAULT"
+msgstr "ค่าเดิม"
+
+msgid "RESET GAMELIST CUSTOMISATIONS"
+msgstr "รีเซ็ตการตั้งค่ารายชื่อเกม"
+
+msgid "THEME"
+msgstr "ธีม"
+
+msgid "VIDEO"
+msgstr "วิดีโอ"
+
+msgid "GRID"
+msgstr "ช่องตาราง"
+
+msgid "SCREENSAVER SETTINGS"
+msgstr "ตั้งค่าการพักหน้าจอ"
+
+msgid "UI MODE"
+msgstr "โหมด UI"
+
+msgid "LANGUAGE"
+msgstr "ภาษา"
+
+msgid "TRANSITION STYLE"
+msgstr "รูปแบบการเปลี่ยนภาพ"
+
+msgid "GAME LAUNCH TRANSITION"
+msgstr "รูปแบบภาพตอนเริ่มเกม"
+
+msgid "START ON SYSTEM"
+msgstr "เปิดเครื่องแล้วเข้าอีมู"
+
+msgid "VISIBLE SYSTEMS"
+msgstr "อีมูที่มองเห็นได้"
+
+msgid "BOOT ON GAMELIST"
+msgstr "เปิดเครื่องพร้อมขึ้นชื่อเกม"
+
+msgid "HIDE SYSTEM VIEW"
+msgstr "ซ่อนมุมมองระบบ"
+
+msgid "HIDE WHEN RUNNING GAME"
+msgstr "ซ่อนขณะเล่นเกม"
+
+msgid "QUICK SYSTEM SELECT"
+msgstr "เมนูด่วน"
+
+msgid "CAROUSEL TRANSITIONS"
+msgstr "เพิ่มเอฟเฟคเลื่อนสมูทหน้าเมนู"
+
+msgid "SHOW CLOCK"
+msgstr "แสดงนาฬิกา"
+
+msgid "ON-SCREEN HELP"
+msgstr "ตัวช่วยบนหน้าจอ"
+
+msgid "SHOW BATTERY STATUS"
+msgstr "แสดงสถานะแบต"
+
+msgid "ICON"
+msgstr "ไอคอน"
+
+msgid "ICON AND TEXT"
+msgstr "ไอคอนและตัวหนังสือ"
+
+msgid "SHOW FILENAMES IN LISTS"
+msgstr "แสดงชื่อไฟล์ในรายชื่อเกม"
+
+msgid "IGNORE LEADING ARTICLES WHEN SORTING"
+msgstr "เพิกเฉยหัวข้อเมื่อจัดเรียง"
+
+msgid "ENABLE FILTERS"
+msgstr "เปิดการกรอง"
+
+msgid "Scan Ports folder on boot"
+msgstr "แสกนโฟลเดอร์ Ports ตอนเปิดเครื่อง"
+
+msgid "Show Kodi in Start Menu"
+msgstr "แสดงโคดี้ในเมนูเริ่ม"
+
+msgid "EMULATOR"
+msgstr "อีมูเลเตอร์"
+
+msgid "CORE"
+msgstr "คอร์"
+
+msgid "AUTO"
+msgstr "อัตโนมัติ"
+
+msgid "GOVERNOR"
+msgstr "ประสิทธิภาพ"
+
+msgid "THEME INSTALLER"
+msgstr "ตัวติดตั้งธีม"
+
+msgid "AUTO UPDATES"
+msgstr "อัพเดทอัตโนมัติ"
+
+msgid "APPLY UPDATE"
+msgstr "ใช้งานการอัพเดทนี้"
+
+msgid "START UPDATE"
+msgstr "เริ่มอัพเดท"
+
+msgid "NO UPDATE AVAILABLE"
+msgstr "ไม่มีอัพเดทใหม่"
+
+msgid "UPDATE IS ALREADY RUNNING"
+msgstr "กำลังอัพเดทอยู่"
+
+msgid "TIMEZONE"
+msgstr "โซนเวลา"
+
+msgid "SHOW CLOCK IN 12-HOUR FORMAT"
+msgstr "แสดงนาฬิกาแบบ 12 ชั่วโมง"
+
+msgid "SWITCH A/B BUTTONS IN EMULATIONSTATION"
+msgstr "สลับปุ่ม A/B ในหน้าเมนู"
+
+msgid "SWITCH POWER BUTTON TAP TO OFF"
+msgstr "กดปุ่มครั้งเดียวเพื่อปิดเครื่อง"
+
+msgid "POWER SAVER MODES"
+msgstr "โหมดประหยัดพลังงาน"
+
+msgid "VRAM LIMIT"
+msgstr "จำกัด VRAM หน้าเมนู"
+
+msgid "SAVE METADATA ON EXIT"
+msgstr "บันทึกข้อมูลไฟล์เกมก่อนออก"
+
+msgid "PARSE GAMESLISTS ONLY"
+msgstr "เฉพาะคำอธิบายของเกม"
+
+msgid "SEARCH FOR LOCAL ART"
+msgstr "ค้นหาภาพปกเกมจากเมม"
+
+msgid "PRELOAD UI"
+msgstr "UI สำเร็จรูป"
+
+msgid "OPTIMIZE IMAGES VRAM USE"
+msgstr "ปรับแต่ง VRAM สำหรับรูปภาพ"
+
+msgid "VSYNC"
+msgstr "VSYNC"
+
+msgid "SHOW FRAMERATE"
+msgstr "แสดงเฟรมเรท"
+
+msgid "THREADED LOADING"
+msgstr "โหมดเลือกดูแบบเร็ว"
+
+msgid "Default Emulator Governor"
+msgstr "ประสิทธิภาพฮาร์ดแวร์ของอีมู"
+
+msgid "COMPLETE QUIT MENU"
+msgstr "ออกจากเมนู"
+
+msgid "LOG LEVEL"
+msgstr "การสร้างไฟล์ LOG"
+
+msgid "OPTIONAL RUMBLE MOTOR"
+msgstr "มอเตอร์สั่น"
+
+msgid "ARE YOU SURE YOU WANT TO CONFIGURE INPUT?"
+msgstr "ตั้งค่าเลยหรือไม่"
+
+msgid "REALLY RESTART?"
+msgstr "รีสตาร์ทเลยหรือไม่"
+
+msgid "RESTART EMULATIONSTATION"
+msgstr "รีสตาร์ทเมนูเกม"
+
+msgid "REALLY QUIT?"
+msgstr "ออกเลยหรือไม่"
+
+msgid "QUIT EMULATIONSTATION"
+msgstr "ออกจากเมนูเกม"
+
+msgid "RESTART SYSTEM"
+msgstr "รีสตาร์ทเครื่องเกม"
+
+msgid "REALLY SHUTDOWN?"
+msgstr "ต้องการปิดเครื่องเกมหรือไม่"
+
+msgid "SHUTDOWN SYSTEM"
+msgstr "ปิดเครื่องเกม"
+
+msgid "THIS FUNCTION IS DISABLED WHEN SCRAPING IS RUNNING"
+msgstr "ฟังก์ชั่นนี้ปิดขณะโหลดปกเกม"
+
+msgid "CLOSE"
+msgstr "ปิด"
+
+msgid "SWAP VIDEO AFTER (SECS)"
+msgstr "เปลี่ยนวิดีโอหลังจาก (วินาที)"
+
+msgid "USE OMX PLAYER FOR SCREENSAVER"
+msgstr "ใช้โปรแกรม OMX สำหรับพักหน้าจอ"
+
+msgid "VIDEO SCREENSAVER"
+msgstr "วิดีโอพักหน้าจอ"
+
+msgid "SHOW GAME INFO"
+msgstr "แสดงรายละเอียดเกม"
+
+msgid "SHOW GAME INFO ON SCREENSAVER"
+msgstr "แสดงรายละเอียดเกมขณะพักหน้าจอ"
+
+msgid "USE MARQUEE AS GAME INFO"
+msgstr "เพิ่มรายละเอียดแถบชื่อเกม"
+
+msgid "USE RANDOM DECORATION"
+msgstr "ใช้การตกแต่งแบบสุ่ม"
+
+msgid "STRETCH VIDEO ON SCREENSAVER"
+msgstr "ขยายวิดีโอเต็มจอ"
+
+msgid "FILTER GAMELIST BY"
+msgstr "กรองรายชื่อเกม จาก"
+
+msgid "RESET ALL FILTERS"
+msgstr "รีเซ็ตการกรองทั้งหมด"
+
+msgid "SCRAPE THESE GAMES"
+msgstr "โหลดปกเกมเหล่านี้"
+
+msgid "All Games"
+msgstr "เกมทั้งหมด"
+
+msgid "Only missing medias"
+msgstr "เฉพาะเกมที่ยังไม่มีปก"
+
+msgid "FILTER"
+msgstr "ตัวกรอง"
+
+msgid "SCRAPE THESE SYSTEMS"
+msgstr "โหลดปกเกมของอีมูเหล่านี้"
+
+msgid "SYSTEMS"
+msgstr "อีมูเลเตอร์"
+
+msgid "USER DECIDES ON CONFLICTS"
+msgstr "หากซ้ำ ผู้ใช้ตัดสินใจเอง"
+
+msgid "START"
+msgstr "เริ่ม"
+
+msgid "NO GAMES FIT THAT CRITERIA."
+msgstr "ไม่มีเกมที่รองรับ"
+
+msgid "INPUT"
+msgstr "ป้อน"
+
+msgid "search"
+msgstr "ค้นหา"
+
+msgid "CANCEL"
+msgstr "ยกเลิก"
+
+msgid "GROUPED SYSTEMS"
+msgstr "อีมูเลเตอร์ที่จัดกลุ่มไว้"
+
+msgid "CREATE NEW CUSTOM COLLECTION FROM THEME"
+msgstr "สร้างคอลเลคชั่นใหม่จากธีม"
+
+msgid "SELECT THEME FOLDER"
+msgstr "เลือกโฟลเดอร์ธีม"
+
+msgid "CREATE NEW CUSTOM COLLECTION"
+msgstr "สร้างคอลเลคชั่นใหม่"
+
+msgid "New Collection Name"
+msgstr "ชื่อคอลเลคชั่นใหม่"
+
+msgid "GROUP UNTHEMED CUSTOM COLLECTIONS"
+msgstr "สร้างกลุ่มคอลเลคชั่นใหม่"
+
+msgid "SORT COLLECTIONS AND SYSTEMS"
+msgstr "เรียงคอลเลคชั่นและอีมู"
+
+msgid "ALPHABETICALLY"
+msgstr "ตามตัวหนังสือ"
+
+msgid "BY MANUFACTURER"
+msgstr "ตามชื่อผู้จำหน่าย"
+
+msgid "BY HARDWARE TYPE"
+msgstr "ตามเครื่องเกม"
+
+msgid "BY RELEASE YEAR"
+msgstr "ตามปีที่ขายเกม"
+
+msgid "SORT SYSTEMS"
+msgstr "เรียงอีมู"
+
+msgid "SHOW SYSTEM NAME IN COLLECTIONS"
+msgstr "แสดงชื่อเครื่องเกมในคอลเลคชั่น"
+
+msgid "FINISH EDITING COLLECTION"
+msgstr "สิ้นสุดการปรับแต่งคอลเลคชั่น"
+
+msgid "SELECT COLLECTIONS"
+msgstr "เลือกคอลเลคชั่น"
+
+msgid "ARCADE SYSTEMS"
+msgstr "เครื่องเกม"
+
+msgid "AUTOMATIC GAME COLLECTIONS"
+msgstr "คอลเลคชั่นแบบอัตโนมัติ"
+
+msgid "CUSTOM GAME COLLECTIONS"
+msgstr "คอลเลคชั่นปรับแต่งเอง"
+
+msgid "SCREENSAVER AFTER"
+msgstr "พักหน้าจอหลังจาก (นาที)"
+
+msgid "SCREENSAVER BEHAVIOR"
+msgstr "รูปแบบการพักหน้าจอ"
+
+msgid "THE \\"
+msgstr "ตัว"
+
+msgid "VIDEO SCREENSAVER SETTINGS"
+msgstr "ตั้งค่าวิดีโอพักหน้าจอ"
+
+msgid "SLIDESHOW SCREENSAVER SETTINGS"
+msgstr "ตั้งค่าสไลด์โชว์พักหน้าจอ"
+
+msgid "SCREENSAVER CONTROLS"
+msgstr "เพิ่มปุ่มพักหน้าจอหน้าเมนู"
+
+msgid "SLIDESHOW SCREENSAVER"
+msgstr "สไลด์โชว์พักหน้าจอ"
+
+msgid "EDIT METADATA"
+msgstr "ตั้งค่ารายละเอียดไฟล์เกม"
+
+msgid "SCRAPE"
+msgstr "ภาพปกเกม"
+
+msgid "SAVE"
+msgstr "บันทึก"
+
+msgid "DELETE"
+msgstr "ลบ"
+
+msgid "SAVE CHANGES ?"
+msgstr "บันทึก?"
+
+msgid "SWAP IMAGE AFTER (SECS)"
+msgstr "เปลี่ยนภาพหลังจาก (วินาที)"
+
+msgid "STRETCH IMAGES"
+msgstr "ยืดภาพให้เต็มจอ"
+
+msgid "USE CUSTOM IMAGES"
+msgstr "ใช้ภาพปรับแต่งเอง"
+
+msgid "CUSTOM IMAGE DIR"
+msgstr "ที่อยู่ของไฟล์ภาพ"
+
+msgid "CUSTOM IMAGE DIR RECURSIVE"
+msgstr "ค้นภาพปรับแต่งเองในโฟลเดอร์ย่อย"
+
+msgid "CUSTOM IMAGE FILTER"
+msgstr "ตัวกรองภาพปรับแต่งเอง"
+
+msgid "go back"
+msgstr "ย้อนกลับ"
+
+msgid "JUMP TO..."
+msgstr "กระโดดไปที่..."
+
+msgid "UPDATE GAMES LISTS"
+msgstr "อัพเดทรายชื่อเกม"
+
+msgid "REALLY UPDATE GAMES LISTS ?"
+msgstr "ต้องการอัพเดทรายชื่อเกมหรือไม่"
+
+msgid "SORT GAMES BY"
+msgstr "จัดเรียงเกมโดย"
+
+msgid "GRID SIZE"
+msgstr "ขนาดช่องตาราง"
+
+msgid "APPLY FILTER"
+msgstr "ใช้งานการกรอง"
+
+msgid "SHOW FAVORITES ON TOP"
+msgstr "แสดงเกมโปรดบนสุดเมนู"
+
+msgid "SHOW HIDDEN FILES"
+msgstr "แสดงไฟล์ที่ซ่อน"
+
+msgid "SHOW FOLDERS"
+msgstr "แสดงโฟลเดอร์"
+
+msgid "ADD/REMOVE GAMES TO THIS GAME COLLECTION"
+msgstr "เพิ่ม/ลบเกมจากคอลเลคชั่นนี้"
+
+msgid "FINISH EDITING"
+msgstr "เสร็จสิ้นการตั้งค่า"
+
+msgid "COLLECTION"
+msgstr "คอลเลคชั่น"
+
+msgid "EDIT THIS GAME'S METADATA"
+msgstr "แก้ไขรายละเอียดไฟล์เกมนี้"
+
+msgid "FILTER GAMES BY TEXT"
+msgstr "กรองรายชื่อเกมโดยตัวหนังสือ"
+
+msgid "SELECT THEME TO INSTALL"
+msgstr "เลือกธีมที่จะติดตั้ง"
+
+msgid "ADDED TO DOWNLOAD QUEUE"
+msgstr "เพิ่มในคิวดาวน์โหลด"
+
+msgid "Favorites"
+msgstr "เกมโปรด"
+
+msgid "EMULATIONSTATION"
+msgstr "อีมูเลชั่นสเตชั่น"
+
+msgid "UPDATE IS READY"
+msgstr "อัพเดทพร้อมแล้ว"
+
+msgid "RESTART EMULATIONSTATION TO APPLY"
+msgstr "รีสตาร์ทเครื่องใหม่เพื่อใช้งาน"
+
+msgid "Extracting"
+msgstr "กำลังแยกไฟล์"
+
+msgid "Starting UI"
+msgstr "กำลังเปิด UI"
+
+msgid "SAVING DATA. PLEASE WAIT..."
+msgstr "กำลังเซฟ โปรดรอ..."
+
+msgid "FINISH"
+msgstr "เสร็จสิ้น"
+
+msgid "NO GAMES FOUND - SKIP"
+msgstr "ไม่พบเกม - ข้าม"
+
+msgid "AN ERROR HAS OCCURED"
+msgstr "มีข้อผิดพลาด"
+
+msgid "RETRY"
+msgstr "ลองอีกครั้ง"
+
+msgid "SKIP"
+msgstr "ข้าม"
+
+msgid "SEARCHING"
+msgstr "กำลังค้นหา"
+
+msgid "accept result"
+msgstr "ยอมรับการเปลี่ยนแปลง"
+
+msgid "discard changes"
+msgstr "ละทิ้งการเปลี่ยนแปลง"
+
+msgid "WELCOME"
+msgstr "ยินดีต้อนรับ"
+
+msgid "NO GAMEPADS DETECTED"
+msgstr "ไม่พบจอยเกม"
+
+msgid "HOLD A BUTTON ON YOUR DEVICE TO CONFIGURE IT."
+msgstr "กด A ค้างไว้เพื่อตั้งค่า"
+
+msgid "PRESS F4 TO QUIT AT ANY TIME."
+msgstr "กด F4 เพื่อออกด่วน"
+
+msgid "PRESS ESC TO CANCEL."
+msgstr "กด ESC เพื่อยกเลิก"
+
+msgid "SHIFTS FOR UPPER,LOWER, AND SPECIAL"
+msgstr "กด Shift เพื่อตัวพิมพ์ใหญ่และอักขระพิเศษ"
+
+msgid "ALT GR"
+msgstr "อัลท์"
+
+msgid "RESET"
+msgstr "รีเซ็ต"
+
+msgid "SHIFT"
+msgstr "ชิฟท์"
+
+msgid "SPACE"
+msgstr "วรรค"
+
+msgid "accept"
+msgstr "ยอมรับ"
+
+msgid "SELECT ALL"
+msgstr "เลือกทั้งหมด"
+
+msgid "SELECT NONE"
+msgstr "ไม่เลือกเลย"
+
+msgid "never"
+msgstr "ไม่มี"
+
+msgid "unknown"
+msgstr "ไม่ทราบ"
+
+msgid "WORKING..."
+msgstr "กำลังทำงาน..."
+
+msgid "MOVE CURSOR"
+msgstr "เคลื่อนเม้าส์"
+
+msgid "STOP EDITING"
+msgstr "หยุดการปรับแต่ง"
+
+msgid "EDIT"
+msgstr "ปรับแต่ง"
+
+msgid "CHANGE"
+msgstr "เปลี่ยน"
+
+msgid "always"
+msgstr "เสมอ"
+
+msgid "start & end"
+msgstr "เริ่ม และ หยุด"
+
+msgid "disabled"
+msgstr "ปิดใช้งาน"
+
+msgid "default"
+msgstr "ค่าเดิม"
+
+msgid "warning"
+msgstr "คำเตือน"
+
+msgid "error"
+msgstr "ผิดพลาด"
+
+msgid "DISPLAY FAVORITES FIRST IN GAMELIST"
+msgstr "แสดงเกมโปรดบนสุดของรายชื่อเกม"
+
+msgid "Full"
+msgstr "เต็ม"
+
+msgid "Kiosk"
+msgstr "ตู้คิออส"
+
+msgid "Kid"
+msgstr "สำหรับเด็ก"
+
+msgid "automatic"
+msgstr "อัตโนมัติ"
+
+msgid "basic"
+msgstr "พื้นฐาน"
+
+msgid "detailed"
+msgstr "มีรายละเอียด"
+
+msgid "grid"
+msgstr "ช่องตาราง"
+
+msgid "fade"
+msgstr "เลือน"
+
+msgid "slide"
+msgstr "สไลด์"
+
+msgid "gridex"
+msgstr "ช่องตาราง"
+
+msgid "Enhanced"
+msgstr "อัพเกรด"
+
+msgid "instant"
+msgstr "ทันที"
+
+msgid "Rating:"
+msgstr "คะแนน:"
+
+msgid "Released:"
+msgstr "วางขาย:"
+
+msgid "Players:"
+msgstr "ผู้เล่น:"
+
+msgid "SEARCH FOR"
+msgstr "ค้นหา"
+
+msgid "SCRAPING IN PROGRESS"
+msgstr "กำลังโหลดปกเกม"
+
+msgid "subtitle text"
+msgstr "ตัวหนังสือซับไตเติ้ล"
+
+msgid "STOP"
+msgstr "หยุด"
+
+msgid "stop (progress saved)"
+msgstr "หยุด (บันทึกความคืบหน้าแล้ว)"
+
+msgid "GAME %i OF %i"
+msgstr "เกม %i ของ %i"
+
+msgid ""
+"WE CAN'T FIND ANY SYSTEMS!\n"
+"CHECK THAT YOUR PATHS ARE CORRECT IN THE SYSTEMS CONFIGURATION FILE, AND YOUR GAME DIRECTORY HAS AT LEAST ONE GAME WITH THE CORRECT EXTENSION.\n"
+"\n"
+msgstr ""
+"เราหาอีมูเลเตอร์ไม่เจอ!\n"
+"โปรดตรวจสอบว่าการตั้งค่าอยู่ในเส้นทางโฟลเดอร์ที่ถูกต้อง และโฟลเดอร์เกมต้องมีอย่างน้อยหนึ่งเกม\n"
+"\n"
+
+msgid "%i GAME SUCCESSFULLY SCRAPED!"
+msgid_plural "%i GAMES SUCCESSFULLY SCRAPED!"
+msgstr[0] "%i โหลดปกสำเร็จแล้ว!"
+msgstr[1] "%i โหลดปกสำเร็จแล้ว!"
+
+msgid "%i GAME SKIPPED."
+msgid_plural "%i GAMES SKIPPED."
+msgstr[0] "%i ถูกข้ามการโหลด"
+msgstr[1] "%i ถูกข้ามการโหลด"
+
+msgid "VERSION"
+msgstr "เวอร์ชั่น"
+
+msgid "DISK USAGE"
+msgstr "พื้นที่ที่ถูกใช้"
+
+msgid "STORAGE DEVICE"
+msgstr "ความจำเครื่อง"
+
+msgid "OVERCLOCK"
+msgstr "โอเวอร์คล็อก"
+
+msgid "EXTREM (1100Mhz)"
+msgstr "เกือบสุด (1100Mhz)"
+
+msgid "TURBO (1000Mhz)"
+msgstr "สูงมาก (1000Mhz)"
+
+msgid "HIGH (950Mhz)"
+msgstr "สูง (950Mhz)"
+
+msgid "NONE (700Mhz)"
+msgstr "ปกติ (700Mhz)"
+
+msgid "TURBO (1050Mhz)+"
+msgstr "เทอร์โบ (1050Mhz)+"
+
+msgid "HIGH (1050Mhz)"
+msgstr "สูงมากมาก (1050Mhz)"
+
+msgid "NONE (900Mhz)"
+msgstr "เพิ่มเล็กน้อย (900Mhz)"
+
+msgid "NONE (1200Mhz)"
+msgstr "สุดปลอก (1200Mhz)"
+
+msgid "KODI SETTINGS"
+msgstr "ตั้งค่าโคดี้"
+
+msgid "ENABLE KODI"
+msgstr "เปิดโคดี้"
+
+msgid "KODI AT START"
+msgstr "เปิดโคดี้เมื่อเปิดเครื่อง"
+
+msgid "START KODI WITH X"
+msgstr "เริ่มโคดี้โดยกดปุ่ม X"
+
+msgid "SECURITY"
+msgstr "ความปลอดภัย"
+
+msgid "ENFORCE SECURITY"
+msgstr "เจาะความปลอดภัย"
+
+msgid "ROOT PASSWORD"
+msgstr "พาสเวิร์ด ROOT"
+
+msgid "THE SYSTEM WILL NOW REBOOT"
+msgstr "เครื่องเกมกำลังจะถูกรีสตาร์ท"
+
+msgid "GAMES SETTINGS"
+msgstr "ตั้งค่าเกม"
+
+msgid "SMOOTH GAMES"
+msgstr "เกมลื่นไหล"
+
+msgid "REWIND"
+msgstr "ย้อนกลับ"
+
+msgid "AUTO SAVE/LOAD"
+msgstr "เซฟและโหลดอัตโนมัติ"
+
+msgid "SHADERS SET"
+msgstr "ตั้งค่า Shaders"
+
+msgid "SCANLINES"
+msgstr "สแกนไลน์"
+
+msgid "RETRO"
+msgstr "เรโทร"
+
+msgid "RETROACHIEVEMENTS SETTINGS"
+msgstr "ตั้งค่าเรโทรอาชีฟเมนท์"
+
+msgid "RETROACHIEVEMENTS"
+msgstr "เรโทรอาชีฟเมนท์"
+
+msgid "HARDCORE MODE"
+msgstr "โหมดฮาร์ดคอร์"
+
+msgid "ADVANCED"
+msgstr "ขั้นสูง"
+
+msgid "CONTROLLERS SETTINGS"
+msgstr "ตั้งค่าจอยเกม"
+
+msgid "HDMI"
+msgstr "HDMI"
+
+msgid "JACK"
+msgstr "แจ็ค"
+
+msgid "NETWORK SETTINGS"
+msgstr "ตั้งค่าการเชื่อมต่อ"
+
+msgid "CONNECTED"
+msgstr "เชื่อมต่อสำเร็จ"
+
+msgid "NOT CONNECTED"
+msgstr "ไม่ได้เชื่อมต่อ"
+
+msgid "STATUS"
+msgstr "สถานะ"
+
+msgid "IP ADDRESS"
+msgstr "ไอพีแอดเดรส"
+
+msgid "HOSTNAME"
+msgstr "ชื่อผู้ใช้"
+
+msgid "ENABLE WIFI"
+msgstr "เปิด WIFI"
+
+msgid "WIFI ENABLED"
+msgstr "เปิด WIFI"
+
+msgid "WIFI CONFIGURATION ERROR"
+msgstr "ตั้งค่า WIFI ล้มเหลว"
+
+msgid "Emulator"
+msgstr "อีมูเลเตอร์"
+
+msgid "Core"
+msgstr "คอร์"
+
+msgid "YOU ARE GOING TO CONFIGURE A CONTROLLER. IF YOU HAVE ONLY ONE JOYSTICK, CONFIGURE THE DIRECTIONS KEYS AND SKIP JOYSTICK CONFIG BY HOLDING A BUTTON. IF YOU DO NOT HAVE A SPECIAL KEY FOR HOTKEY, CHOOSE THE SELECT BUTTON. SKIP ALL BUTTONS YOU DO NOT HAVE BY HOLDING A KEY. BUTTONS NAMES ARE BASED ON THE SNES CONTROLLER."
+msgstr "คุณกำลังจะตั้งค่าจอยเกม ถ้าคุณมีจอยเดียว ให้ตั้งค่าปุ่มทิศทางและข้ามการตั้งค่าปุ่มอื่นโดยกดปุ่ม A ค้างไว้, ถ้าไม่มีปุ่มฮอตคีย์พิเศษในจอย ให้เลือกปุ่ม Select แล้วกดข้ามปุ่มที่ไม่มีโดยกดปุ่ม A ค้างไว้ , เลย์เอาท์ปุ่มเป็นแบบจอยเครื่อง SNES"
+
+msgid "CONFIGURE A CONTROLLER"
+msgstr "ตั้งค่าจอย"
+
+msgid "CONTROLLER PAIRED"
+msgstr "เชื่อมต่อจอยสำเร็จ"
+
+msgid "UNABLE TO PAIR CONTROLLER"
+msgstr "ไม่สามารถเชื่อมต่อจอยได้"
+
+msgid "NO CONTROLLERS FOUND"
+msgstr "ไม่พบจอย"
+
+msgid "PAIR A BLUETOOTH CONTROLLER"
+msgstr "เชื่อมต่อจอยบลูทูธ"
+
+msgid "CONTROLLERS LINKS HAVE BEEN DELETED."
+msgstr "การลิงก์กับจอยถูกลบออก"
+
+msgid "FORGET BLUETOOTH CONTROLLERS"
+msgstr "ไม่จำอุปกรณ์จอยบลูทูธ"
+
+msgid "INPUT P%i"
+msgstr "ป้อนค่า P%i"
+
+msgid "FAVORITES ONLY"
+msgstr "รายการโปรดเท่านั้น"
+
+msgid "Only missing image"
+msgstr "เฉพาะภาพที่ขาดหาย"
+
+msgid ""
+"WARNING: SOME OF YOUR SELECTED SYSTEMS DO NOT HAVE A PLATFORM SET. RESULTS MAY BE EVEN MORE INACCURATE THAN USUAL!\n"
+"CONTINUE ANYWAY?"
+msgstr ""
+"คำเตือน : ระบบที่คุณเลือกยังไม่ตั้งค่าแพลตฟอร์ม ผลลัพธ์อาจไม่ตรงตามปกติ\n"
+"ดำเนินการต่อหรือไม่?"
+
+msgid "REALLY UPDATE?"
+msgstr "ต้องการอัพเดทหรือไม่?"
+
+msgid "NETWORK CONNECTION NEEDED"
+msgstr "ต้องเชื่อมต่ออินเทอร์เน็ต"
+
+msgid "UPDATE DOWNLOADED, THE SYSTEM WILL NOW REBOOT"
+msgstr "ดาวน์โหลดอัพเดทแล้ว ระบบจะรีสตาร์ทตัวเอง"
+
+msgid "UPDATE FAILED, THE SYSTEM WILL NOW REBOOT"
+msgstr "อัพเดทไม่สำเร็จ ระบบจะรีสตาร์ทตัวเอง"
+
+msgid "enter emulator"
+msgstr "ใส่ อีมูเลเตอร์"
+
+msgid "enter core"
+msgstr "ใส่ คอร์"
+
+msgid "Ratio"
+msgstr "อัตราส่วนภาพ"
+
+msgid "enter ratio"
+msgstr "ใส่ อัตราส่วนภาพ"
+
+msgid "Name"
+msgstr "ชื่อ"
+
+msgid "enter game name"
+msgstr "ใส่ ชื่อ เกม"
+
+msgid "Description"
+msgstr "รายละเอียด"
+
+msgid "enter description"
+msgstr "ใส่ รายละเอียด"
+
+msgid "Image"
+msgstr "รูปภาพ"
+
+msgid "enter path to image"
+msgstr "ใส่ เส้นทางโฟลเดอร์ไปที่รูปภาพ"
+
+msgid "enter path to video"
+msgstr "ใส่ เส้นทางโฟลเดอร์ไปที่วิดีโอ"
+
+msgid "enter path to marquee"
+msgstr "ใส่ เส้นทางไปที่รูปแถบชื่อเกม"
+
+msgid "Thumbnail"
+msgstr "รูปตัวอย่าง"
+
+msgid "enter path to thumbnail"
+msgstr "ใส่ เส้นทางโฟลเดอร์รูปตัวอย่าง"
+
+msgid "enter rating"
+msgstr "ใส่ คะแนน"
+
+msgid "Release date"
+msgstr "วันที่จำหน่าย"
+
+msgid "enter release date"
+msgstr "ใส่ วันที่จำหน่าย"
+
+msgid "enter game developer"
+msgstr "ใส่ ชื่อผู้พัฒนา"
+
+msgid "enter game publisher"
+msgstr "ใส่ ชื่อผู้จัดจำหน่าย"
+
+msgid "enter game genre"
+msgstr "ใส่ แนว เกม"
+
+msgid "enter number of players"
+msgstr "ใส่ จำนวน ผู้เล่น"
+
+msgid "enter favorite"
+msgstr "ใส่ รายการโปรด"
+
+msgid "Region"
+msgstr "โซนประเทศ"
+
+msgid "enter region"
+msgstr "ใส่ โซนประเทศ"
+
+msgid "Romtype"
+msgstr "ชนิดรอม"
+
+msgid "enter romtype"
+msgstr "ใส่ ชนิดรอม"
+
+msgid "Hidden"
+msgstr "ซ่อน"
+
+msgid "HIDDEN"
+msgstr "ซ่อน"
+
+msgid "NAME"
+msgstr "ชื่อ"
+
+msgid "set hidden"
+msgstr "ตั้งค่าให้ ซ่อน"
+
+msgid "Play count"
+msgstr "จำนวนครั้งที่เล่น"
+
+msgid "enter number of times played"
+msgstr "ใส่ จำนวนเวลาที่เล่น"
+
+msgid "enter last played date"
+msgstr "ใส่ วันล่าสุดที่เล่น"
+
+msgid "GAMES AVAILABLE"
+msgstr "เกมที่มีอยู่"
+
+msgid "%i GAME AVAILABLE"
+msgid_plural "%i GAMES AVAILABLE"
+msgstr[0] "%i เกมที่มีอยู่"
+msgstr[1] "%i เกมที่มีอยู่"
+
+msgid "%i FAVORITE"
+msgid_plural "%i FAVORITES"
+msgstr[0] "%i รายการโปรด"
+msgstr[1] "%i รายการโปรด"
+
+msgid "SCROLL"
+msgstr "เลื่อน"
+
+msgid "just now"
+msgstr "เมื่อเร็วๆนี้"
+
+msgid "%i sec ago"
+msgid_plural "%i secs ago"
+msgstr[0] "%i วินาทีที่แล้ว"
+msgstr[1] "%i วินาทีที่แล้ว"
+
+msgid "%i min ago"
+msgid_plural "%i mins ago"
+msgstr[0] "%i นาทีที่แล้ว"
+msgstr[1] "%i นาทีที่แล้ว"
+
+msgid "%i hour ago"
+msgid_plural "%i hours ago"
+msgstr[0] "%i ชั่วโมงที่แล้ว"
+msgstr[1] "%i ชั่วโมงที่แล้ว"
+
+msgid "%i day ago"
+msgid_plural "%i days ago"
+msgstr[0] "%i วันที่แล้ว"
+msgstr[1] "%i วันที่แล้ว"
+
+msgid "%i SELECTED"
+msgid_plural "%i SELECTED"
+msgstr[0] "%i เลือกไว้แล้ว"
+msgstr[1] "%i เลือกไว้แล้ว"
+
+msgid "UP"
+msgstr "ขึ้น"
+
+msgid "DOWN"
+msgstr "ลง"
+
+msgid "LEFT"
+msgstr "ซ้าย"
+
+msgid "RIGHT"
+msgstr "ขวา"
+
+msgid "JOYSTICK 1 UP"
+msgstr "JOYSTICK 1 ขึ้น"
+
+msgid "JOYSTICK 1 LEFT"
+msgstr "JOYSTICK 1 ซ้าย"
+
+msgid "JOYSTICK 2 UP"
+msgstr "JOYSTICK 2 ขึ้น"
+
+msgid "JOYSTICK 2 LEFT"
+msgstr "JOYSTICK 2 ซ้าย"
+
+msgid "PAGE UP"
+msgstr "L1"
+
+msgid "PAGE DOWN"
+msgstr "R1"
+
+msgid "HOTKEY"
+msgstr "ฮอตคีย์"
+
+msgid "CONFIGURING"
+msgstr "กำลังตั้งค่า"
+
+msgid "KEYBOARD"
+msgstr "คีย์บอร์ด"
+
+msgid "GAMEPAD %i"
+msgstr "จอยเกม %i"
+
+msgid "PRESS ANYTHING"
+msgstr "กดปุ่มใดๆก็ได้"
+
+msgid "ALREADY TAKEN"
+msgstr "ถูกใช้งานแล้ว"
+
+msgid "DISCARD CHANGES"
+msgstr "ละทิ้งการเปลี่ยนแปลง"
+
+msgid "%i GAMEPAD DETECTED"
+msgid_plural "%i GAMEPADS DETECTED"
+msgstr[0] "%i พบจอยเกม"
+msgstr[1] "%i พบจอยเกม"
+
+msgid "DO YOU WANT TO START KODI MEDIA CENTER ?"
+msgstr "ต้องการเริ่มศูนย์สื่อโคดี้หรือไม่"
+
+msgid "LOADING..."
+msgstr "กำลังโหลด"
+
+msgid "REALLY SHUTDOWN WITHOUT SAVING METADATAS?"
+msgstr "ต้องการปิดเครื่องโดยไม่บันทึกข้อมูลหรือไม่"
+
+msgid "FAST SHUTDOWN SYSTEM"
+msgstr "ปิดเครื่องแบบรวดเร็ว"
+
+msgid ""
+"WE CAN'T FIND ANY SYSTEMS!\n"
+"CHECK THAT YOUR PATHS ARE CORRECT IN THE SYSTEMS CONFIGURATION FILE, AND YOUR GAME DIRECTORY HAS AT LEAST ONE GAME WITH THE CORRECT EXTENSION.\n"
+"\n"
+"VISIT EMULATIONSTATION.ORG FOR MORE INFORMATION."
+msgstr ""
+"เราหาอีมูเลเตอร์ไม่เจอ!\n"
+"โปรดตรวจสอบว่าการตั้งค่าอยู่ในเส้นทางโฟลเดอร์ที่ถูกต้อง และโฟลเดอร์เกมต้องมีอย่างน้อยหนึ่งเกม\n"
+"โปรดเข้าชมเว็บไซต์ EMULATIONSTATION.ORG เพื่อข้อมูลเพิ่มเติม"
+
+msgid "ON SCREEN KEYBOARD"
+msgstr "คีย์บอร์ดบนหน้าจอ"
+
+msgid "DELETE A CHAR"
+msgstr "ลบตัวอักษร"
+
+msgid "ACCEPT RESULT"
+msgstr "ยอมรับผลลัพธ์"
+
+msgid "FILENAME"
+msgstr "ชื่อไฟล์"
+
+msgid "RATING"
+msgstr "คะแนน"
+
+msgid "PARTIES JOUÉES"
+msgstr "เกมที่เล่น"
+
+msgid "LAST PLAYED"
+msgstr "เล่นล่าสุด"
+
+msgid "NUMBER OF PLAYERS"
+msgstr "จำนวนผู้เล่น"
+
+msgid "DEVELOPER"
+msgstr "ผู้พัฒนา"
+
+msgid "GENRE"
+msgstr "แนว"
+
+msgid "SHOW HIDDEN"
+msgstr "แสดงที่ซ่อนไว้"
+
+msgid "EXTREM (1400Mhz)"
+msgstr "สุดปลอก (1400MHz)"
+
+msgid "TURBO (1350Mhz)"
+msgstr "เทอร์โบ (1350MHz)"
+
+msgid "HIGH (1300Mhz)"
+msgstr "สูง (1300MHz)"
+
+msgid ""
+"TURBO AND EXTREM OVERCLOCK PRESETS MAY CAUSE SYSTEM UNSTABILITIES, SO USE THEM AT YOUR OWN RISK.\n"
+"IF YOU CONTINUE, THE SYSTEM WILL REBOOT NOW."
+msgstr ""
+"โหมด เทอร์โบ และ สุดปลอก อาจทำให้เครื่องไม่เสถียรได้ โปรดใช้อย่างระมัดระวัง\n"
+"หากคุณต้องการทำต่อ ระบบจะรีสตาร์ทเดี๋ยวนี้"
+
+msgid "%i GAME HIDDEN"
+msgid_plural "%i GAMES HIDDEN"
+msgstr[0] "%i เกมถูกซ่อนไว้"
+msgstr[1] "%i เกมถูกซ่อนไว้"
+
+msgid "Start kodi media player."
+msgstr "เริ่มโปรแกรมเล่นสื่อโคดี้"
+
+msgid "Select the language for your recalbox, select an external drive to store your games and configurations, check your current version and the free space on your drive"
+msgstr "เลือกภาษาที่ใช้ใน Recalbox , เลือกแหล่งจัดเก็บภายนอกเพื่อเก็บเกมและการตั้งค่าของคุณ , โปรดตรวจสอบเวอร์ชั่นและพื้นที่ว่างในที่จัดเก็บของคุณ"
+
+msgid "Configure games display, ratio, filters (shaders), auto save and load and retroachievement account."
+msgstr "ตั้งค่าหน้าจอ , อัตราส่วนภาพ , ฟิลเตอร์ (Shaders) , เซฟ-โหลดสเตท และ บัญชีผู้ใช้ เรโทรอาชีฟเมนท์"
+
+msgid "The game ratio is the ratio between image width and image height. Use AUTO to let the emulator choose the original game ratio, that will give you the best retrogaming experience."
+msgstr "อัตราส่วนภาพ คือ สัดส่วนความกว้าง และ ยาวของภาพในเกม , ใช้แบบ อัตโนมัติ เพื่อให้อีมูเลเตอร์จัดการเลือกใช้เอง จะทำให้เราได้ฟีลเล่นเกมเรโทรเก่าๆมากกว่า"
+
+msgid "Smooth the game image. This option makes the image smoother, using bilinear filtering."
+msgstr "ทำให้ภาพสมูท , ตัวเลือกนี้จะทำให้ภาพดูสมูทกลมกลืน โดยใช้เทคนิค Bilinear Filtering"
+
+msgid "This option allows you to rewind the game if you get killed by a monster, or if you make any other mistake. Use the HOTKEY + LEFT command within the game to rewind."
+msgstr "ตัวเลือกนี้จะอนุญาตให้คุณย้อนเวลากลับไปได้หากถูกฆ่าโดยมอนสเตอร์หรือทำผิดพลาดอย่างใดอย่างหนึ่ง , กด ปุ่มฮอตคีย์ที่ตั้งไว้ + ลูกศรซ้าย ขณะอยู่ในเกมเพื่อย้อนเวลา"
+
+msgid "Auto save the state when you quit a game, and auto load last saved state when you start a game."
+msgstr "เซฟสเตทอัตโนมัติเมื่อคุณออกจากเกม และโหลดสเตทอัตโนมัติเมื่อคุณเริ่มเกมอีกครั้ง"
+
+msgid "Integer scaling is scaling by a factor of a whole number, such as 2x, 3x, 4x, etc. This option scales the image up to the greatest integer scale below the set resolution. So for instance, if you set your fullscreen resolution to 1920x1080 and enable integer scaling, it will only scale a 320x240 image up to 1280x960, and leave black borders all around. This is to maintain a 1:1 pixel ratio with the original source image, so that pixels are not unevenly duplicated."
+msgstr "การเพิ่มความคมชัดพิกเซล คือ การคูณเสกลภาพเป็นตัวเลขเช่น 2x 3x 4x เป็นต้น ทำให้ภาพคมขึ้นที่ความละเอียดจอที่สูง โดยยังคงอัตราส่วนภาพดั้งเดิมอยู่ ไม่ได้แยกเพิ่มเม็ดพิกเซลแต่อย่างใด"
+
+msgid "Shaders are like filters for the game rendering. You can select a shader set here, which is a collection of shaders selected for each system. You can also change the shader within the game with HOTKEY + L2 or HOTKEY + R2."
+msgstr "Shaders เป็นเหมือนฟิลเตอร์ครอปหน้าจอเกม คุณสามารถเลือกตั้งค่าได้ที่นี่ มีหลากหลายรูปแบบให้เลือกใช้ , กดเปลี่ยนในระหว่างเล่นเกมให้กดปุ่ม ฮอตคีย์ที่ตั้งไว้ + L2 หรือ ฮอตคีย์ที่ตั้งไว้ + R2"
+
+msgid "Enable or disable RetroAchievements in games."
+msgstr "เปิดหรือปิด เรโทรอาชีฟเมนท์ ในเกม"
+
+msgid "Hardcore mode disables *all* savestate and rewind functions within the emulator: you will not be able to save and reload at any time. You will have to complete the game and get the achievements first time, just like on the original console. In reward for this, you will earn both the standard and the hardcore achievement, in effect earning double points! A regular game worth 400 points, is now worth 800 if you complete it on hardcore! For example: if you complete the game for 400 points, you then have the opportunity to earn another 400 on hardcore."
+msgstr "โหมดฮาร์ดคอ จะปิดระบบเซฟสเตท และ ฟังก์ชั่นย้อนกลับในอีมูเลเตอร์ , คุณจะไม่สามารถเซฟหรือโหลดเกมได้เลย คุณต้องเล่นให้จบเกมแล้วได้ Achievements ก่อน , รางวัลจากความสำเร็จนี้คือ แต้มคุณในเกมจะคูณเป็น 2 เท่า เช่นจาก 400 แต้ม จะกลายเป็น 800 แต้ม"
+
+msgid "The website retroachievements.org proposes challenges/achievements/trophies on platforms like NES, SNES, GB, GBC, GBA, Genesis/Megadrive, TurboGrafx16/PCEngine and more! Create your account on retroachievements.org and start your quest for achievements!"
+msgstr "เว็บไซต์ retroachievements.org มีจุดประสงค์เพื่อ การแข่งขันระหว่างผู้เล่น/ความสำเร็จ/ถ้วยรางวัล บนแพลตฟอร์ม NES,SNES,GB,GBC,GBA, GENESIS/MEGADRIVE และอื่นๆอีกมากมาย! สร้างบัญชีในเว็บไซต์ แล้วไปล่าถ้วยรางวัลกัน!"
+
+msgid "Add and configure up to 5 controllers."
+msgstr "เพิ่มและปรับแต่งจอยได้ถึง 5 ตัว."
+
+msgid "Start the screensaver after N minutes."
+msgstr "เริ่มโหมดการพักหน้าจอหลังจาก N นาที"
+
+msgid "Set the screensaver behavior. DIM will reduce the screen light, and BLACK will turn the screen black."
+msgstr "ตั้งค่ารูปแบบการพักหน้าจอ , DIM จะเป็นการลดแสงลง , BLACK จะเป็นหน้าจอดำอย่างเดียว"
+
+msgid "Shows a help at the bottom of the screen which displays commands you can use."
+msgstr "แสดงตัวช่วยเหลือที่ล่างจอโดยจะบอกคุณว่าสามารถใช้คำสั่งใดได้บ้าง"
+
+msgid "When enabled, you can switch between systems while browsing a gamelist by pressing LEFT or RIGHT."
+msgstr "หากเปิดใช้งาน คุณจะสามารถสลับดูรายชื่อเกมระหว่างอีมูโดยการกดปุ่ม ซ้าย และ ขวา"
+
+msgid "Updates the gamelists, if you added games since the last boot."
+msgstr "อัพเดทรายชื่อเกม หากคุณเพิ่มเกมหลังจากเปิดเครื่องครั้งล่าสุด"
+
+msgid "Set the volume of the sound output for the frontend and the games."
+msgstr "ตั้งค่าเสียงขาออกสำหรับหน้าเมนูและเกม"
+
+msgid "Get informations and visual for your games. The scraper downloads metadata and visuals for your games from different servers and enhances the user experience in EmulationStation completely."
+msgstr "ดาวน์โหลดข้อมูลและปกภาพเกมของคุณ เพื่อประสบการณ์ที่จัดเต็มแก่เมนู EMULATIONSTATION"
+
+msgid "Select a server to scrape from. The SCREENSCRAPER server is recommended and is based on www.screenscraper.fr and scrapes game data in your language, if available."
+msgstr "เลือกเซิฟเวอร์ที่จะโหลดปกภาพ , แนะนำของเว็บ SCREENSCRAPER นอกจากรูปภาพแล้วยังมีรายละเอียดข้อมูลเกมในภาษาของคุณอีกด้วย (ถ้ามีคนลงไว้)"
+
+msgid "Begin the scrape process with the configuration shown below."
+msgstr "เริ่มโหลดปกเกมด้วยการตั้งค่าดังกล่าว"
+
+msgid "Scrape and display game ratings."
+msgstr "โหลดภาพปกและแสดงคะแนนเกม"
+
+msgid "Advanced settings. Please make sure you really know what you're doing, before changing any values in this menu."
+msgstr "การตั้งค่าขั้นสูง โปรดรับทราบความเสี่ยงก่อนปรับค่าต่างๆในเมนูนี้"
+
+msgid ""
+"Overclock your board to increase the performance.\n"
+"Overclock settings are tested and validated by the community. Keep in mind that overclocking your board can void your warranty."
+msgstr ""
+"โอเวอร์คล็อกบอร์ดเพื่อเพิ่มประสิทธิภาพ\n"
+"ค่าโอเวอร์คล็อกที่ตั้งไว้ล่วงหน้าถูกทดสอบและยืนยันโดยเหล่านักพัฒนาแล้ว โปรดรับทราบว่าการกระทำนี้จะทำให้การรับประกันสิ้นสุดทันที"
+
+msgid ""
+"Only show games contained in the gamelist.xml file (located in your roms directories).\n"
+"This option highly speeds up boot time, but new games will not be detected."
+msgstr ""
+"แสดงเฉพาะรายชื่อเกมที่อยู่ในไฟล์ gamelist.xml \n"
+"การตั้งค่านี้จะช่วยให้เปิดเครื่องเร็วขึ้นมาก แต่เครื่องอาจไม่พบเกมที่ลงไว้"
+
+msgid "This option allows you to set the selected system to fixed mode. With this option activated, the user cannot access other systems."
+msgstr "การตั้งค่านี้จะอนุญาตให้คุณเลือกตรึงอีมูเลเตอร์ที่ต้องการได้ หลังจากเปิดการตั้งค่านี้ คุณจะไม่สามารถเข้าอีมูเลเตอร์ตัวอื่นๆได้"
+
+msgid "Always display the basic gamelist view, even if you have scraped your games."
+msgstr "ใช้งานหน้ารายชื่อเกมแบบเรียบง่ายเสมอ แม้จะมีภาพปกเกมอยู่แล้ว"
+
+msgid "Enable or disable Kodi, customize the Kodi startup, enable the X button to start Kodi"
+msgstr "เปิดหรือปิดโคดี้ , ปรับแต่งการเริ่มโคดี้ , กดปุ่ม X เพื่อเปิดโคดี้"
+
+msgid "Enable or disable Kodi. If kodi is disabled, you won't be able to start it with the X button, or start it automatically at boot. The menu entry will be removed as well."
+msgstr "เปิดหรือปิดโคดี้ หากโคดี้ถูกปิด คุณจะไม่สามารถเปิดมันได้โดยการกด X หรือเปิดอัตโนมัติเมื่อเปิดเครื่องอีกต่อไป ทางเข้าโคดี้หน้าเมนูจะถูกลบออกไปด้วย"
+
+msgid "Use the X button to start Kodi."
+msgstr "กดปุ่ม X เพื่อเริ่มใช้โคดี้"
+
+msgid "Automatically start into Kodi on boot."
+msgstr "เริ่มใช้โคดี้ทันทีหลังเปิดเครื่อง"
+
+msgid "Show the framerate in EmulationStation and in game."
+msgstr "แสดงเฟรมเรทในหน้าเมนูและในเกม"
+
+msgid "Select which emulator to use when you start a game for this system."
+msgstr "เลือกอีมูเลเตอร์เพื่อใช้เริ่มเกมของเครื่องเกมนี้"
+
+msgid "Select which core to use for the selected emulator. For example, the LIBRETRO emulator has many cores to run Super Nintendo games. The default core you choose here can also be overridden in game specific settings."
+msgstr "เลือกคอร์ให้ทำงานกับอีมูเลเตอร์ที่เลือก ตัวอย่างเช่น LIBRETRO มีคอร์มากมายในการรัน SNES โดยคอร์ที่คุณเลือกไว้จะข้ามการตั้งค่าเดิมของตัวเกม"
+
+msgid "USE COMPOSED VISUALS"
+msgstr "ใช้รูปแบบกราฟิคสมมาตร"
+
+msgid "CHECK UPDATES"
+msgstr "ตรวจสอบการอัพเดท"
+
+msgid "UPDATE TYPE"
+msgstr "รูปแบบการอัพเดท"
+
+msgid "INTEGER SCALE (PIXEL PERFECT)"
+msgstr "เพิ่มความคมพิกเซล"
+
+msgid "BOOT SETTINGS"
+msgstr "ตั้งค่าบูท"
+
+msgid "GAMELIST ONLY"
+msgstr "เฉพาะรายชื่อเกม"
+
+msgid "EMULATOR ADVANCED CONFIGURATION"
+msgstr "ตั้งค่าอีมูเลอเตอร์ขั้นสูง"
+
+msgid "ADVANCED EMULATOR CONFIGURATION"
+msgstr "ตั้งค่าอีมูเลเตอร์ขั้นสูง"
+
+msgid "HELP"
+msgstr "ช่วยเหลือ"
+
+msgid "THE SYSTEM IS UP TO DATE"
+msgstr "เฟิร์มแวร์คุณเป็นปัจจุบัน"
+
+msgid "FORCE BASIC GAMELIST VIEW"
+msgstr "บังคับให้แสดงผลรายชื่อเกมแบบเรียบง่าย"
+
+msgid "UPDATE VERSION:"
+msgstr "เวอร์ชั่นอัพเดท:"
+
+msgid "UPDATE CHANGELOG:"
+msgstr "การเปลี่ยนแปลงในอัพเดท:"
+
+msgid "MORE DETAILS"
+msgstr "รายละเอียดเพิ่มเติม"
+
+msgid "THEME COLORSET"
+msgstr "ชุดสีของธีม"
+
+msgid "THEME ICONSET"
+msgstr "ชุดไอคอนของธีม"
+
+msgid "THEME MENU"
+msgstr "เมนูธีม"
+
+msgid "THEME SYSTEMVIEW"
+msgstr "รูปแบบแสดงผลอีมูของธีม"
+
+msgid "THEME GAMELISTVIEW"
+msgstr "รูปแบบแสดงผลรายชื่อเกมของธีม"
+
+msgid "THEME REGION"
+msgstr "โซนประเทศของธีม"
+
+msgid "THIS THEME HAS NO OPTION"
+msgstr "ธีมนี้ไม่มีตัวเลือก"
+
+msgid "MANUAL INPUT"
+msgstr "ป้อนด้วยตัวเอง"
+
+msgid "AN ERROR OCCURED - DOWNLOADED"
+msgstr "เกิดข้อผิดพลาด - ดาวน์โหลดแล้ว"
+
+msgid "START KODI"
+msgstr "เริ่มโคดี้"
+
+msgid "Shows the current available update version."
+msgstr "แสดงเวอร์ชั่นที่สามารถอัพเดทได้"
+
+msgid "Shows the current available update changelog."
+msgstr "แสดงข้อมูลการเปลี่ยนแปลงของอัพเดทปัจจุบัน."
+
+msgid "Configure an associated controller. Your controller has to be associated / plugged before."
+msgstr "การตั้งค่าจอยเกม จอยเกมคุณต้องเข้ากันได้ หรือเคยเสียบกับเครื่องมาก่อน"
+
+msgid "Choose if carousel will be animated or not during transitions"
+msgstr "เลือกให้การเปลี่ยนหน้าจอแบบหน้าต่างเคลื่อนไหวหรือไม่เคลื่อนไหว"
+
+msgid "Select the type of transition that occurs when you start a game. INSTANT will do nothing, FADE will fade to dark, and SLIDE will zoom on the game cover (or name if there is no scrape information)"
+msgstr "เลือกรูปแบบการเปลี่ยนหน้าจอเมื่อเริ่มเกม โดย INSTANT จะไม่มีเอฟเฟคใดๆ , FADE ภาพจอจะมืดลงก่อนเข้าเกม , SLIDE จะซูมเข้าภาพปกเกมก่อนเข้าเกม (หรือซูมชื่อเกมแทนหากไม่มีปกเกม)"
+
+msgid "Select exisiting colorset options for this theme."
+msgstr "เลือกมุมมองแสดงชุดสีที่ใช้อยู่ เปิดใช้สำหรับธีมนี้"
+
+msgid "Select exisiting iconset options for this theme."
+msgstr "เลือกมุมมองแสดงรูปแบบไอคอนที่มีอยู่ เปิดใช้สำหรับธีมนี้"
+
+msgid "Select exisiting menu style options for this theme."
+msgstr "เลือกมุมมองแสดงรูปแบบเมนูที่มีอยู่ เปิดใช้สำหรับธีมนี้"
+
+msgid "Select exisiting system view options for this theme."
+msgstr "เลือกมุมมองแสดงรายชื่ออีมูเลเตอร์ที่มีอยู่ เปิดใช้สำหรับธีมนี้"
+
+msgid "Select exisiting gamelist view options for this theme."
+msgstr "เลือกมุมมองแสดงรายชื่อเกมที่มีอยู่ เปิดใช้สำหรับธีมนี้"
+
+msgid "Configure theme options if available."
+msgstr "ตั้งค่าธีมหากพร้อมให้มีการตั้งค่า"
+
+msgid "Select Region of logos, pictures for system that are different for some countries. E.g. Megadrive in EU / Genesis in US"
+msgstr "โปรดเลือกโซนของเครื่องเกมที่รูปภาพและโลโก้อาจแตกต่างกันในแต่ละโซน เช่น EU JP US"
+
+msgid "Type the name of your SSID if it is hidden or not listed"
+msgstr "โปรดป้อน SSID ของคุณ เพื่อตรวจสอบว่าถูกซ่อนหรือไม่อยู่ในรายการหรือไม่"
+
+msgid "Select a letter and the listing will go directly on the first game starting with this letter."
+msgstr "เลือกตัวอักษรแล้วระบบจะพาไปหาเกมแรกที่ขึ้นต้นด้วยอักษรนั้น"
+
+msgid "Select the way the game list is sortered (alphabetically, by notation...)."
+msgstr "เลือกรูปแบบในการจัดเรียงรายชื่้อเกม (เรียงตามตัวอักษร หรืออื่นๆ)"
+
+msgid "Switch between seing or not only the favorites games. To add a game in the favorite list, select the game and toggle its state using 'Y'."
+msgstr "สลับระหว่างเห็นหรือไม่เห็นเกมโปรดของฉัน, เพื่อจะเพิ่มเกมโปรด โปรดเลือกเกมแล้วกดปุ่ม Y"
+
+msgid "Switch between seing or not the hidden games. To hide a game, edit its data and select 'Hide'."
+msgstr "สลับระหว่างเห็นหรือไม่เห็นเกมที่ซ่อน, เพื่อจะซ่อนเกม โปรดกดตั้งค่าแล้วกด 'ซ่อน'"
+
+msgid "This option display a menu which allows to change game data and many others options."
+msgstr "การตั้งค่านี้จะแสดงเมนูเพื่ออนุญาตให้ปรับแต่งข้อมูลเกมและอื่นๆได้"
+
+msgid "AVAILABLE UPDATE"
+msgstr "มีอัพเดทใหม่"
+
+msgid "UPDATE CHANGELOG"
+msgstr "มีอะไรใหม่ในอัพเดท"
+
+msgid "CLOCK IN MENU"
+msgstr "นาฬิกาในหน้าเมนู"
+
+msgid "Now playing"
+msgstr "กำลังเล่น"
+
+msgid "INPUT REQUIRED"
+msgstr "ต้องตั้งค่าอินพุตก่อน"
+
+msgid "(skipped)"
+msgstr "(ข้ามแล้ว)"
+
+msgid "UP/DOWN TO SKIP"
+msgstr "กดลูกศร บน หรือ ล่าง เพื่อข้าม"
+
+msgid "A TO UNSET"
+msgstr "กด A เพื่อยกเลิก"
+
+msgid "DOWN TO SKIP AND KEEP [%1%]"
+msgstr "กดลูกศร ล่าง เพื่อข้ามและเก็บไว้ [%1%]"
+
+msgid "UP/DOWN TO SKIP AND KEEP [%1%]"
+msgstr "กดลูกศร บน หรือ ล่าง เพื่อข้ามและเก็บไว้ [%1%]"
+
+msgid "Set duration of help popups, 0 means no popup."
+msgstr "ตั้งค่าระยะเวลาป๊อบอัพช่วยเหลือ, 0 หมายถึงไม่มีป๊อบอัพ"
+
+msgid "HELP POPUP DURATION"
+msgstr "ระยะเวลาป๊อบอัพช่วยเหลือ"
+
+msgid "Set duration of music popups, 0 means no popup."
+msgstr "ตั้งค่าระยะเวลาป๊อบอัพการเล่นเพลง, 0 หมายถึงไม่มีป๊อบอัพ"
+
+msgid "MUSIC POPUP DURATION"
+msgstr "ระยะเวลาป๊อบอัพการเล่นเพลง"
+
+msgid "POPUP SETTINGS"
+msgstr "ตั้งค่าป๊อบอัพ"
+
+msgid "POPUP POSITION"
+msgstr "ตำแหน่งป๊อบอัพ"
+
+msgid "Select the position of popups on screen."
+msgstr "เลือกตำแหน่งป๊อบอัพบนหน้าจอ"
+
+msgid "Set position and duration of popups."
+msgstr "ปรับตั้งค่าตำแหน่งและระยะเวลาป๊อบอัพ"
+
+msgid "TOP/RIGHT"
+msgstr "บน/ขวา"
+
+msgid "BOTTOM/RIGHT"
+msgstr "ล่าง/ขวา"
+
+msgid "BOTTOM/LEFT"
+msgstr "ล่าง/ซ้าย"
+
+msgid "TOP/LEFT"
+msgstr "บน/ซ้าย"
+
+msgid "SHOW FOLDERS CONTENT"
+msgstr "แสดงเนื้อหาในโฟลเดอร์"
+
+msgid "Switch between seeing the folders structure and seeing all games in a flatten top level."
+msgstr "สลับระหว่างมองเห็นโครงสร้างโฟลเดอร์หรือเห็นเกมทั้งหมดวางที่แถบด้านบน"
+
+msgid "NETPLAY"
+msgstr "NETPLAY"
+
+msgid "NETPLAY SETTINGS"
+msgstr "ตั้งค่า NETPLAY"
+
+msgid "NETPLAY LOBBY"
+msgstr "ล็อบบี้ NETPLAY"
+
+msgid "Enable or disable Netplay in games."
+msgstr "เปิดหรือปิด NETPLAY ในเกม"
+
+msgid "PORT"
+msgstr "พอร์ต"
+
+msgid "NICKNAME"
+msgstr "ชื่อเล่น"
+
+msgid "RELAY SERVER"
+msgstr "เซิฟเวอร์รีเลย์"
+
+msgid "Enable or disable connections throught relay servers."
+msgstr "เปิดหรือปิดการเชื่อมต่อจากเซิฟเวอร์รีเลย์"
+
+msgid "KODI/NETPLAY"
+msgstr "โคดี้/NETPLAY"
+
+msgid "NO GAMES OR NO CONNECTION"
+msgstr "ไม่มีไฟล์เกมหรือไม่มีอินเทอร์เน็ต"
+
+msgid "HASH NOW"
+msgstr "แฮชเดี๋ยวนี้"
+
+msgid "HASH THESE SYSTEMS"
+msgstr "แฮชอีมูเหล่านี้"
+
+msgid "Add hash of roms in your gamelists to have more accurate results in Netplay."
+msgstr "เพิ่มแฮชรอมจากรายชื่อเกมเพื่อการเล่น NETPLAY ที่เสถียรขึ้น"
+
+msgid "HASH ROMS"
+msgstr "แฮช รอม"
+
+msgid "Only missing hashs"
+msgstr "เฉพาะแฮชที่ไม่พบ"
+
+msgid "Username"
+msgstr "ชื่อผู้ใช้"
+
+msgid "Country"
+msgstr "ประเทศ"
+
+msgid "Latency"
+msgstr "ความหน่วง"
+
+msgid "Host arch."
+msgstr "ผู้สร้างห้อง Arch"
+
+msgid "Core ver."
+msgstr "เวอร์ชั่นคอร์"
+
+msgid "RA ver."
+msgstr "เวอร์ชั่น RA"
+
+msgid "Can join"
+msgstr "สามารถเข้าร่วมได้"
+
+msgid "Rom and core match"
+msgstr "รอมและคอร์ที่ตรงกัน"
+
+msgid "Rom found"
+msgstr "พบรอมเกม"
+
+msgid "No rom match"
+msgstr "ไม่มีรอมที่ตรงกัน"
+
+msgid "Match"
+msgstr "ตรงกัน"
+
+msgid "No Match"
+msgstr "ไม่มีที่ตรงกัน"
+
+msgid "Rom file"
+msgstr "รอมไฟล์"
+
+msgid "Rom hash"
+msgstr "รอม แฮช"
+
+msgid "THIS COULD TAKE A WHILE, CONFIRM?"
+msgstr "อาจใช้เวลาสักครู่ , ยืนยันหรือไม่"
+
+msgid "good"
+msgstr "ดี"
+
+msgid "bad"
+msgstr "แย่"
+
+msgid "medium"
+msgstr "กลาง"
+
+msgid "NETPLAY POPUP DURATION"
+msgstr "หน้าต่างป๊อบอัพ NETPLAY"
+
+msgid "Set duration of netplay popups, 0 means no popup."
+msgstr "ระยะเวลาหน้าต่างป๊อบอัพ, 0 หมายถึงไม่มีป๊อบอัพ."
+
+msgid "Player"
+msgstr "ผู้เล่น"
+
+msgid "Game"
+msgstr "เกม"
+
+msgid "Play online on games running through Retroarch like NES, SNES, FBA, Genesis/Megadrive and more!"
+msgstr "เล่นเกมแบบออนไลน์บน Retroarch ผ่านเครื่องเกมอย่าง NES , SNES , FBA , GENESIS MEGADRIVE และอีกมากมาย!"
+
+msgid "Rom, hash and core match"
+msgstr "รอม, แฮช และคอร์ที่ตรงกัน"
+
+msgid "No core match"
+msgstr "ไม่มีคอร์ที่ตรงกัน"
+
+msgid "Add a clock in the main menu."
+msgstr "เพิ่มนาฬิกาในหน้าหลัก"
+
+msgid "UPGRADING"
+msgstr "กำลังอัพเกรด"
+
+msgid "PREPARING"
+msgstr "กำลังเตรียมการ"
+
+msgid "VERIFYING"
+msgstr "กำลังตรวจสอบ"
+
+msgid "EMPTY LIST"
+msgstr "เคลียร์รายชื่อ"
+
+msgid "Auto"
+msgstr "อัตโนมัติ"
+
+msgid "Square pixel"
+msgstr "พิกเซลสี่เหลี่ยม"
+
+msgid "Retroarch Config"
+msgstr "ตั้งค่า Retroarch"
+
+msgid "Retroarch Custom"
+msgstr "ปรับแต่ง Retroarch"
+
+msgid "Core provided"
+msgstr "คอร์ตรงกัน"
+
+msgid "Do not set"
+msgstr "ยังไม่ได้ตั้งค่า"
+
+msgid "RESET FILE EXTENSIONS"
+msgstr "รีเซ็ตนามสกุลไฟล์"
+
+msgid "SHOW DATE TIME"
+msgstr "แสดงวันที่และเวลา"
+
+msgid "FAVORITES"
+msgstr "รายการโปรด"
+
+msgid "ALL"
+msgstr "ทั้งหมด"
+
+msgid "GAME LOADING IMAGE MODE"
+msgstr "โหมดภาพตอนเข้าเกม"
+
+msgid "  GAME LOADING IMAGE"
+msgstr "  ภาพตอนเข้าเกม"
+
+msgid "PIC"
+msgstr "รูปภาพ"
+
+msgid "ASCII"
+msgstr "ตัวอักขระ"
+
+msgid "IMAGE"
+msgstr "รูปภาพ"
+
+msgid "THUMB"
+msgstr "รูปตัวอย่างเกม"
+
+msgid "ALL GAMES"
+msgstr "เกมทั้งหมด"
+
+msgid "PLAYERS"
+msgstr "จำนวนผู้เล่น"
+
+msgid "KIDGAME"
+msgstr "เกมสำหรับเด็ก"
+
+msgid "FALSE"
+msgstr "ไม่ใช่"
+
+msgid "TRUE"
+msgstr "ใช่"
+
+msgid "BOXES"
+msgstr "กล่องปกเกม"
+
+msgid "ELEMENTFLIX"
+msgstr "แบบเมนูบนทีวี"
+
+msgid "DESCRIPTION"
+msgstr "คำอธิบาย"
+
+msgid "THUMBNAIL"
+msgstr "รูปตัวอย่างเกม"
+
+msgid "RELEASE DATE"
+msgstr "วันที่วางขาย"
+
+msgid "PUBLISHER"
+msgstr "ผู้จัดจำหน่าย"
+
+msgid "ARCADE SYSTEM"
+msgstr "ระบบเครื่องตู้เกม"
+
+msgid "PUBLISHER / DEVELOPER"
+msgstr "ผู้จัดจำหน่าย / ผู้พัฒนา"
+
+msgid "NEVER PLAYED"
+msgstr "ไม่เคยเล่นมาก่อน"
+
+msgid "ARCADE"
+msgstr "เกมตู้"
+
+msgid "US"
+msgstr "อเมริกา"
+
+msgid "EU"
+msgstr "ยุโรป"
+
+msgid "FR"
+msgstr "ฝรั่งเศส"
+
+msgid "JP"
+msgstr "ญี่ปุ่น"
+
+msgid "REGION SOURCE"
+msgstr "โซนประเทศของภาพปกเกม"
+
+msgid "Update"
+msgstr "อัพเดท"
+
+msgid "Tools"
+msgstr "เครื่องมือต่างๆ"
+
+msgid "Advanced"
+msgstr "ขั้นสูง"
+
+msgid "VIEW CUSTOMIZATION"
+msgstr "การปรับแต่งมุมมอง"
+
+msgid "NO GAMES WERE SCRAPED."
+msgstr "ยกเลิกการโหลด"
+
+msgid "GRID GAME IMAGE"
+msgstr "รูปแบบภาพในช่องตารางเกม"
+
+msgid "Off"
+msgstr "ปิดอยู่"
+
+msgid "up"
+msgstr "เปิดอยู่"
+
+msgid "down"
+msgstr "ปิดอยู่"
+
+msgid "Auto Suspend Timeout (mins)"
+msgstr "เข้าโหมดพักหน้าจอหลังจาก (นาที)"
+
+msgid "enhanced"
+msgstr "เพิ่มประสิทธิภาพ"
+
+msgid "performance"
+msgstr "เต็มประสิทธิภาพ"
+
+msgid "ondemand"
+msgstr "สลับอัจฉริยะ"
+
+msgid "powersave"
+msgstr "ประหยัดพลังงาน"
+
+msgid "GIF"
+msgstr "ภาพ GIF"
+
+msgid "VID"
+msgstr "วิดีโอ"
+
+msgid "having multiple games"
+msgstr "โฟลเดอร์ที่มีหลายเกม"
+
+msgid "video"
+msgstr "วิดีโอ"
+
+msgid "false"
+msgstr "ไม่ใช่"
+
+msgid "False"
+msgstr "ไม่ใช่"
+
+msgid "down "
+msgstr "ปิดอยู่ "
+
+msgid "debug"
+msgstr "ดีบัค"
+
+msgid "off"
+msgstr "ปิด"
+
+msgid "enter arcade system name"
+msgstr "ใส่ ชื่อระบบเครื่องตู้เกม"
+
+msgid "dim"
+msgstr "หรี่แสง"
+
+msgid "black"
+msgstr "จอดำสนิท"
+
+msgid "random video"
+msgstr "วิดีโอแบบสุ่ม"
+
+msgid "slideshow"
+msgstr "สไลด์โชว์"
+
+msgid "auto"
+msgstr "อัตโนมัติ"
+
+msgid "Game Loading Image Delay (secs)"
+msgstr "ความหน่วง (วินาที)"
+
+msgid "  Game Loading Image delay (secs)"
+msgstr "  ความหน่วง (วินาที)"
+
+msgid "Game Loading Image"
+msgstr "ภาพตอนเข้าเกม"
+
+msgid "Verbal BATTERY Warning Threshold (%)"
+msgstr "พูดเตือนเมื่อแบตเตอรี่อยู่ที่ (เปอร์เซ็นต์)"
+
+msgid "Default"
+msgstr "ค่าเดิม"
+
+msgid "Detailed"
+msgstr "มีรายละเอียด"
+
+msgid "Video"
+msgstr "วิดีโอ"
+
+msgid "Basic"
+msgstr "เรียบง่าย"
+
+msgid "ARKOS4CLONE SETTINGS"
+msgstr "ตั้งค่าทั่วไป"
+
+msgid "WIFI"
+msgstr "ตั้งค่า WIFI"
+
+msgid "CURRENT NETWORK"
+msgstr "เครือข่ายปัจจุบัน"
+
+msgid "REMOTE SERVICES"
+msgstr "รีโมทเซอร์วิส"
+
+msgid "REMOTE SERVICES AUTO-START"
+msgstr "เปิดรีโมทเซอร์วิสอัตโนมัติ"
+
+msgid "=== SCANNED NETWORKS ==="
+msgstr "ค้นหาเครือข่าย WIFI"
+
+msgid "=== SAVED NETWORKS ==="
+msgstr "เครือข่ายที่บันทึก"
+
+msgid "FORGET SAVED NETWORKS"
+msgstr "ลบเครือข่ายที่เคยเชื่อมต่อ"
+
+msgid "PROXY SETTINGS"
+msgstr "ตั้งค่าพร็อกซี่"
+
+msgid "NETWORK INFO"
+msgstr "ข้อมูลการเชื่อมต่อ"
+
+msgid "NO WIFI NETWORKS FOUND"
+msgstr "ไม่พบเครือข่าย"
+
+msgid "SELECT CONNECTION"
+msgstr "เลือกเครือข่ายที่ต้องการ"
+
+msgid "DELETE CONNECTION?"
+msgstr "ต้องการลบเครือข่ายหรือไม่"
+
+msgid ""
+"CONNECTION FAILED\n"
+"Error: Connection activation failed: No suitable device found for this connection (device Io not available because profile is not compatible with device (connection type is not \"loopback\"))."
+msgstr ""
+"เชื่อมต่อไม่ได้\n"
+"โปรดตรวจสอบว่าได้เปิด WIFI หรือเสียบอุปกรณ์เชื่อมต่ออินเทอร์เน็ตแล้วหรือไม่1"
+
+msgid "ENABLE PROXY"
+msgstr "เปิดพร็อกซี่"
+
+msgid "PROXY TYPE"
+msgstr "ประเภทพร็อกซี่"
+
+msgid "PROXY HOST"
+msgstr "โฮสต์พร็อกซี่"
+
+msgid "PROXY PORT"
+msgstr "พอร์ตพร็อกซี่"
+
+msgid "NO PROXY"
+msgstr "โน_พร็อกซี่"
+
+msgid "INTERFACE"
+msgstr "อินเตอร์เฟส"
+
+msgid "GATEWAY"
+msgstr "เกตเวย์"
+
+msgid "DNS"
+msgstr "ดีเอ็นเอส"
+
+msgid "ARKOS4CLONE TOOLS"
+msgstr "ตั้งค่าฮาร์ดแวร์"
+
+msgid "CPU SETTINGS"
+msgstr "ตั้งค่าซีพียู"
+
+msgid "CPU CORES"
+msgstr "คอร์ซีพียู"
+
+msgid "CPU GOVERNOR"
+msgstr "ประสิทธิภาพซีพียู"
+
+msgid "CPU MAX FREQ"
+msgstr "ความถี่สูงสุดของซีพียู"
+
+msgid "MAX FREQ"
+msgstr "ความถี่สูงสุด"
+
+msgid "GPU SETTINGS"
+msgstr "ตั้งค่าการ์ดจอ"
+
+msgid "GPU MAX FREQ"
+msgstr "ความถี่สูงสุดของการ์ดจอ"
+
+msgid "DMC SETTINGS"
+msgstr "ตั้งค่าตัวบูตฟร้อนเอนด์"
+
+msgid "DMC MAX FREQ"
+msgstr "ความถี่สูงสุดของตัวบูต"
+
+msgid "ZRAM SETTINGS"
+msgstr "ตั้งค่า ZRAM"
+
+msgid "ZRAM ENABLE"
+msgstr "เปิด ZRAM"
+
+msgid "ZRAM SIZE"
+msgstr "ขนาดแรม"
+
+msgid "SIZE"
+msgstr "ขนาด"
+
+msgid "POWER LED"
+msgstr "ตั้งค่าไฟ LED"
+
+msgid "RED LED"
+msgstr "ไฟสีแดง"
+
+msgid "BLUE LED"
+msgstr "ไฟสีฟ้า"
+
+msgid "BELOW"
+msgstr "ต่ำกว่า"
+
+msgid "ABOVE"
+msgstr "สูงกว่า"
+
+msgid "DATE & TIME"
+msgstr "วันที่และเวลา"
+
+msgid "CURRENT"
+msgstr "ปัจจุบัน"
+
+msgid "SYNC WITH NETWORK"
+msgstr "ดึงข้อมูลเวลาจากเครือข่าย"
+
+msgid "NO NETWORK CONNECTION"
+msgstr "ไม่มีการเชื่อมต่อ"
+
+msgid "YEAR"
+msgstr "ปี"
+
+msgid "MONTH"
+msgstr "เดือน"
+
+msgid "DAY"
+msgstr "วัน"
+
+msgid "HOUR"
+msgstr "ชั่วโมง"
+
+msgid "MINUTE"
+msgstr "นาที"
+
+msgid "APPLY"
+msgstr "นำไปใช้งาน"
+
+msgid "TIME SET SUCCESSFULLY"
+msgstr "ตั้งค่าวันที่และเวลาสำเร็จ"
+
+msgid "JOYPAD TEST"
+msgstr "ทดสอบจอย"
+
+msgid "ARE YOU SURE YOU WANT TO TEST JOYPAD?"
+msgstr "ต้องการทดสอบจอยหรือไม่"
+
+msgid "VIEW INFO"
+msgstr "เกี่ยวกับเครื่องเกม"
+
+msgid "SD CARD 1"
+msgstr "เมมโมรี่การ์ด 1"
+
+msgid "SD CARD 2"
+msgstr "เมมโมรี่การ์ด 2"
+
+msgid "SPEED"
+msgstr "ความเร็ว"
+
+msgid "DEVICE"
+msgstr "ประเภทเครื่องเกม"
+
+msgid "CPU GRADE"
+msgstr "ระดับซีพียู"
+
+msgid "CPU TEMP"
+msgstr "อุณหภูมิ"
+
+msgid "POOR"
+msgstr "ต่ำ"
+
+msgid "BEST"
+msgstr "ดีที่สุด"
+
+msgid "GOOD"
+msgstr "ดี"
+
+msgid "STANDARD"
+msgstr "มาตรฐาน"
+
+msgid "AVERAGE"
+msgstr "ปานกลาง"
+
+msgid "Clone"
+msgstr "โคลน"
+
+msgid "SHOW WIFI ICON"
+msgstr "แสดงไอคอน WIFI"
+
+msgid "SHOW BLUETOOTH ICON"
+msgstr "แสดงไอคอนบลูทูธ"
+
+msgid "TIME SYNCED SUCCESSFULLY"
+msgstr "ดึงข้อมูลเวลาเรียบร้อย"
+
+msgid "DELETE CONNECTION"
+msgstr "ลบเครือข่าย"
+
+msgid "DELETED"
+msgstr "ลบเรียบร้อย"
+
+msgid "PASSWORD FOR"
+msgstr "รหัสผ่านสำหรับ"
+
+msgid "CONNECT"
+msgstr "เชื่อมต่อ"
+
+msgid "CONNECTING TO"
+msgstr "กำลังเชื่อมต่อกับ"
+
+msgid "INVALID PASSWORD"
+msgstr "รหัสผ่านผิด"
+
+msgid "NETWORK NOT FOUND"
+msgstr "ไม่พบเครือข่าย"
+
+msgid "CONNECTING..."
+msgstr "กำลังเชื่อมต่อ..."
+
+msgid "CONNECTED TO"
+msgstr "เชื่อมต่อแล้วกับ"
+
+msgid "CONNECTION FAILED"
+msgstr "เชื่อมต่อไม่ได้"
+
+msgid "SCANNING WIFI NETWORKS"
+msgstr "กำลังค้นหาเครือข่าย"
+
+msgid "SELECT WIFI NETWORK"
+msgstr "เลือกเครือข่าย WIFI"
+
+msgid "NO SAVED CONNECTIONS"
+msgstr "ไม่มีการเครือข่ายที่บันทึกไว้"
+
+msgid "ZRAM COMP ALGO"
+msgstr "รูปแบบการบีบอัดข้อมูล"
+
+msgid "COMP ALGO"
+msgstr "รูปแบบการบีบอัดข้อมูล"
+
+msgid "ZRAM AUTO START"
+msgstr "เปิด Zram อัตโนมัติ"
+
+msgid "BLUETOOTH"
+msgstr "บลูทูธ"
+
+msgid "STORAGE MANAGER"
+msgstr "จัดการพื้นที่และการ์ด"
+
+msgid "ABOUT FIRMWARE"
+msgstr "เกี่ยวกับเฟิร์มแวร์"
+
+msgid "BATTERY"
+msgstr "แบตเตอร์รี่"
+
+msgid "VOLUME"
+msgstr "ระดับเสียง"
+
+msgid "BRIGHTNESS"
+msgstr "ความสว่าง"
+
+msgid "WIFI STATUS"
+msgstr "สถานะ WIFI"
+
+msgid "DEVELOPER"
+msgstr "ผู้พัฒนา"
+
+msgid "VIEW LICENSE AGREEMENT"
+msgstr "เกี่ยวกับกฏหมาย"
+
+msgid "CHECK FOR UPDATES"
+msgstr "อัพเดทเฟิร์มแวร์"
