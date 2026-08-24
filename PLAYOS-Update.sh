@@ -1,105 +1,96 @@
 #!/bin/bash
 # ==========================================================
-# PLAY OS - OTA Update Script (v2.0.3)
-# Build: 26910
+# PLAY OS - OTA Update Script
+# Build: 26916
 # ==========================================================
 
+INFO_FILE="/opt/system/playos_info.cfg"
 LOG_FILE="/home/ark/playos-update.log"
-VERSION_FILE="/etc/playos_version"
+URL_BASE="https://raw.githubusercontent.com/Factzz/pLayOS/main/26916"
 
 # ==========================================================
-# 0. Check Current Version (เช็กเวอร์ชันกันอัปเดตซ้ำ)
+# 0. Check Current Version (เช็กจาก playos_info.cfg เป็นหลัก)
 # ==========================================================
-if grep -q "26910" "$VERSION_FILE" 2>/dev/null; then
-    echo ">> System is already on build 26910. Update skipped." | tee -a "$LOG_FILE"
-    
-    if [ -x "$(command -v msgbox)" ]; then
-        sudo msgbox "Already up to date!\n\nYour PLAY OS is already on the latest version."
-    elif [ -x "$(command -v dialog)" ]; then
-        dialog --infobox "Already up to date!\nYour PLAY OS is on the latest version." 8 40 > /dev/tty1
-    fi
-    exit 0
+# ถ้ามีไฟล์นี้อยู่ และข้างในมีคำว่า 26916 ให้ข้ามการอัปเดต
+if grep -q "26916" "$INFO_FILE" 2>/dev/null; then
+    echo ">> System is already on build 26916. Update skipped." | tee -a "$LOG_FILE"
+    echo ">> PRESS (A) OR (B) TO CLOSE."
+    exit 187
 fi
 
-echo ">> Starting PLAY OS v2.0.3 (26910) OTA Update..." | tee -a "$LOG_FILE"
+echo ">> Starting PLAY OS Update (Build 26916)..." | tee -a "$LOG_FILE"
 
 # ==========================================================
-# 1. Clean Up Old Apps (ล้าง YouTube ออกจากระบบ)
+# 1. Clean Up Old Scripts (ลบสคริปต์ Wi-Fi / BT / Auto 2Card)
 # ==========================================================
-echo ">> [1/6] Cleaning up old apps (Removing YouTube)..." | tee -a "$LOG_FILE"
-sudo rm -rf /roms/ports/Tubelite
-sudo rm -f /roms/apps/YouTube.sh
+echo ">> [1/5] Removing old system tools..." | tee -a "$LOG_FILE"
+# ดักลบทั้งโฟลเดอร์หลักและ Advanced เผื่อไฟล์อยู่ผิดที่
+sudo rm -f "/opt/system/Wi-Fi Manager 4.3.6.sh"
+sudo rm -f "/opt/system/BT Manager 4.3.2.sh"
+sudo rm -f "/opt/system/Advanced/Wi-Fi Manager 4.3.6.sh"
+sudo rm -f "/opt/system/Advanced/BT Manager 4.3.2.sh"
+sudo rm -f "/usr/local/bin/auto_2card.sh"
 
 # ==========================================================
-# 2. Setup APPS (แตกไฟล์ apps.zip รวดเดียวจบ)
+# 2. Update RetroArch Configs
 # ==========================================================
-echo ">> [2/6] Installing APPS..." | tee -a "$LOG_FILE"
-sudo mkdir -p /roms/apps/
+echo ">> [2/5] Updating RetroArch configurations..." | tee -a "$LOG_FILE"
 
-# โหลด apps.zip ไปแตกไฟล์ที่ /roms/ (ระบบจะนำโฟลเดอร์ apps ไปทับของเดิมให้เอง)
-wget -q -t 3 -T 15 -O /tmp/apps.zip "https://raw.githubusercontent.com/Factzz/pLayOS/main/26910/apps.zip"
-if [ -f "/tmp/apps.zip" ]; then
-    sudo unzip -o /tmp/apps.zip -d /roms/
-    sudo chmod +x /roms/apps/*.sh
+wget -q -t 3 -T 15 -O /tmp/retroarch.cfg "$URL_BASE/retroarch.cfg"
+if [ -f "/tmp/retroarch.cfg" ]; then
+    sudo cp -f /tmp/retroarch.cfg /home/ark/.config/retroarch/retroarch.cfg
+    sudo cp -f /tmp/retroarch.cfg /home/ark/.config/retroarch32/retroarch.cfg
 fi
 
-# ==========================================================
-# 3. Setup GameStore (ลงใน /opt/)
-# ==========================================================
-echo ">> [3/6] Installing GameStore to System..." | tee -a "$LOG_FILE"
-sudo mkdir -p /opt/
-
-# โหลด gamestore.zip ไปแตกที่ /opt/ (ระบบจะสร้างโฟลเดอร์ /opt/gamestore/ ให้เอง)
-wget -q -t 3 -T 15 -O /tmp/gamestore.zip "https://raw.githubusercontent.com/Factzz/pLayOS/main/26910/gamestore.zip"
-if [ -f "/tmp/gamestore.zip" ]; then
-    sudo unzip -o /tmp/gamestore.zip -d /opt/
-    sudo chmod +x /opt/gamestore/*.sh
+wget -q -t 3 -T 15 -O /tmp/retroarch-core-options.cfg "$URL_BASE/retroarch-core-options.cfg"
+if [ -f "/tmp/retroarch-core-options.cfg" ]; then
+    sudo cp -f /tmp/retroarch-core-options.cfg /home/ark/.config/retroarch/retroarch-core-options.cfg
 fi
 
 # ==========================================================
-# 4. Setup RetroArch (โหลด retroarch.zip ลงพาทระบบ)
+# 3. Update System Files
 # ==========================================================
-echo ">> [4/6] Installing RetroArch Assets..." | tee -a "$LOG_FILE"
-sudo mkdir -p /opt/cmds/
+echo ">> [3/5] Updating PLAY OS system files..." | tee -a "$LOG_FILE"
 
-wget -q -t 3 -T 15 -O /tmp/retroarch.zip "https://raw.githubusercontent.com/Factzz/pLayOS/main/26910/retroarch.zip"
-if [ -f "/tmp/retroarch.zip" ]; then
-    sudo unzip -o /tmp/retroarch.zip -d /opt/cmds/
+wget -q -t 3 -T 15 -O /tmp/LICENSE.txt "$URL_BASE/LICENSE.txt"
+[ -f "/tmp/LICENSE.txt" ] && sudo cp -f /tmp/LICENSE.txt /opt/system/LICENSE.txt
+
+wget -q -t 3 -T 15 -O /tmp/playos_logo.svg "$URL_BASE/playos_logo.svg"
+[ -f "/tmp/playos_logo.svg" ] && sudo cp -f /tmp/playos_logo.svg /opt/system/playos_logo.svg
+
+# โหลด Info ทับเป็นอันดับสุดท้าย เพื่อยืนยันว่าการตั้งค่าทุกอย่างผ่านหมด
+wget -q -t 3 -T 15 -O /tmp/playos_info.cfg "$URL_BASE/playos_info.cfg"
+[ -f "/tmp/playos_info.cfg" ] && sudo cp -f /tmp/playos_info.cfg /opt/system/playos_info.cfg
+
+# ==========================================================
+# 4. Update EmulationStation
+# ==========================================================
+echo ">> [4/5] Updating EmulationStation & Translations..." | tee -a "$LOG_FILE"
+
+wget -q -t 3 -T 60 -O /tmp/emulationstation "$URL_BASE/emulationstation"
+if [ -f "/tmp/emulationstation" ]; then
+    sudo cp -f /tmp/emulationstation /usr/bin/emulationstation/emulationstation
+    sudo chmod +x /usr/bin/emulationstation/emulationstation
+fi
+
+sudo mkdir -p /usr/bin/emulationstation/resources/locale/th/
+wget -q -t 3 -T 15 -O /tmp/emulationstation2.po "$URL_BASE/emulationstation2.po"
+if [ -f "/tmp/emulationstation2.po" ]; then
+    sudo cp -f /tmp/emulationstation2.po /usr/bin/emulationstation/resources/locale/th/emulationstation2.po
 fi
 
 # ==========================================================
-# 5. Update es_systems.cfg & Install Theme
+# 5. Finalize & Guide User
 # ==========================================================
-echo ">> [5/6] Updating system structures and Theme..." | tee -a "$LOG_FILE"
+echo ">> [5/5] Finalizing update..." | tee -a "$LOG_FILE"
 
-wget -q -t 3 -T 15 -O /tmp/es_systems.cfg "https://raw.githubusercontent.com/Factzz/pLayOS/main/26910/es_systems.cfg"
-if [ -f "/tmp/es_systems.cfg" ]; then
-    sudo cp /etc/emulationstation/es_systems.cfg /etc/emulationstation/es_systems.cfg.bak
-    sudo cp -f /tmp/es_systems.cfg /etc/emulationstation/es_systems.cfg
-fi
+# ส่งข้อความพาดหัวตัวโตๆ วิ่งไปที่หน้าจอก่อนจบสคริปต์
+echo ">> ======================================="
+echo ">> UPDATE COMPLETED SUCCESSFULLY!"
+echo ">> PLEASE PRESS (A) OR (B) TO RESTART."
+echo ">> ======================================="
 
-wget -q -t 3 -T 15 -O /tmp/PLAYOS-Theme.zip "https://raw.githubusercontent.com/Factzz/pLayOS/main/26910/playos-theme.zip"
-if [ -f "/tmp/PLAYOS-Theme.zip" ]; then
-    sudo unzip -o /tmp/PLAYOS-Theme.zip -d /etc/emulationstation/themes/
-    sudo mkdir -p /roms/themes/
-    sudo unzip -o /tmp/PLAYOS-Theme.zip -d /roms/themes/
-fi
-
-# ==========================================================
-# 6. Finalize and Restart
-# ==========================================================
-echo ">> [6/6] Finalizing update..." | tee -a "$LOG_FILE"
-
-echo "PLAY OS 2.0.3(26910)" | sudo tee "$VERSION_FILE" > /dev/null
-
-echo ">> Update finished! Restarting..." | tee -a "$LOG_FILE"
-
-if [ -x "$(command -v msgbox)" ]; then
-    sudo msgbox "PLAY OS 2.0.3 Update Success!\n\nGameStore has been installed successfully.\nRestarting UI..."
-elif [ -x "$(command -v dialog)" ]; then
-    dialog --infobox "PLAY OS 2.0.3 Update Success!\nRestarting UI..." 10 40 > /dev/tty1
-fi
-
-sudo systemctl restart emulationstation
+# หน่วงเวลา 2 วินาทีให้ผู้ใช้ทันอ่านข้อความ ก่อนที่หน้าต่าง C++ จะเด้งขึ้นมา
+sleep 2 
 
 exit 187
