@@ -1,8 +1,0 @@
-<?xml version="1.0" ?>
-<buttonmap>
-    <device name="Microsoft Microsoft® Nano Transceiver v2.0" provider="android" vid="045E" pid="0800" buttoncount="9" axiscount="2">
-        <configuration>
-            <appearance id="game.controller.keyboard" />
-        </configuration>
-    </device>
-</buttonmap>

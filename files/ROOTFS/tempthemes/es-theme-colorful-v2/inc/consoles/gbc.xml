@@ -1,9 +1,0 @@
-<theme>
-<formatVersion>7</formatVersion>
-      <variables>
-            <!-- Color of background from system preview -->
-            <backcolor>F4B82B</backcolor>
-            <gameListScrollbarColor>daa527</gameListScrollbarColor>
-            <selectedcolor>F4B82B</selectedcolor>
-      </variables>
-</theme>

@@ -1,4 +1,0 @@
-<favourites>
-    <favourite name="Movies">ActivateWindow(10025,"/roms/movies/",return)</favourite>
-    <favourite name="Music">ActivateWindow(10502,"/roms/music/",return)</favourite>
-</favourites>

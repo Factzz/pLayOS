@@ -1,5 +1,0 @@
-#!/bin/bash
-printf "\n"
-printf " * dArkOSRE Documentation:       https://github.com/southoz/dArkOSRE-R36/wiki\n"
-printf " * Debian Reference:             https://www.debian.org/doc/manuals/debian-reference/index.en.html\n"
-printf "\n"
