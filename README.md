@@ -9,6 +9,10 @@
   <em>Proudly forked and supercharged from the amazing <a href="https://github.com/christianhaitian/dArkOS">dArkOS</a> project.</em>
 </p>
 
+<p align="center">
+  <img width="800" alt="PLAY OS Logo" src="https://raw.githubusercontent.com/Factzz/pLayOS/main/files/Gemini_Generated_Image_m48l2jm48l2jm48l.jpg" />
+</p>
+
 <!-- กรอบคำเตือนสีแดง (ใน GitHub จะเรนเดอร์เป็นกรอบ Alert ชัดเจนมาก) -->
 > [!WARNING]
 > ## 🚨 คำเตือนสำคัญทางกฎหมาย (STRICTLY NO COMMERCIAL USE) 🚨
