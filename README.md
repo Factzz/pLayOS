@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <img width="800" alt="PLAY OS Logo" src="https://raw.githubusercontent.com/Factzz/pLayOS/main/files/Gemini_Generated_Image_m48l2jm48l2jm48l.jpg" />
+  <img width="800" alt="PLAY OS Logo" src="https://raw.githubusercontent.com/Factzz/pLayOS/main/files/C93C3216-47FC-49EC-8D28-C5128DBBAE7D.jpeg" />
 </p>
 
 <!-- กรอบคำเตือนสีแดง (ใน GitHub จะเรนเดอร์เป็นกรอบ Alert ชัดเจนมาก) -->
