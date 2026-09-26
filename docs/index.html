@@ -178,6 +178,14 @@
   .modal-text{font-size:0.88rem; color:var(--ink-soft); line-height:1.55; margin-bottom:18px;}
   .modal-qr{width:100%; max-width:200px; border-radius:10px; margin:0 auto 20px; display:block;}
   .modal-go{width:100%; justify-content:center;}
+
+  /* COMPARE TABLE */
+  .compare-wrap{overflow-x:auto; border-radius:var(--radius); box-shadow:0 1px 0 rgba(23,24,27,0.06); background:#fff;}
+  .compare-table{width:100%; border-collapse:collapse; min-width:760px; font-size:0.86rem;}
+  .compare-table th,.compare-table td{padding:14px 16px; text-align:left; border-top:1px solid rgba(23,24,27,0.08); line-height:1.5;}
+  .compare-table thead th{border-top:none; font-weight:700; font-size:0.88rem; white-space:nowrap;}
+  .compare-table td:first-child, .compare-table th:first-child{color:var(--ink-soft); font-weight:600; white-space:nowrap;}
+  .compare-table .hl{background:rgba(0,203,206,0.08); font-weight:600;}
 </style>
 </head>
 <body>
@@ -188,6 +196,7 @@
     <div class="navlinks">
       <a href="#versions">เวอร์ชัน</a>
       <a href="#devices">อุปกรณ์</a>
+      <a href="#compare">เทียบระบบ</a>
       <a href="#features">ฟีเจอร์</a>
       <a href="#showcase">แอปในตัว</a>
       <a href="#donate">บริจาค</a>
@@ -338,6 +347,36 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="sec" id="compare">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>PlayOS เทียบกับระบบอื่น</h2>
+      <p>แต่ละระบบเกิดมาเพื่อกลุ่มเครื่องและปรัชญาที่ต่างกัน ตารางนี้เทียบเฉพาะแนวทางออกแบบโดยรวม ไม่ใช่ผลทดสอบทางเทคนิค</p>
+    </div>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>หัวข้อ</th><th class="hl">PlayOS</th><th>ArkOS</th><th>dArkOS</th><th>muOS</th><th>NextUI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>อุปกรณ์เป้าหมาย</td><td class="hl">ตระกูล R36 (R36S/R36H/R45H ฯลฯ) และเครื่องโคลน</td><td>อุปกรณ์ชิป RK3326 (RG351 series)</td><td>อุปกรณ์ Rockchip หลายรุ่น (RGB10, RG351MP, RG353 ฯลฯ)</td><td>ตระกูล Anbernic RG35XX/RG28XX/RG34XX ฯลฯ</td><td>TrimUI Brick / Smart Pro</td></tr>
+          <tr><td>พื้นฐานระบบ</td><td class="hl">ต่อยอดจาก dArkOS</td><td>Ubuntu</td><td>Debian (เข้าถึงแพ็กเกจ APT ได้เต็มรูปแบบ)</td><td>Linux (Buildroot) + เมนูของตัวเอง</td><td>ต่อยอดจาก MinUI</td></tr>
+          <tr><td>ร้านเกม/ตลาดเกมในตัว</td><td class="hl">✓ มีในตัว (Market)</td><td>✗</td><td>✗</td><td>✗ (ใช้ scraper แยก)</td><td>✗ (มี Pak Store สำหรับเสริมฟีเจอร์ ไม่ใช่ร้านเกม)</td></tr>
+          <tr><td>หน้าจัดการเซฟเกมรวม</td><td class="hl">✓ แบ็กอัพ/ลบ/แชร์ในหน้าเดียว</td><td>พื้นฐาน ผ่าน RetroArch</td><td>พื้นฐาน ผ่าน RetroArch</td><td>มีระบบจัดการที่พัฒนาต่อเนื่อง</td><td>เน้นที่ save state ในเมนูระหว่างเล่น</td></tr>
+          <tr><td>แชร์ไฟล์ไร้สายในตัว</td><td class="hl">✓ Wifi Share แบบ AirDrop</td><td>ต้องตั้งค่า FTP เอง</td><td>ใช้เครื่องมือของ Debian เอง (เช่น Syncthing)</td><td>มี Syncthing/SFTP ให้ตั้งค่า</td><td>เน้นสลับการ์ด SD เป็นหลัก</td></tr>
+          <tr><td>มีเดียเพลย์เยอร์เพลง</td><td class="hl">✓ Playpod พร้อมเนื้อเพลง/เบสบูสต์</td><td>เล่นเพลงพื้นหลังพื้นฐาน</td><td>ไม่ระบุชัดในระบบหลัก</td><td>รองรับผ่านปลั๊กอิน/ธีมเสริม</td><td>ไม่มีในตัว</td></tr>
+          <tr><td>เทอร์มินัลในตัว</td><td class="hl">✓</td><td>✓ (ฐาน Ubuntu)</td><td>✓ (ฐาน Debian เต็มรูปแบบ)</td><td>มีจำกัดกว่า</td><td>ไม่มี (เน้นความเรียบง่าย)</td></tr>
+          <tr><td>ธีม/ปรับแต่งหน้าตา</td><td class="hl">พื้นฐาน</td><td>จำกัด</td><td>จำกัด</td><td>โดดเด่นสุด มีคลังธีมชุมชนขนาดใหญ่</td><td>เรียบง่าย ปรับสี/ฟอนต์ได้บ้าง</td></tr>
+          <tr><td>ปรัชญาการออกแบบ</td><td class="hl">ฟีเจอร์จำเป็นครบในตัว ไม่ต้องหาแอปเสริม</td><td>เน้นความกว้างของอิมูเลเตอร์ที่รองรับ</td><td>เปิดกว้างแบบ Linux เต็มรูปแบบ ปรับแต่งได้ลึก</td><td>ปรับแต่ง/ธีมได้อิสระสูงสุด</td><td>มินิมอล หยิบมาเล่นได้ทันที ไม่มีสิ่งรบกวน</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="shared-note">*ArkOS, dArkOS, muOS และ NextUI เป็นโปรเจกต์ของทีมพัฒนาอื่นที่ไม่เกี่ยวข้องกับ PlayOS ข้อมูลข้างต้นสรุปจากลักษณะทั่วไปของแต่ละระบบในสายตาชุมชน อาจมีความคลาดเคลื่อนไปจากเวอร์ชันล่าสุดของแต่ละระบบได้</p>
   </div>
 </section>
 
