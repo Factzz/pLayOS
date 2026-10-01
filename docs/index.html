@@ -1057,25 +1057,25 @@
   //  X   : consoles/<โฟลเดอร์รุ่น>/*.dtb   (ตรวจว่าเป็น X เมื่อมีทั้ง consoles และ boot_images)
   const GROUP_LABEL={r36s:'R36S / รุ่นแท้',clone:'เครื่องโคลน',soysauce:'Soy Sauce (Y3506)'};
   const $=id=>document.getElementById(id);
-  let root=null, ver='30', models=[], files=[], token=0, curModel=null;
+  let root=null, ver='30', models=[], files=[], token=0;
   if(!window.showDirectoryPicker){ $('dtbUnsup').hidden=false; $('dtbPick').disabled=true; }
   const log=(m,c)=>{const d=document.createElement('div'); d.textContent=m; if(c) d.className=c; $('dtbLog').appendChild(d);};
   const natural=(x,y)=>x.localeCompare(y,undefined,{numeric:true,sensitivity:'base'});
 
   async function subdirs(dir){ const o=[]; for await(const [n,h] of dir.entries()) if(h.kind==='directory') o.push([n,h]); return o.sort((x,y)=>natural(x[0],y[0])); }
   async function getDir(parent,name){ for await(const [n,h] of parent.entries()) if(h.kind==='directory'&&n.toLowerCase()===name.toLowerCase()) return h; return null; }
-  // หาไฟล์ .dtb ในโฟลเดอร์รุ่น (ชั้นเดียว ถ้าไม่เจอลงไปอีกชั้น)
+  // หาไฟล์ .dtb ในโฟลเดอร์รุ่น (ชั้นเดียว ถ้าไม่เจอลงไปอีกชั้น) และเก็บโฟลเดอร์แม่ของมันไว้ใช้เป็นต้นทางคัดลอก
   async function dtbIn(dir,prefix,depth){
     const o=[], subs=[];
     for await(const [n,h] of dir.entries()){
-      if(h.kind==='file'){ if(/\.dtb$/i.test(n)) o.push({name:n,handle:h,path:prefix+n}); }
+      if(h.kind==='file'){ if(/\.dtb$/i.test(n)) o.push({name:n,handle:h,path:prefix+n,dir:dir}); }
       else subs.push([n,h]);
     }
     if(!o.length && depth<1) for(const [n,h] of subs) o.push(...await dtbIn(h,prefix+n+'/',depth+1));
     return o;
   }
   async function loadModels(v){
-    const my=++token; models=[]; curModel=null; $('dtbList').innerHTML=''; $('dtbCand').innerHTML='';
+    const my=++token; models=[]; $('dtbList').innerHTML=''; $('dtbCand').innerHTML='';
     const note=$('dtbCandNote'); note.textContent='กำลังอ่านรายชื่อรุ่นจากการ์ด...';
     let list=[];
     if(v==='x'){
@@ -1110,11 +1110,10 @@
   function onModel(){
     const cs=$('dtbCand'); cs.innerHTML=''; $('dtbDone').hidden=true;
     const m=models[$('dtbList').value];
-    curModel=m||null;
     if(!m){ $('dtbCandNote').textContent='ไม่พบรุ่นที่ค้นหา'; $('dtbGo').disabled=true; return; }
     files=m.files; files.forEach((f,i)=>cs.add(new Option(f.path,i)));
-    $('dtbCandNote').textContent = (files.length>1 ? 'โฟลเดอร์นี้มีไฟล์ .dtb มากกว่าหนึ่งไฟล์ กรุณาเลือกให้ตรงกับเครื่องของคุณ ' : '')
-      + 'จะคัดลอกไฟล์ทั้งหมดในโฟลเดอร์ '+m.base+' ไปไว้หน้าแรกของไดรฟ์ boot โดยใช้ไฟล์ .dtb ที่เลือกเป็นตัวที่ใช้งาน';
+    $('dtbCandNote').textContent = (files.length>1 ? 'พบไฟล์ .dtb มากกว่าหนึ่งไฟล์ กรุณาเลือกให้ตรงกับเครื่องของคุณ ' : '')
+      + 'เว็บจะคัดลอกทุกไฟล์ในโฟลเดอร์เดียวกับ .dtb ที่เลือก ไปวางทับที่หน้าแรกของไดรฟ์ boot';
     $('dtbGo').disabled=false;
   }
   function setVer(v){
@@ -1140,45 +1139,37 @@
     setVer(isX?'x':'30');
   });
 
-  // เขียนไฟล์หนึ่งไฟล์ลงปลายทาง พร้อมตรวจขนาด
+  // เขียนไฟล์หนึ่งไฟล์ลงปลายทาง (ทับของเดิม) พร้อมตรวจขนาด
   async function writeFile(dst,name,file){
     const out=await dst.getFileHandle(name,{create:true});
     const w=await out.createWritable(); await w.write(file); await w.close();
     if((await out.getFile()).size!==file.size) throw new Error('ขนาดไฟล์หลังคัดลอกไม่ตรงกัน: '+name);
   }
-  // คัดลอกทุกไฟล์ในโฟลเดอร์ (รวมโฟลเดอร์ย่อย) ยกเว้น .dtb (ตัวที่เลือกจะคัดลอกแยกทีหลัง)
-  async function copyDir(src,dst,stats){
+  // กวาดทุกอย่างในโฟลเดอร์ (รวมโฟลเดอร์ย่อย) ไปวางทับที่ปลายทาง
+  async function copyAll(src,dst,stats){
     for await(const [n,h] of src.entries()){
       if(h.kind==='file'){
-        if(/\.dtb$/i.test(n)) continue;
         const file=await h.getFile();
         await writeFile(dst,n,file);
         stats.count++; stats.bytes+=file.size;
         log('คัดลอก '+n+' ('+file.size+' bytes)');
       }else if(h.kind==='directory'){
         const sub=await dst.getDirectoryHandle(n,{create:true});
-        await copyDir(h,sub,stats);
+        await copyAll(h,sub,stats);
       }
     }
   }
 
   $('dtbGo').addEventListener('click',async()=>{
-    const f=files[$('dtbCand').value], m=curModel; if(!f||!m||!root) return;
+    const f=files[$('dtbCand').value]; if(!f||!root) return;
     $('dtbDone').hidden=true; $('dtbGo').disabled=true;
     try{
-      log('กำลังคัดลอกทุกไฟล์จาก '+m.base+' → หน้าแรกของการ์ด ...');
-      const others=[]; for await(const [n,h] of root.entries()) if(h.kind==='file'&&/\.dtb$/i.test(n)&&n!==f.name) others.push(n);
-      if(others.length) log('คำเตือน: หน้าแรกมีไฟล์ .dtb อื่นอยู่ด้วย ('+others.join(', ')+') ถ้าเปิดเครื่องแล้วไม่ติด ให้ลบหรือย้ายไฟล์เก่าออก','w');
-
+      // ใช้ตำแหน่งของ .dtb ที่เลือกเป็นตัวชี้ แล้วยกทั้งโฟลเดอร์ที่มันอยู่
+      log('พบ '+f.name+' ที่ '+f.path.slice(0,f.path.length-f.name.length)+' → กวาดทุกไฟล์ในโฟลเดอร์นี้ไปหน้าแรกของการ์ด');
+      const seen=[]; for await(const [n,h] of f.dir.entries()) seen.push((h.kind==='directory'?'📁 ':'')+n);
+      log('เห็นไฟล์: '+(seen.join(', ')||'(ว่าง)'));
       const stats={count:0,bytes:0};
-      await copyDir(m.dir,root,stats);
-
-      // คัดลอก .dtb ที่เลือกไปไว้หน้าแรก
-      const dtb=await f.handle.getFile();
-      await writeFile(root,f.name,dtb);
-      stats.count++; stats.bytes+=dtb.size;
-      log('คัดลอก '+f.name+' ('+dtb.size+' bytes) [DTB ที่ใช้งาน]');
-
+      await copyAll(f.dir,root,stats);
       log('คัดลอกสำเร็จ '+stats.count+' ไฟล์ ('+stats.bytes+' bytes)','g');
       $('dtbDone').hidden=false;
     }catch(e){ log('ผิดพลาด: '+e.message+' (ตรวจว่าการ์ดไม่ได้ล็อกเขียน แล้วลองใหม่)','e'); }
