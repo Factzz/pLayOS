@@ -1146,60 +1146,45 @@
     if((await out.getFile()).size!==file.size) throw new Error('ขนาดไฟล์หลังคัดลอกไม่ตรงกัน: '+name);
   }
   // กวาดทุกอย่างในโฟลเดอร์ (รวมโฟลเดอร์ย่อย) ไปวางทับที่ปลายทาง
-  async function copyAll(src,dst,stats,done){
+  // เก็บรายการไฟล์ .play ไว้ใน renames เพื่อเปลี่ยนชื่อเป็น .ini ภายหลัง
+  async function copyAll(src,dst,stats,renames){
     for await(const [n,h] of src.entries()){
       if(h.kind==='file'){
         const file=await h.getFile();
         await writeFile(dst,n,file);
-        if(done) done.add(n.toLowerCase());
         stats.count++; stats.bytes+=file.size;
         log('คัดลอก '+n+' ('+file.size+' bytes)');
+        if(/\.play$/i.test(n)) renames.push({dir:dst,name:n});
       }else if(h.kind==='directory'){
         const sub=await dst.getDirectoryHandle(n,{create:true});
-        await copyAll(h,sub,stats,null);
+        await copyAll(h,sub,stats,renames);
       }
     }
-  }
-  // แสดงโครงสร้างโฟลเดอร์ (ใช้ตรวจ)
-  async function tree(d,p,depth){
-    const out=[];
-    for await(const [n,h] of d.entries()){
-      out.push(p+n+(h.kind==='directory'?'/':''));
-      if(h.kind==='directory'&&depth<3) out.push(...await tree(h,p+n+'/',depth+1));
-    }
-    return out;
   }
 
   $('dtbGo').addEventListener('click',async()=>{
     const f=files[$('dtbCand').value]; if(!f||!root) return;
     $('dtbDone').hidden=true; $('dtbGo').disabled=true;
     try{
-      const m=models[$('dtbList').value];
-      log('โฟลเดอร์รุ่น: '+m.base);
-      log('ไฟล์ .dtb ที่เลือก: '+f.path);
-      log('--- ทั้งหมดในโฟลเดอร์ที่ .dtb อยู่ ---');
-      for(const t of await tree(f.dir,'',0)) log(t);
-      log('--- เริ่มคัดลอก ---');
+      // ใช้ตำแหน่งของ .dtb ที่เลือกเป็นตัวชี้ แล้วยกทั้งโฟลเดอร์ที่มันอยู่
+      log('พบ '+f.name+' ที่ '+f.path.slice(0,f.path.length-f.name.length)+' → กวาดทุกไฟล์ในโฟลเดอร์นี้ไปหน้าแรกของการ์ด');
+      const stats={count:0,bytes:0}, renames=[];
+      await copyAll(f.dir,root,stats,renames);
 
-      const stats={count:0,bytes:0};
-      const done=new Set();
-      await copyAll(f.dir,root,stats,done);
-
-      // ขอไฟล์ boot ตรงๆ ด้วยชื่อ เผื่อเบราว์เซอร์ไม่แสดงในลิสต์
-      for(const nm of ['boot.ini','BOOT.INI','Boot.ini']){
-        if(done.has(nm.toLowerCase())) continue;
+      // ไฟล์ .play = ไฟล์ .ini ที่ถูกเปลี่ยนชื่อไว้ (เบราว์เซอร์บล็อกชื่อ boot.ini) ลองเปลี่ยนชื่อกลับ
+      const failed=[];
+      for(const r of renames){
+        const target=r.name.replace(/\.play$/i,'.ini');
         try{
-          const fh=await f.dir.getFileHandle(nm);
-          const ff=await fh.getFile();
-          log('ขอตรงๆ เจอ: '+nm+' ('+ff.size+' bytes)','g');
-          await writeFile(root,nm,ff);
-          done.add(nm.toLowerCase());
-          stats.count++; stats.bytes+=ff.size;
-          log('คัดลอก '+nm+' ('+ff.size+' bytes)');
+          const fh=await r.dir.getFileHandle(r.name);
+          await fh.move(target);
+          log('เปลี่ยนชื่อ '+r.name+' → '+target,'g');
         }catch(e){
-          log('ขอตรงๆ ไม่เจอ '+nm+': '+e.name+' '+e.message,'w');
+          failed.push([r.name,target]);
+          log('เปลี่ยนชื่อ '+r.name+' → '+target+' ไม่ได้: '+e.name+' '+e.message,'w');
         }
       }
+      if(failed.length) log('คำเตือน: ต้องเปลี่ยนชื่อเองที่หน้าแรกของการ์ด: '+failed.map(x=>x[0]+' → '+x[1]).join(', '),'w');
 
       log('คัดลอกสำเร็จ '+stats.count+' ไฟล์ ('+stats.bytes+' bytes)','g');
       $('dtbDone').hidden=false;
