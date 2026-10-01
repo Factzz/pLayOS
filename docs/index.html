@@ -1064,7 +1064,7 @@
 
   async function subdirs(dir){ const o=[]; for await(const [n,h] of dir.entries()) if(h.kind==='directory') o.push([n,h]); return o.sort((x,y)=>natural(x[0],y[0])); }
   async function getDir(parent,name){ for await(const [n,h] of parent.entries()) if(h.kind==='directory'&&n.toLowerCase()===name.toLowerCase()) return h; return null; }
-  // หาไฟล์ .dtb ในโฟลเดอร์รุ่น (ชั้นเดียว ถ้าไม่เจอลงไปอีกชั้น) และเก็บโฟลเดอร์แม่ของมันไว้ใช้เป็นต้นทางคัดลอก
+  // หาไฟล์ .dtb ในโฟลเดอร์รุ่น (ชั้นเดียว ถ้าไม่เจอลงไปอีกชั้น) และเก็บโฟลเดอร์แม่ของมันไว้
   async function dtbIn(dir,prefix,depth){
     const o=[], subs=[];
     for await(const [n,h] of dir.entries()){
@@ -1159,15 +1159,28 @@
       }
     }
   }
+  // แสดงโครงสร้างโฟลเดอร์ (ใช้ตรวจ)
+  async function tree(d,p,depth){
+    const out=[];
+    for await(const [n,h] of d.entries()){
+      out.push(p+n+(h.kind==='directory'?'/':''));
+      if(h.kind==='directory'&&depth<3) out.push(...await tree(h,p+n+'/',depth+1));
+    }
+    return out;
+  }
 
   $('dtbGo').addEventListener('click',async()=>{
     const f=files[$('dtbCand').value]; if(!f||!root) return;
     $('dtbDone').hidden=true; $('dtbGo').disabled=true;
     try{
-      // ใช้ตำแหน่งของ .dtb ที่เลือกเป็นตัวชี้ แล้วยกทั้งโฟลเดอร์ที่มันอยู่
-      log('พบ '+f.name+' ที่ '+f.path.slice(0,f.path.length-f.name.length)+' → กวาดทุกไฟล์ในโฟลเดอร์นี้ไปหน้าแรกของการ์ด');
-      const seen=[]; for await(const [n,h] of f.dir.entries()) seen.push((h.kind==='directory'?'📁 ':'')+n);
-      log('เห็นไฟล์: '+(seen.join(', ')||'(ว่าง)'));
+      const m=models[$('dtbList').value];
+      log('โฟลเดอร์รุ่น: '+m.base);
+      log('ไฟล์ .dtb ที่เลือก: '+f.path);
+      log('--- ทั้งหมดในโฟลเดอร์รุ่น ---');
+      for(const t of await tree(m.dir,'',0)) log(t);
+      log('--- เฉพาะในโฟลเดอร์ที่ .dtb อยู่ ---');
+      for(const t of await tree(f.dir,'',0)) log(t);
+      log('--- เริ่มคัดลอก ---');
       const stats={count:0,bytes:0};
       await copyAll(f.dir,root,stats);
       log('คัดลอกสำเร็จ '+stats.count+' ไฟล์ ('+stats.bytes+' bytes)','g');
