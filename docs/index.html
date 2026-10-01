@@ -1055,6 +1055,8 @@
   // โครงสร้างบนไดรฟ์ boot
   //  3.0 : dtb/<กลุ่ม เช่น r36s|clone|soysauce>/<โฟลเดอร์รุ่น>/*.dtb
   //  X   : consoles/<โฟลเดอร์รุ่น>/*.dtb   (ตรวจว่าเป็น X เมื่อมีทั้ง consoles และ boot_images)
+  // เว็บคัดลอกทุกไฟล์ที่เบราว์เซอร์มองเห็นในโฟลเดอร์รุ่นไปหน้าแรกของการ์ด
+  // แล้วเด้งป๊อบอัพให้ผู้ใช้ก๊อป boot.ini เอง (เบราว์เซอร์บล็อกชื่อ boot.ini)
   const GROUP_LABEL={r36s:'R36S / รุ่นแท้',clone:'เครื่องโคลน',soysauce:'Soy Sauce (Y3506)'};
   const $=id=>document.getElementById(id);
   let root=null, ver='30', models=[], files=[], token=0;
@@ -1064,7 +1066,6 @@
 
   async function subdirs(dir){ const o=[]; for await(const [n,h] of dir.entries()) if(h.kind==='directory') o.push([n,h]); return o.sort((x,y)=>natural(x[0],y[0])); }
   async function getDir(parent,name){ for await(const [n,h] of parent.entries()) if(h.kind==='directory'&&n.toLowerCase()===name.toLowerCase()) return h; return null; }
-  // หาไฟล์ .dtb ในโฟลเดอร์รุ่น (ชั้นเดียว ถ้าไม่เจอลงไปอีกชั้น) และเก็บโฟลเดอร์แม่ของมันไว้
   async function dtbIn(dir,prefix,depth){
     const o=[], subs=[];
     for await(const [n,h] of dir.entries()){
@@ -1113,7 +1114,7 @@
     if(!m){ $('dtbCandNote').textContent='ไม่พบรุ่นที่ค้นหา'; $('dtbGo').disabled=true; return; }
     files=m.files; files.forEach((f,i)=>cs.add(new Option(f.path,i)));
     $('dtbCandNote').textContent = (files.length>1 ? 'พบไฟล์ .dtb มากกว่าหนึ่งไฟล์ กรุณาเลือกให้ตรงกับเครื่องของคุณ ' : '')
-      + 'เว็บจะคัดลอกทุกไฟล์ในโฟลเดอร์เดียวกับ .dtb ที่เลือก ไปวางทับที่หน้าแรกของไดรฟ์ boot';
+      + 'เว็บจะคัดลอกไฟล์ในโฟลเดอร์รุ่นนี้ไปวางทับที่หน้าแรกของไดรฟ์ boot จากนั้นจะแจ้งให้ก๊อป boot.ini เอง';
     $('dtbGo').disabled=false;
   }
   function setVer(v){
@@ -1139,55 +1140,69 @@
     setVer(isX?'x':'30');
   });
 
-  // เขียนไฟล์หนึ่งไฟล์ลงปลายทาง (ทับของเดิม) พร้อมตรวจขนาด
+  // ---------- เขียน/คัดลอก ----------
   async function writeFile(dst,name,file){
     const out=await dst.getFileHandle(name,{create:true});
     const w=await out.createWritable(); await w.write(file); await w.close();
     if((await out.getFile()).size!==file.size) throw new Error('ขนาดไฟล์หลังคัดลอกไม่ตรงกัน: '+name);
   }
-  // กวาดทุกอย่างในโฟลเดอร์ (รวมโฟลเดอร์ย่อย) ไปวางทับที่ปลายทาง
-  // เก็บรายการไฟล์ .play ไว้ใน renames เพื่อเปลี่ยนชื่อเป็น .ini ภายหลัง
-  async function copyAll(src,dst,stats,renames){
+  async function copyAll(src,dst,stats){
     for await(const [n,h] of src.entries()){
       if(h.kind==='file'){
         const file=await h.getFile();
         await writeFile(dst,n,file);
         stats.count++; stats.bytes+=file.size;
         log('คัดลอก '+n+' ('+file.size+' bytes)');
-        if(/\.play$/i.test(n)) renames.push({dir:dst,name:n});
       }else if(h.kind==='directory'){
         const sub=await dst.getDirectoryHandle(n,{create:true});
-        await copyAll(h,sub,stats,renames);
+        await copyAll(h,sub,stats);
       }
     }
   }
 
+  // ---------- ป๊อบอัพแจ้งให้ก๊อป boot.ini เอง ----------
+  function showBootNotice(srcPath, driveName){
+    const old=document.getElementById('dtbModal'); if(old) old.remove();
+    const winPath=srcPath.replace(/\//g,'\\');
+    const ov=document.createElement('div');
+    ov.id='dtbModal';
+    ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;z-index:9999;padding:16px;';
+    const box=document.createElement('div');
+    box.style.cssText='background:#fff;color:#17181b;border-radius:18px;max-width:520px;width:100%;padding:24px;box-shadow:0 10px 40px rgba(0,0,0,.3);font-size:0.95rem;line-height:1.6;max-height:90vh;overflow:auto;';
+    box.innerHTML=
+      '<div style="font-weight:700;font-size:1.1rem;margin-bottom:8px;">เหลืออีก 1 ขั้น: ก๊อป boot.ini ด้วยตัวเอง</div>'+
+      '<div style="margin-bottom:12px;">ไฟล์อื่นถูกคัดลอกให้แล้ว แต่เบราว์เซอร์ไม่อนุญาตให้เว็บยุ่งกับไฟล์ชื่อ <b>boot.ini</b> (ข้อจำกัดด้านความปลอดภัยของเบราว์เซอร์) กรุณาก๊อปไฟล์นี้เอง:</div>'+
+      '<ol style="margin:0 0 14px 20px;padding:0;">'+
+        '<li>เปิด File Explorer แล้วไปที่ไดรฟ์ต้นทางของคุณ แล้วเข้าโฟลเดอร์ <code id="dtbMPath" style="background:#f1f1f1;padding:2px 6px;border-radius:6px;"></code></li>'+
+        '<li>คลิกขวา <b>boot.ini</b> → คัดลอก</li>'+
+        '<li>ไปที่ไดรฟ์การ์ด <b id="dtbMDrive"></b> วางที่หน้าแรกของไดรฟ์ แล้วเลือก <b>แทนที่ไฟล์ในปลายทาง</b></li>'+
+      '</ol>'+
+      '<div style="display:flex;gap:10px;flex-wrap:wrap;">'+
+        '<button class="btn btn-dark" id="dtbMCopy" type="button">คัดลอกตำแหน่งโฟลเดอร์</button>'+
+        '<button class="btn" id="dtbMClose" type="button" style="border:1.5px solid rgba(23,24,27,.2);background:#fff;">เข้าใจแล้ว</button>'+
+      '</div>';
+    ov.appendChild(box); document.body.appendChild(ov);
+    $('dtbMPath').textContent=winPath;
+    $('dtbMDrive').textContent=driveName;
+    $('dtbMClose').onclick=()=>ov.remove();
+    $('dtbMCopy').onclick=async()=>{
+      try{ await navigator.clipboard.writeText(winPath); $('dtbMCopy').textContent='คัดลอกแล้ว'; }
+      catch(e){ $('dtbMCopy').textContent='คัดลอกไม่ได้ (เลือกข้อความเอง)'; }
+    };
+    ov.addEventListener('click',e=>{ if(e.target===ov) ov.remove(); });
+  }
+
   $('dtbGo').addEventListener('click',async()=>{
-    const f=files[$('dtbCand').value]; if(!f||!root) return;
+    const f=files[$('dtbCand').value], m=models[$('dtbList').value]; if(!f||!m||!root) return;
     $('dtbDone').hidden=true; $('dtbGo').disabled=true;
     try{
-      // ใช้ตำแหน่งของ .dtb ที่เลือกเป็นตัวชี้ แล้วยกทั้งโฟลเดอร์ที่มันอยู่
-      log('พบ '+f.name+' ที่ '+f.path.slice(0,f.path.length-f.name.length)+' → กวาดทุกไฟล์ในโฟลเดอร์นี้ไปหน้าแรกของการ์ด');
-      const stats={count:0,bytes:0}, renames=[];
-      await copyAll(f.dir,root,stats,renames);
-
-      // ไฟล์ .play = ไฟล์ .ini ที่ถูกเปลี่ยนชื่อไว้ (เบราว์เซอร์บล็อกชื่อ boot.ini) ลองเปลี่ยนชื่อกลับ
-      const failed=[];
-      for(const r of renames){
-        const target=r.name.replace(/\.play$/i,'.ini');
-        try{
-          const fh=await r.dir.getFileHandle(r.name);
-          await fh.move(target);
-          log('เปลี่ยนชื่อ '+r.name+' → '+target,'g');
-        }catch(e){
-          failed.push([r.name,target]);
-          log('เปลี่ยนชื่อ '+r.name+' → '+target+' ไม่ได้: '+e.name+' '+e.message,'w');
-        }
-      }
-      if(failed.length) log('คำเตือน: ต้องเปลี่ยนชื่อเองที่หน้าแรกของการ์ด: '+failed.map(x=>x[0]+' → '+x[1]).join(', '),'w');
-
+      log('พบ '+f.name+' ที่ '+f.path.slice(0,f.path.length-f.name.length)+' → คัดลอกไฟล์ในโฟลเดอร์นี้ไปหน้าแรกของการ์ด');
+      const stats={count:0,bytes:0};
+      await copyAll(f.dir,root,stats);
       log('คัดลอกสำเร็จ '+stats.count+' ไฟล์ ('+stats.bytes+' bytes)','g');
+      log('อย่าลืมก๊อป boot.ini เอง (เบราว์เซอร์บล็อกชื่อนี้)','w');
       $('dtbDone').hidden=false;
+      showBootNotice(f.path.slice(0,f.path.length-f.name.length), root.name);
     }catch(e){ log('ผิดพลาด: '+e.message+' (ตรวจว่าการ์ดไม่ได้ล็อกเขียน แล้วลองใหม่)','e'); }
     $('dtbGo').disabled=false;
   });
