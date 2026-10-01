@@ -1146,16 +1146,17 @@
     if((await out.getFile()).size!==file.size) throw new Error('ขนาดไฟล์หลังคัดลอกไม่ตรงกัน: '+name);
   }
   // กวาดทุกอย่างในโฟลเดอร์ (รวมโฟลเดอร์ย่อย) ไปวางทับที่ปลายทาง
-  async function copyAll(src,dst,stats){
+  async function copyAll(src,dst,stats,done){
     for await(const [n,h] of src.entries()){
       if(h.kind==='file'){
         const file=await h.getFile();
         await writeFile(dst,n,file);
+        if(done) done.add(n.toLowerCase());
         stats.count++; stats.bytes+=file.size;
         log('คัดลอก '+n+' ('+file.size+' bytes)');
       }else if(h.kind==='directory'){
         const sub=await dst.getDirectoryHandle(n,{create:true});
-        await copyAll(h,sub,stats);
+        await copyAll(h,sub,stats,null);
       }
     }
   }
@@ -1176,13 +1177,30 @@
       const m=models[$('dtbList').value];
       log('โฟลเดอร์รุ่น: '+m.base);
       log('ไฟล์ .dtb ที่เลือก: '+f.path);
-      log('--- ทั้งหมดในโฟลเดอร์รุ่น ---');
-      for(const t of await tree(m.dir,'',0)) log(t);
-      log('--- เฉพาะในโฟลเดอร์ที่ .dtb อยู่ ---');
+      log('--- ทั้งหมดในโฟลเดอร์ที่ .dtb อยู่ ---');
       for(const t of await tree(f.dir,'',0)) log(t);
       log('--- เริ่มคัดลอก ---');
+
       const stats={count:0,bytes:0};
-      await copyAll(f.dir,root,stats);
+      const done=new Set();
+      await copyAll(f.dir,root,stats,done);
+
+      // ขอไฟล์ boot ตรงๆ ด้วยชื่อ เผื่อเบราว์เซอร์ไม่แสดงในลิสต์
+      for(const nm of ['boot.ini','BOOT.INI','Boot.ini']){
+        if(done.has(nm.toLowerCase())) continue;
+        try{
+          const fh=await f.dir.getFileHandle(nm);
+          const ff=await fh.getFile();
+          log('ขอตรงๆ เจอ: '+nm+' ('+ff.size+' bytes)','g');
+          await writeFile(root,nm,ff);
+          done.add(nm.toLowerCase());
+          stats.count++; stats.bytes+=ff.size;
+          log('คัดลอก '+nm+' ('+ff.size+' bytes)');
+        }catch(e){
+          log('ขอตรงๆ ไม่เจอ '+nm+': '+e.name+' '+e.message,'w');
+        }
+      }
+
       log('คัดลอกสำเร็จ '+stats.count+' ไฟล์ ('+stats.bytes+' bytes)','g');
       $('dtbDone').hidden=false;
     }catch(e){ log('ผิดพลาด: '+e.message+' (ตรวจว่าการ์ดไม่ได้ล็อกเขียน แล้วลองใหม่)','e'); }
