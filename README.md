@@ -9,9 +9,14 @@
   <em>Proudly forked and supercharged from the amazing <a href="https://github.com/christianhaitian/dArkOS">dArkOS</a> project.</em>
 </p>
 
-<p align="center">
-  <img width="800" alt="PLAY OS Logo" src="https://raw.githubusercontent.com/Factzz/pLayOS/main/files/C93C3216-47FC-49EC-8D28-C5128DBBAE7D.jpeg" />
-</p>
+<!-- ประกาศเรื่องการย้ายเว็บไซต์สำหรับดาวน์โหลด (สำคัญมาก จะขึ้นเป็นกรอบสีน้ำเงิน/ม่วง) -->
+> [!IMPORTANT]
+> <h2 align="center">🏠 เราย้ายบ้านใหม่แล้ว! / We've moved to a new home! 🏠</h2>
+> <p align="center">
+> <b>สำหรับการดาวน์โหลดไฟล์ติดตั้งเวอร์ชันล่าสุด, ดูคู่มือการใช้งาน และติดตามข่าวสาร <br>กรุณาไปที่เว็บไซต์หลักอย่างเป็นทางการของเราที่ลิงก์ด้านล่างนี้:</b><br><br>
+> <em>For the latest firmware downloads, documentation, and updates, please visit our official website:</em>
+> </p>
+> <h3 align="center">👉 <a href="https://factzz.github.io/pLayOS/">https://factzz.github.io/pLayOS/</a> 👈</h3>
 
 <!-- กรอบคำเตือนสีแดง (ใน GitHub จะเรนเดอร์เป็นกรอบ Alert ชัดเจนมาก) -->
 > [!WARNING]
@@ -23,16 +28,17 @@
 > 2. **ห้ามใช้ลูกเล่นหัวหมอ** เช่น อ้างว่า "ขายเครื่องแถม OS ฟรี" หรือ "คิดเฉพาะค่าบริการติดตั้ง"
 > 3. **ห้ามนำไปดัดแปลง** เปลี่ยนชื่อ แปะโลโก้ร้าน แล้วนำไปแจกจ่ายเพื่อดึงดูดลูกค้าเข้าเพจ/ร้านค้าของตนเอง
 > 4. **ห้ามแสวงหาผลกำไร** จากไฟล์นี้ไม่ว่าทางตรงหรือทางอ้อม
-> 5. **เว้นแค่ร้านค้าที่ได้รับอนุญาติอย่างเป็นทางการ**
+> 5. **เว้นแค่ร้านค้าที่ได้รับอนุญาตอย่างเป็นทางการเท่านั้น**
+>
 > -*หากตรวจพบการละเมิด ทีมผู้พัฒนาจะดำเนินการรวบรวมหลักฐานและฟ้องร้องตาม **กฎหมายทรัพย์สินทางปัญญาของไทยและสากล (DMCA & Thai Copyright Act)** ขั้นเด็ดขาด โดยไม่มีการยอมความ ภายใต้เงื่อนไขข้อตกลง PLAY OS Anti-Bundling License.*
 
-**ร้านค้าที่สนับสนุนและได้รับอนุญาติอย่างเป็นทางการ**
+**ร้านค้าที่สนับสนุนและได้รับอนุญาตอย่างเป็นทางการ**
 - ร้านราชาไอที
 
 <br>
 
 <h3 align="center">
-  <a href="#-play-os-english">🇬🇧 Read in English</a> &nbsp; | &nbsp; <a href="#-play-os-ภาษาไทย">🇹🇭 อ่านภาษาไทย</a>
+  <a href="#-play-os-ภาษาไทย">🇹🇭 อ่านภาษาไทย</a> &nbsp; | &nbsp; <a href="#-play-os-english">🇬🇧 Read in English</a>
 </h3>
 
 <hr>
@@ -41,12 +47,11 @@
 
 เหนื่อยไหมกับ OS เดิมๆ ที่ทั้งหน่วง ใช้งานยาก และไม่เสถียร? **PLAY OS** คือคำตอบสุดท้ายที่คุณตามหา! เราได้รื้อโครงสร้างระบบหลังบ้านใหม่ทั้งหมด เพื่อสร้างประสบการณ์ที่ "พรีเมียม" และ "ลื่นไหล" ที่สุดเท่าที่วงการ Retro เคยมีมา 
 
-ทำไมคุณถึงต้องโหลด PLAY OS ทันที?
+ทำไมคุณถึงต้องใช้ PLAY OS?
 - 📱 **ลื่นไหลระดับสมาร์ตโฟน (Optimistic UI):** ลบเกมปุ๊บ ไอคอนหายปั๊บ! ลาก่อนปัญหา "ตลับผี (ไม่พบ)" หน้าจอ UI ตอบสนองทันใจไม่มีสะดุด
 - ⚙️ **สถาปัตยกรรมใหม่ (Clean Architecture):** เราแยกการประมวลผลไฟล์หนักๆ ไปไว้เบื้องหลัง (Background Engine) ทำให้หน้าจอ EmulationStation ไม่ค้าง ไม่กระตุก และเสถียรขั้นสุด
 - 🔄 **อัปเดตง่ายผ่านเน็ต (Smart OTA Update):** ไม่ต้องแฟลชเมมใหม่ทุกครั้งที่มีเวอร์ชันใหม่ กดอัปเดตผ่าน Wi-Fi ได้เลย ระบบอัจฉริยะจะช่วยป้องกันข้อผิดพลาดและโหลดเฉพาะไฟล์ที่จำเป็น
 - 🇹🇭 **ภาษาไทยสมบูรณ์แบบ 100%:** ไม่ต้องทนกับสระลอย หรือฟอนต์สี่เหลี่ยมอีกต่อไป เราฝังภาษาไทยระดับ System-level ให้เมนู EmulationStation สวยงามและอ่านง่ายที่สุด
-
 
 <hr>
 
@@ -58,8 +63,6 @@ Tired of bloated, slow, and complicated Custom Firmware? **PLAY OS** is here to 
 - ⚙️ **Rock-Solid Stability (Clean Architecture):** Heavy file processing is now offloaded to a background engine, ensuring EmulationStation never freezes or crashes during background operations.
 - 🔄 **Smart OTA Updates:** Keep your system up to date over Wi-Fi without ever reflashing your SD card. Our smart updater ensures safe and seamless updates directly from the device.
 - 🇹🇭 **Native Thai Localization:** Built-in flawless Thai typography for EmulationStation.
-
-
 
 <hr>
 
