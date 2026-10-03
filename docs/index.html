@@ -308,6 +308,21 @@
   .dtb-log{font-family:'JetBrains Mono',monospace; font-size:0.78rem; line-height:1.6; margin-top:14px; color:var(--ink-soft);}
   .dtb-log .e{color:#c62828;} .dtb-log .g{color:var(--green); font-weight:700;} .dtb-log .w{color:#b26a00;}
   .dtb-ok{display:flex; align-items:center; gap:14px; margin-top:16px;}
+
+  /* HOTKEYS */
+  .hk-search{margin-bottom:28px;}
+  .hk-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:18px; align-items:start;}
+  .hk-card{background:#fff; border-radius:var(--radius); padding:20px 22px; box-shadow:0 1px 0 rgba(23,24,27,0.06);}
+  .hk-card h4{font-family:'Space Grotesk','Noto Sans Thai',sans-serif; font-size:1.02rem; margin-bottom:4px;}
+  .hk-sub{font-size:0.8rem; color:var(--ink-soft); line-height:1.5; margin-bottom:8px;}
+  .hk-card h4:not(:has(+ .hk-sub)){margin-bottom:8px;}
+  .hk-row{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:9px 0; border-top:1px solid rgba(23,24,27,0.08); font-size:0.88rem; line-height:1.4;}
+  .hk-row:first-of-type{border-top:none;}
+  .hk-keys{display:flex; flex-wrap:wrap; gap:4px; justify-content:flex-end; align-items:center; text-align:right; flex-shrink:0; max-width:58%;}
+  .hk-keys i{font-style:normal; color:var(--ink-soft); font-size:0.75rem;}
+  kbd{font-family:'IBM Plex Mono',monospace; font-size:0.74rem; font-weight:500; padding:3px 8px; border-radius:7px; background:var(--bg-2); border:1px solid rgba(23,24,27,0.14); border-bottom-width:2px; white-space:nowrap;}
+  .hk-row.hide,.hk-card.hide{display:none;}
+  .hk-empty{display:none; text-align:center; color:var(--ink-soft); font-size:0.9rem; padding:24px 0;}
 </style>
 </head>
 <body>
@@ -320,6 +335,7 @@
       <a href="#devices">อุปกรณ์</a>
       <a href="#compare">เทียบระบบ</a>
       <a href="#features">ฟีเจอร์</a>
+      <a href="#hotkeys">เมนูลัด</a>
       <a href="#showcase">แอปในตัว</a>
       <a href="#dtb">ติดตั้ง DTB</a>
       <a href="#faq">คำถามที่พบบ่อย</a>
@@ -576,6 +592,30 @@
           <div class="dtb-log" id="dtbLog"></div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="hotkeys">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>เมนูลัด / คีย์ลัด</h2>
+      <p>รวมปุ่มลัดที่ใช้บ่อยของแต่ละเวอร์ชัน ลองค้นหาก่อนถามในกลุ่มนะ เช่น save, เสียง, wifi, ppsspp</p>
+    </div>
+    <div class="tabgroup">
+      <div class="tabbar">
+        <button class="tab-btn active" data-tab="hk3">PlayOS 3.0</button>
+        <button class="tab-btn" data-tab="hkx">PlayOS-X</button>
+      </div>
+      <input class="chip-search hk-search" id="hkSearch" type="text" placeholder="ค้นหาปุ่มลัด เช่น save state, volume, wifi, ppsspp...">
+      <div class="tab-panel active" id="hk3">
+        <div class="hk-grid"><div class="hk-card"><h4>ระบบ (System)</h4><p class="hk-sub">Hotkey = ปุ่ม Fn หรือกดจอยขวา (R3)</p><div class="hk-row"><span>เพิ่มความสว่าง</span><span class="hk-keys"><kbd>Hotkey</kbd><i>+</i><kbd>D-Pad ขึ้น</kbd></span></div><div class="hk-row"><span>ลดความสว่าง</span><span class="hk-keys"><kbd>Hotkey</kbd><i>+</i><kbd>D-Pad ลง</kbd></span></div><div class="hk-row"><span>เพิ่ม Gamma*</span><span class="hk-keys"><kbd>Hotkey</kbd><i>+</i><kbd>D-Pad ขวา</kbd></span></div><div class="hk-row"><span>ลด Gamma*</span><span class="hk-keys"><kbd>Hotkey</kbd><i>+</i><kbd>D-Pad ซ้าย</kbd></span></div><div class="hk-row"><span>เพิ่มเสียง</span><span class="hk-keys"><kbd>Hotkey</kbd><i>+</i><kbd>R1</kbd></span></div><div class="hk-row"><span>ลดเสียง</span><span class="hk-keys"><kbd>Hotkey</kbd><i>+</i><kbd>L1</kbd></span></div><div class="hk-row"><span>ปิดเครื่องอย่างปลอดภัย</span><span class="hk-keys"><kbd>Hotkey</kbd><i>+</i><kbd>Power</kbd></span></div><div class="hk-row"><span>ปิดเสียง (Mute)</span><span class="hk-keys"><kbd>Hotkey</kbd><i>+</i><kbd>L3</kbd></span></div><div class="hk-row"><span>ดูระดับแบตเตอรี่</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>R3</kbd></span></div><div class="hk-row"><span>เปิด/ปิด Wi-Fi</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>L1</kbd></span></div><div class="hk-row"><span>เปิด/ปิด Bluetooth</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>R1</kbd></span></div><div class="hk-row"><span>ซิงก์เซฟ (Sync Save)</span><span class="hk-keys"><kbd>L3</kbd><i>+</i><kbd>A</kbd></span></div></div><div class="hk-card"><h4>RetroArch</h4><div class="hk-row"><span>เมนู RetroArch</span><span class="hk-keys"><kbd>Fn หรือ Select (ค้าง 2 วิ)</kbd></span></div><div class="hk-row"><span>ออกจาก RetroArch</span><span class="hk-keys"><kbd>Start</kbd><i>+</i><kbd>Select</kbd></span></div><div class="hk-row"><span>พัก (Pause)</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>R3</kbd></span></div><div class="hk-row"><span>รีเซ็ต Core</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>R2</kbd></span></div><div class="hk-row"><span>Save State</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>B (ล่าง)</kbd></span></div><div class="hk-row"><span>Load State</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>A (ขวา)</kbd></span></div><div class="hk-row"><span>State ก่อนหน้า</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>Y (ซ้าย)</kbd></span></div><div class="hk-row"><span>State ถัดไป</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>X (บน)</kbd></span></div><div class="hk-row"><span>เร่งความเร็ว</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>D-Pad ขวา</kbd></span></div><div class="hk-row"><span>เร่งความเร็ว (กดค้าง)</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>D-Pad ลง</kbd></span></div><div class="hk-row"><span>ย้อนเวลา (Rewind)</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>D-Pad ซ้าย</kbd></span></div><div class="hk-row"><span>ทีละเฟรม</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>D-Pad ขึ้น</kbd></span></div><div class="hk-row"><span>แคปหน้าจอ</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>L3</kbd></span></div></div><div class="hk-card"><h4>DuckStation (PSX)</h4><div class="hk-row"><span>แคปหน้าจอ</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>A</kbd></span></div><div class="hk-row"><span>รีเซ็ตระบบ</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>B</kbd></span></div><div class="hk-row"><span>เปิด/ปิด Quick Menu</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>X</kbd></span></div><div class="hk-row"><span>สลับจอกว้าง</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>Y</kbd></span></div><div class="hk-row"><span>Load State</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>L1</kbd></span></div><div class="hk-row"><span>Save State</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>R1</kbd></span></div><div class="hk-row"><span>สล็อตเซฟถัดไป</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>D-Pad ขึ้น</kbd></span></div><div class="hk-row"><span>สล็อตเซฟก่อนหน้า</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>D-Pad ลง</kbd></span></div><div class="hk-row"><span>เปิด/ปิด Rewind</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>D-Pad ซ้าย</kbd></span></div><div class="hk-row"><span>เปิด/ปิด Fast-forward</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>D-Pad ขวา</kbd></span></div><div class="hk-row"><span>ออกจากอีมูฯ</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>Start (ค้าง)</kbd></span></div></div><div class="hk-card"><h4>Mupen64Plus (N64)</h4><div class="hk-row"><span>ออกจากเกม</span><span class="hk-keys"><kbd>Start</kbd><i>+</i><kbd>Select</kbd></span></div><div class="hk-row"><span>Save State</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>R2</kbd></span></div><div class="hk-row"><span>Load State</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>L2</kbd></span></div><div class="hk-row"><span>พัก (Pause)</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>A</kbd></span></div></div><div class="hk-card"><h4>PPSSPP (PSP)</h4><p class="hk-sub">ใช้ค่าเริ่มต้นของโปรแกรม</p><div class="hk-row"><span>เปิดเมนูตั้งค่า</span><span class="hk-keys"><kbd>L3</kbd><i>+</i><kbd>R3</kbd></span></div></div></div>
+        <p class="shared-note">* ค่า Gamma ที่ปรับด้วย Hotkey จะรีเซ็ตกลับเป็นค่าเริ่มต้นทุกครั้งที่รีบูตเครื่อง</p>
+      </div>
+      <div class="tab-panel" id="hkx">
+        <div class="hk-grid"><div class="hk-card"><h4>ปุ่ม Global (ใช้ได้ทุกอีมูเลเตอร์)</h4><p class="hk-sub">เครื่องที่มีปุ่ม FN ใช้ FN เป็น Hotkey · เครื่องที่ไม่มีปุ่ม FN ใช้ Select</p><div class="hk-row"><span>ปรับเสียง</span><span class="hk-keys"><kbd>Hotkey</kbd><i>+</i><kbd>D-Pad ซ้าย/ขวา</kbd></span></div><div class="hk-row"><span>ปรับความสว่าง</span><span class="hk-keys"><kbd>Hotkey</kbd><i>+</i><kbd>D-Pad ขึ้น/ลง</kbd></span></div></div><div class="hk-card"><h4>RetroArch / RetroArch32</h4><p class="hk-sub">ปุ่มทุกปุ่มใช้งานได้เต็มบนทุกรุ่นที่รองรับ</p><div class="hk-row"><span>เปิดเมนู</span><span class="hk-keys"><kbd>Hotkey</kbd><i>+</i><kbd>X</kbd></span></div><div class="hk-row"><span>แสดง FPS</span><span class="hk-keys"><kbd>Hotkey</kbd><i>+</i><kbd>Y</kbd></span></div><div class="hk-row"><span>เร่งความเร็ว</span><span class="hk-keys"><kbd>Hotkey</kbd><i>+</i><kbd>R1</kbd></span></div><div class="hk-row"><span>Save State</span><span class="hk-keys"><kbd>Hotkey</kbd><i>+</i><kbd>R2</kbd></span></div><div class="hk-row"><span>Load State</span><span class="hk-keys"><kbd>Hotkey</kbd><i>+</i><kbd>L2</kbd></span></div></div><div class="hk-card"><h4>PPSSPP (PSP)</h4><p class="hk-sub">เมื่อเปิดเมนูแล้ว สามารถตั้งปุ่มใหม่ได้ตามต้องการ</p><div class="hk-row"><span>เปิดเมนู</span><span class="hk-keys"><kbd>R3 หรือ L2</kbd><i>+</i><kbd>R2</kbd></span></div></div><div class="hk-card"><h4>Drastic-KK (NDS)</h4><p class="hk-sub">หลังเข้าเกม กด Select+B ครั้งหนึ่ง แล้วค่อย Select+Y จะเข้าถึงการตั้งค่าได้เกือบทั้งหมด</p><div class="hk-row"><span>เปิดมินิเมนู (สะดวกสุด)</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>Y</kbd></span></div><div class="hk-row"><span>สลับจอคู่/จอเดี่ยว</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>B</kbd></span></div><div class="hk-row"><span>เปิดเมนูหลัก</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>X</kbd></span></div></div><div class="hk-card"><h4>freej2me-sa (เกม Java)</h4><div class="hk-row"><span>สลับโหมดเมาส์ (Y = คลิกซ้าย)</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>X</kbd></span></div><div class="hk-row"><span>สลับโหมด WASD</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>A</kbd></span></div><div class="hk-row"><span>ออกจากอีมูฯ</span><span class="hk-keys"><kbd>Select</kbd><i>+</i><kbd>Start</kbd></span></div></div><div class="hk-card"><h4>freej2me-sa · แมพปุ่มเริ่มต้น</h4><p class="hk-sub">ปุ่มจอย → ปุ่มคีย์บอร์ด</p><div class="hk-row"><span><kbd>A</kbd></span><span class="hk-keys"><kbd>A</kbd></span></div><div class="hk-row"><span><kbd>B</kbd></span><span class="hk-keys"><kbd>S</kbd></span></div><div class="hk-row"><span><kbd>X</kbd></span><span class="hk-keys"><kbd>U</kbd></span></div><div class="hk-row"><span><kbd>Y</kbd></span><span class="hk-keys"><kbd>J</kbd></span></div><div class="hk-row"><span><kbd>D-Pad</kbd></span><span class="hk-keys"><kbd>↑ ↓ ← →</kbd></span></div><div class="hk-row"><span><kbd>L1</kbd></span><span class="hk-keys"><kbd>A</kbd></span></div><div class="hk-row"><span><kbd>R1</kbd></span><span class="hk-keys"><kbd>D</kbd></span></div><div class="hk-row"><span><kbd>L2</kbd></span><span class="hk-keys"><kbd>W</kbd></span></div><div class="hk-row"><span><kbd>R2</kbd></span><span class="hk-keys"><kbd>S</kbd></span></div><div class="hk-row"><span><kbd>L3</kbd></span><span class="hk-keys"><kbd>O</kbd></span></div><div class="hk-row"><span><kbd>R3</kbd></span><span class="hk-keys"><kbd>L</kbd></span></div><div class="hk-row"><span><kbd>Start</kbd></span><span class="hk-keys"><kbd>I</kbd></span></div><div class="hk-row"><span><kbd>Select</kbd></span><span class="hk-keys"><kbd>K</kbd></span></div></div><div class="hk-card"><h4>freej2me-sa · โหมด WASD</h4><p class="hk-sub">เปิดด้วย Select + A</p><div class="hk-row"><span><kbd>D-Pad</kbd></span><span class="hk-keys"><kbd>W / A / S / D</kbd></span></div><div class="hk-row"><span><kbd>L1</kbd></span><span class="hk-keys"><kbd>A</kbd></span></div><div class="hk-row"><span><kbd>R1</kbd></span><span class="hk-keys"><kbd>D</kbd></span></div><div class="hk-row"><span><kbd>L2</kbd></span><span class="hk-keys"><kbd>W</kbd></span></div><div class="hk-row"><span><kbd>R2</kbd></span><span class="hk-keys"><kbd>S</kbd></span></div></div></div>
+      </div>
+      <div class="hk-empty" id="hkEmpty">ไม่พบปุ่มลัดที่ค้นหา</div>
     </div>
   </div>
 </section>
@@ -1203,6 +1243,29 @@
     $('dtbGo').disabled=false;
   });
 })();
+</script>
+<script>
+  // hotkey search
+  (function(){
+    const s=document.getElementById('hkSearch'); if(!s) return;
+    const empty=document.getElementById('hkEmpty');
+    s.addEventListener('input',()=>{
+      const q=s.value.trim().toLowerCase();
+      document.querySelectorAll('#hotkeys .hk-card').forEach(card=>{
+        const t=card.querySelector('h4').textContent.toLowerCase();
+        const titleHit=q && t.includes(q);
+        let any=false;
+        card.querySelectorAll('.hk-row').forEach(r=>{
+          const hit=!q||titleHit||r.textContent.toLowerCase().includes(q);
+          r.classList.toggle('hide',!hit); if(hit) any=true;
+        });
+        card.classList.toggle('hide',!any);
+      });
+      const p=document.querySelector('#hotkeys .tab-panel.active');
+      empty.style.display=(q && !p.querySelector('.hk-card:not(.hide)'))?'block':'none';
+    });
+    document.querySelectorAll('#hotkeys .tab-btn').forEach(b=>b.addEventListener('click',()=>setTimeout(()=>s.dispatchEvent(new Event('input')),0)));
+  })();
 </script>
 </body>
 </html>
