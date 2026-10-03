@@ -1,132 +1,179 @@
 #!/bin/bash
 # ==========================================================
-# PLAY OS - OTA Update v3.0.1
-# Build: 261027
-# Track: STANDARD (3.0.x) only - rejects the 3.0(X) variant track,
-#        and any version outside the 3.0.x line.
+# PLAY OS - OTA Update v3.0.2
+# Build: 261030
+# Track: STANDARD (3.0.x) only
+#   - รับเฉพาะ 3.0.x ที่ต่ำกว่า 3.0.2 (build < 261030)
+#   - ปฏิเสธสายวงเล็บ เช่น 3.0(X) และเวอร์ชันที่สูงกว่า 3.0.2
+#
+# อัปเดตเฉพาะของ PLAY OS (ไม่ยุ่งกับ dArkOSen)
+#
+# โครงไฟล์บน repo  .../main/261030/
+#   emulationstation                    -> /usr/bin/emulationstation/emulationstation (ark:ark)
+#   es_systems.cfg                      -> /etc/emulationstation/es_systems.cfg
+#   apps.zip  (มีโฟลเดอร์ apps/ ข้างใน)   -> /opt/apps
+#   FindManager (ไฟล์โปรแกรมเดี่ยว)        -> /opt/FindManager_Data/FindManager
+#   playos-logo.png                     -> /opt/system/playos-logo.png
+#   retroarch.cfg, retroarch-core-options.cfg           -> ~/.config/retroarch/
+#   32/retroarch.cfg, 32/retroarch-core-options.cfg     -> ~/.config/retroarch32/
 # ==========================================================
+
+if [ "$(id -u)" -ne 0 ]; then
+    exec sudo -- "$0" "$@"
+fi
 
 INFO_FILE="/opt/system/playos_info.cfg"
 CURRENT_VERSION_RAW=$(grep "VERSION" "$INFO_FILE" 2>/dev/null | cut -d'"' -f2)
 CURRENT_BUILD=$(grep "BUILD" "$INFO_FILE" 2>/dev/null | cut -d'"' -f2)
 
-NEW_VERSION="3.0.1"
-NEW_BUILD=261027
-URL_BASE="https://raw.githubusercontent.com/Factzz/pLayOS/main/261027"
+NEW_VERSION="3.0.2"
+NEW_BUILD=261030
+URL_BASE="https://raw.githubusercontent.com/Factzz/pLayOS/main/261030"
 
-# ถ้าหาบิลด์ไม่เจอให้ตีเป็น 0 เพื่อบังคับให้ผ่านเงื่อนไขการอัปเดต
-if [ -z "$CURRENT_BUILD" ]; then
-    CURRENT_BUILD=0
-fi
+ES_BIN="/usr/bin/emulationstation/emulationstation"
+ES_SYSTEMS_DEST="/etc/emulationstation/es_systems.cfg"
+LOGO_DEST="/opt/system/playos-logo.png"
+FM_DEST="/opt/FindManager_Data/FindManager"
+STAGE_DIR="/home/ark/.playos_stage"
 
-echo ">> PLAY OS OTA Updater Starting..."
-echo ">> Your Current Version: $CURRENT_VERSION_RAW (Build $CURRENT_BUILD)"
+# RetroArch  "ไฟล์บน repo|ปลายทางบนเครื่อง"
+RA_FILES=(
+    "retroarch.cfg|/home/ark/.config/retroarch/retroarch.cfg"
+    "retroarch-core-options.cfg|/home/ark/.config/retroarch/retroarch-core-options.cfg"
+    "32/retroarch.cfg|/home/ark/.config/retroarch32/retroarch.cfg"
+    "32/retroarch-core-options.cfg|/home/ark/.config/retroarch32/retroarch-core-options.cfg"
+)
 
-# ==========================================
-# แยกเวอร์ชันฐาน ("3.0" จาก "3.0.1") ออกจากส่วนวงเล็บต่อท้าย ("X" จาก "3.0(X)")
-# VERSION_TAG ไม่ว่าง = เป็นสายพันธุ์อื่น เช่น 3.0(X), ไม่ใช่สาย STANDARD
-# ==========================================
+# ---------- log: รายละเอียดลงไฟล์ / หน้าจอแสดงแค่สถานะสั้นๆ ----------
+LOG_FILE="/home/ark/PLAYOS-update-$NEW_BUILD.log"
+exec 3>&1
+exec >>"$LOG_FILE" 2>&1
+say() { echo ">> $*"; echo ">> $*" >&3; }
+
+[ -z "$CURRENT_BUILD" ] && CURRENT_BUILD=0
+
+say "PLAY OS Updater - current: ${CURRENT_VERSION_RAW:-unknown} (build $CURRENT_BUILD)"
+
 VERSION_BASE=$(echo "$CURRENT_VERSION_RAW" | sed -E 's/\(.*\)//')
 VERSION_TAG=$(echo "$CURRENT_VERSION_RAW" | sed -nE 's/.*\(([^)]*)\).*/\1/p')
 VERSION_MAJOR_MINOR=$(echo "$VERSION_BASE" | cut -d. -f1,2)
-
 REQUIRED_MAJOR_MINOR="3.0"
 
-# ==========================================
-# 🛡️ ด่านที่ 1: ต้องเป็นสาย STANDARD เท่านั้น ห้ามเป็นสายวงเล็บ เช่น (X)
-# ==========================================
+# 🛡️ 1: ห้ามสายวงเล็บ เช่น 3.0(X)
 if [ -n "$VERSION_TAG" ]; then
-    echo ">> THIS DEVICE IS ON THE '$VERSION_TAG' VARIANT TRACK (VERSION $CURRENT_VERSION_RAW)."
-    echo ">> THIS UPDATE IS FOR THE STANDARD $REQUIRED_MAJOR_MINOR TRACK ONLY."
-    echo ">> UPDATE CANCELED."
-    sleep 3
-    exit 0
+    say "This device is on the '$VERSION_TAG' variant track. Update canceled."
+    sleep 3; exit 0
 fi
 
-# ==========================================
-# 🛡️ ด่านที่ 2: ต้องอยู่สาย 3.0.x เท่านั้น (ต่ำกว่า/สูงกว่านั้นอัปเดตผ่านตัวนี้ไม่ได้)
-# ==========================================
+# 🛡️ 2: ต้องเป็นสาย 3.0.x
 if [ "$VERSION_MAJOR_MINOR" != "$REQUIRED_MAJOR_MINOR" ]; then
-    echo ">> THIS UPDATE ONLY APPLIES TO VERSION $REQUIRED_MAJOR_MINOR.x (YOURS: ${VERSION_BASE:-UNKNOWN})."
-    echo ">> UPDATE CANCELED."
-    sleep 3
-    exit 0
+    say "This update only applies to $REQUIRED_MAJOR_MINOR.x (yours: ${VERSION_BASE:-UNKNOWN}). Update canceled."
+    sleep 3; exit 0
 fi
 
-# ==========================================
-# 🛡️ ด่านที่ 3: บิลด์ปัจจุบันต้องต่ำกว่าบิลด์ใหม่เท่านั้น
-# ==========================================
+# 🛡️ 3: เวอร์ชันปัจจุบันต้องไม่สูงกว่า 3.0.2
+if [ "$(printf '%s\n%s\n' "$VERSION_BASE" "$NEW_VERSION" | sort -V | tail -n1)" != "$NEW_VERSION" ]; then
+    say "Version $VERSION_BASE is newer than $NEW_VERSION. Update canceled."
+    sleep 3; exit 0
+fi
+
+# 🛡️ 4: build ปัจจุบันต้องต่ำกว่า build ใหม่
 if [ "$CURRENT_BUILD" -ge "$NEW_BUILD" ]; then
-    echo ">> SYSTEM IS ALREADY UP TO DATE OR NEWER (Build $CURRENT_BUILD >= $NEW_BUILD)."
-    echo ">> UPDATE CANCELED."
-    sleep 3
-    exit 0
+    say "Already up to date (build $CURRENT_BUILD >= $NEW_BUILD). Update canceled."
+    sleep 3; exit 0
 fi
 
 # ==========================================
-# 1. ติดตั้ง EmulationStation ตัวใหม่
+# 0. ดาวน์โหลดไฟล์ทั้งหมดก่อน (พลาด = ยังไม่แตะระบบเลย)
 # ==========================================
-echo ">> [1/3] Updating EmulationStation..."
+say "Preparing update files..."
+rm -rf "$STAGE_DIR"
+mkdir -p "$STAGE_DIR/32"
 
-# แก้ ES_BIN ตรงนี้ให้ตรงกับ path จริงบนเครื่อง ถ้าไม่ใช่ /usr/bin/emulationstation
-ES_BIN="/usr/bin/emulationstation"
-ES_TMP="/tmp/emulationstation.new"
-
-wget -q -t 3 -T 60 -O "$ES_TMP" "$URL_BASE/emulationstation"
-if [ -f "$ES_TMP" ] && [ -s "$ES_TMP" ]; then
-    if [ -f "$ES_BIN" ]; then
-        sudo cp -f "$ES_BIN" "$ES_BIN.bak.$(date +%Y%m%d%H%M%S)"
+fetch() {  # fetch <ชื่อบน repo>
+    wget -q -t 3 -T 60 -O "$STAGE_DIR/$1" "$URL_BASE/$1"
+    if [ ! -s "$STAGE_DIR/$1" ]; then
+        say "FAILED to download $1 - nothing was changed."
+        rm -rf "$STAGE_DIR"
+        sleep 3; exit 1
     fi
-    sudo cp -f "$ES_TMP" "$ES_BIN"
-    # ต้องเป็นเจ้าของ ark:ark ห้ามเป็น root/สิทธิ์ root เด็ดขาด - ไม่งั้น ES เปิดไม่ขึ้น
-    sudo chown ark:ark "$ES_BIN"
-    sudo chmod 755 "$ES_BIN"
-    rm -f "$ES_TMP"
-    echo ">> emulationstation installed: $(stat -c '%U:%G %a' "$ES_BIN" 2>/dev/null) $ES_BIN"
-else
-    echo ">> FAILED TO DOWNLOAD emulationstation - ABORTING UPDATE (nothing changed)."
-    rm -f "$ES_TMP"
-    exit 1
+}
+fetch emulationstation
+fetch es_systems.cfg
+fetch apps.zip
+fetch FindManager
+fetch playos-logo.png
+for entry in "${RA_FILES[@]}"; do fetch "${entry%%|*}"; done
+
+ts="$(date +%Y%m%d%H%M%S)"
+
+# ==========================================
+# 1. EmulationStation (ark:ark ห้ามเป็น root)
+# ==========================================
+say "Updating EmulationStation..."
+mkdir -p "$(dirname "$ES_BIN")"
+if [ -f "$ES_BIN" ]; then
+    cp -f "$ES_BIN" "$ES_BIN.bak.$ts"
+    chown ark:ark "$ES_BIN.bak.$ts"
 fi
+cp -f "$STAGE_DIR/emulationstation" "$ES_BIN"
+chown ark:ark "$ES_BIN"
+chmod 755 "$ES_BIN"
+echo ">> ES: $(stat -c '%U:%G %a' "$ES_BIN") $ES_BIN"
 
 # ==========================================
-# 2. ติดตั้ง generate_es_systems_variants.sh
+# 2. es_systems.cfg (วางทับของเดิม)
 # ==========================================
-echo ">> [2/3] Updating generate_es_systems_variants.sh..."
-
-GEN_SCRIPT="/usr/local/bin/generate_es_systems_variants.sh"
-GEN_TMP="/tmp/generate_es_systems_variants.sh.new"
-
-wget -q -t 3 -T 60 -O "$GEN_TMP" "$URL_BASE/generate_es_systems_variants.sh"
-if [ -f "$GEN_TMP" ] && [ -s "$GEN_TMP" ]; then
-    if [ -f "$GEN_SCRIPT" ]; then
-        sudo cp -f "$GEN_SCRIPT" "$GEN_SCRIPT.bak.$(date +%Y%m%d%H%M%S)"
-    fi
-    sudo cp -f "$GEN_TMP" "$GEN_SCRIPT"
-    sudo chown root:root "$GEN_SCRIPT"
-    sudo chmod 755 "$GEN_SCRIPT"
-    rm -f "$GEN_TMP"
-    echo ">> generate_es_systems_variants.sh installed at $GEN_SCRIPT"
-else
-    echo ">> FAILED TO DOWNLOAD generate_es_systems_variants.sh - ABORTING UPDATE."
-    echo ">> (emulationstation was already replaced above - re-run this updater once the download works"
-    echo ">>  to finish the rest, or restore $ES_BIN.bak.* by hand.)"
-    rm -f "$GEN_TMP"
-    exit 1
-fi
+say "Updating system configuration..."
+mkdir -p "$(dirname "$ES_SYSTEMS_DEST")"
+[ -f "$ES_SYSTEMS_DEST" ] && cp -f "$ES_SYSTEMS_DEST" "$ES_SYSTEMS_DEST.bak.$ts"
+cp -f "$STAGE_DIR/es_systems.cfg" "$ES_SYSTEMS_DEST"
+chown root:root "$ES_SYSTEMS_DEST"
+chmod 644 "$ES_SYSTEMS_DEST"
 
 # ==========================================
-# 3. อัปเดตตัวเลขเวอร์ชันในระบบ
+# 3. apps (/opt/apps) / FindManager / logo
 # ==========================================
-echo ">> [3/3] Finalizing update to v$NEW_VERSION..."
-sudo bash -c "cat > \"$INFO_FILE\" <<EOF
-VERSION=\"$NEW_VERSION\"
-BUILD=\"$NEW_BUILD\"
-EOF"
+say "Updating apps..."
+mkdir -p /opt /opt/FindManager_Data /opt/system
+unzip -X -o "$STAGE_DIR/apps.zip" -d /opt \
+    || { say "Failed to install apps - please retry the update."; exit 1; }
+chown -R ark:ark /opt/apps
+find /opt/apps -type f -name '*.sh' -exec chmod +x {} +
 
-echo ">> ======================================="
-echo ">> PLAY OS v$NEW_VERSION UPDATE COMPLETED!"
-echo ">> Restarting system to apply changes..."
-echo ">> ======================================="
+[ -f "$FM_DEST" ] && cp -f "$FM_DEST" "$FM_DEST.bak.$ts"
+cp -f "$STAGE_DIR/FindManager" "$FM_DEST" \
+    || { say "Failed to install FindManager - please retry the update."; exit 1; }
+chown ark:ark "$FM_DEST"
+chmod 755 "$FM_DEST"
+
+cp -f "$STAGE_DIR/playos-logo.png" "$LOGO_DEST"
+chown ark:ark "$LOGO_DEST"
+chmod 644 "$LOGO_DEST"
+
+# ==========================================
+# 4. RetroArch config (64 + 32)
+# ==========================================
+say "Updating RetroArch config..."
+for entry in "${RA_FILES[@]}"; do
+    src="${entry%%|*}"; dest="${entry#*|}"
+    mkdir -p "$(dirname "$dest")"
+    [ -f "$dest" ] && cp -f "$dest" "$dest.bak.$ts"
+    cp -f "$STAGE_DIR/$src" "$dest"
+    chown ark:ark "$dest"; chmod 644 "$dest"
+    echo ">> installed $dest"
+done
+chown ark:ark /home/ark/.config/retroarch /home/ark/.config/retroarch32 2>/dev/null
+
+# ==========================================
+# 5. ประทับเวอร์ชัน (ท้ายสุด)
+# ==========================================
+cat > "$INFO_FILE" <<EOT
+VERSION="$NEW_VERSION"
+BUILD="$NEW_BUILD"
+EOT
+
+rm -rf "$STAGE_DIR"
+say "Update completed! (PLAY OS v$NEW_VERSION) Restarting..."
 sleep 3
 exit 187
