@@ -3,8 +3,8 @@
 # PLAY OS - OTA Update v3.0.2
 # Build: 261030
 # Track: STANDARD (3.0.x) only
-#   - รับเฉพาะ 3.0.x ที่ต่ำกว่า 3.0.2 (build < 261030)
-#   - ปฏิเสธสายวงเล็บ เช่น 3.0(X) และเวอร์ชันที่สูงกว่า 3.0.2
+#   - รับเฉพาะ 3.0.1 เท่านั้น (ต่ำกว่า 3.0.2 และ build < 261030)
+#   - ปฏิเสธสายวงเล็บ เช่น 3.0(X), 3.0.0 และเวอร์ชัน 3.0.2 ขึ้นไป
 #
 # อัปเดตเฉพาะของ PLAY OS (ไม่ยุ่งกับ dArkOSen)
 #
@@ -27,6 +27,7 @@ CURRENT_VERSION_RAW=$(grep "VERSION" "$INFO_FILE" 2>/dev/null | cut -d'"' -f2)
 CURRENT_BUILD=$(grep "BUILD" "$INFO_FILE" 2>/dev/null | cut -d'"' -f2)
 
 NEW_VERSION="3.0.2"
+MIN_VERSION="3.0.1"
 NEW_BUILD=261030
 URL_BASE="https://raw.githubusercontent.com/Factzz/pLayOS/main/261030"
 
@@ -71,9 +72,15 @@ if [ "$VERSION_MAJOR_MINOR" != "$REQUIRED_MAJOR_MINOR" ]; then
     sleep 3; exit 0
 fi
 
-# 🛡️ 3: เวอร์ชันปัจจุบันต้องไม่สูงกว่า 3.0.2
-if [ "$(printf '%s\n%s\n' "$VERSION_BASE" "$NEW_VERSION" | sort -V | tail -n1)" != "$NEW_VERSION" ]; then
-    say "Version $VERSION_BASE is newer than $NEW_VERSION. Update canceled."
+# 🛡️ 3: ต้องต่ำกว่า 3.0.2 (3.0.2 ขึ้นไป = ไม่อัปเดต)
+if [ "$(printf '%s\n%s\n' "$VERSION_BASE" "$NEW_VERSION" | sort -V | head -n1)" = "$NEW_VERSION" ]; then
+    say "Version $VERSION_BASE is already $NEW_VERSION or newer. Update canceled."
+    sleep 3; exit 0
+fi
+
+# 🛡️ 3.5: ต้องตั้งแต่ 3.0.1 ขึ้นไป
+if [ "$(printf '%s\n%s\n' "$VERSION_BASE" "$MIN_VERSION" | sort -V | head -n1)" != "$MIN_VERSION" ]; then
+    say "Version $VERSION_BASE is older than $MIN_VERSION. Update canceled."
     sleep 3; exit 0
 fi
 
