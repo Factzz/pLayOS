@@ -128,7 +128,7 @@ input[type=range]{width:100%;accent-color:var(--blue)}
 .join{margin:96px 12px 0;background:var(--navy);color:#fff;border-radius:36px;padding:72px 24px;text-align:center}
 .join h2{font-size:clamp(1.9rem,4.6vw,3rem)}.join p{color:#AEB4D9;max-width:480px;margin:12px auto 28px}
 footer{padding:36px 0 48px;text-align:center;color:var(--soft);font-size:.85rem}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.gs{opacity:1;transform:none}.gs::before{transform:none}.gs-ico.done svg path{stroke-dashoffset:0}}
 .sec-head{max-width:640px; margin:0 auto 48px; text-align:center;}
 .sec-head h2{font-size:clamp(1.8rem,4vw,2.6rem); font-weight:700;}
 .sec-head p{color:var(--ink-soft); margin-top:12px; font-size:1.02rem; line-height:1.6;}
@@ -161,8 +161,8 @@ footer{padding:36px 0 48px;text-align:center;color:var(--soft);font-size:.85rem}
 @keyframes gsPop{from{transform:scale(.4); opacity:0;} to{transform:scale(1); opacity:1;}}
 @keyframes gsDraw{to{stroke-dashoffset:0;}}
 @keyframes gsGlow{0%{box-shadow:0 0 0 0 rgba(31,174,74,.5);} 100%{box-shadow:0 0 0 22px rgba(31,174,74,0);}}
-.gs,.gs-ico,.gs::before{animation:none!important; opacity:1; transform:none;}
-.gs-ico.done svg path{animation:none; stroke-dashoffset:0;}
+
+
 .dtb-box{max-width:720px; margin:0 auto; background:var(--bg2); border-radius:20px; padding:26px; box-shadow:0 1px 0 rgba(23,24,27,0.06);}
 .dtb-row{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:6px;}
 .dtb-n{flex:0 0 28px; height:28px; border-radius:50%; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center; font-size:0.8rem; font-weight:700;}
@@ -255,7 +255,7 @@ footer{padding:36px 0 48px;text-align:center;color:var(--soft);font-size:.85rem}
 @keyframes gsPop{from{transform:scale(.4); opacity:0;} to{transform:scale(1); opacity:1;}}
 @keyframes gsDraw{to{stroke-dashoffset:0;}}
 @keyframes gsGlow{0%{box-shadow:0 0 0 0 rgba(31,174,74,.5);} 100%{box-shadow:0 0 0 22px rgba(31,174,74,0);}}
-.gs-ico.done svg path{animation:none; stroke-dashoffset:0;}
+
 
 .btn-outline{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
 .modal-go{display:block;text-align:center}
