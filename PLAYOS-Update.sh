@@ -1,15 +1,14 @@
 #!/bin/bash
 # ==========================================================
 # PLAY OS - OTA Patch : PPSSPP
-# Track: 4.0(X) (เครื่องโคลน) เท่านั้น  build 261201
+# รับเฉพาะ  4.0(X) (เครื่องโคลน)  และ  4.0 RG EDITION   build 261201
 #
-# อัปเดตเฉพาะ PPSSPP  -- ไม่เปลี่ยนเวอร์ชัน/บิลด์ (ยังเป็น 4.0(X) / 261201)
+# อัปเดตเฉพาะ PPSSPP  -- ไม่เปลี่ยนเวอร์ชัน/บิลด์ (คงเดิม เช่น 4.0(X) / 261201)
 #   ppsspp.zip       -> /opt/ppsspp        (ลบของเดิมแล้ววางใหม่ ไม่วางทับ)
 #   ppsspp-2021.zip  -> /opt/ppsspp-2021   (ลบของเดิมแล้ววางใหม่ ไม่วางทับ)
 #   แล้วตั้งสิทธิ์: chmod +x <dir>/PPSSPPSDL และ chmod -R 755 <dir>
 #
-# เครื่องที่ไม่ใช่ 4.0(X) build 261201 (เช่น 4.0 เครื่องแท้, 4.0 RG EDITION,
-# สาย 3.x) -> ยกเลิก ไม่แตะอะไรเลย
+# เครื่องอื่น (เช่น 4.0 เครื่องแท้, สาย 3.x) หรือ build ไม่ใช่ 261201 -> ยกเลิก ไม่แตะอะไรเลย
 # รันซ้ำได้: ถ้าไฟล์เหมือนที่ติดตั้งล่าสุดแล้ว จะขึ้น "already the latest" แล้วข้าม
 #
 # แถบหลอดบนหน้าจอ: บรรทัดที่ขึ้นต้นด้วย ">>" คือข้อความสถานะ
@@ -36,7 +35,6 @@ INFO_FILE="/opt/system/playos_info.cfg"
 CURRENT_VERSION_RAW=$(grep -m1 '^VERSION=' "$INFO_FILE" 2>/dev/null | cut -d'"' -f2)
 CURRENT_BUILD=$(grep -m1 '^BUILD=' "$INFO_FILE" 2>/dev/null | cut -d'"' -f2 | tr -cd '0-9')
 
-REQUIRED_VERSION="4.0(X)"
 REQUIRED_BUILD=261201
 
 URL_BASE="https://github.com/Factzz/pLayOS/releases/download/PPSSPP"   # GitHub Release (tag: PPSSPP)
@@ -65,9 +63,11 @@ free -m 2>&1 | sed -n 2p
 
 say "PLAY OS Updater - current: ${CURRENT_VERSION_RAW:-unknown} (build $CURRENT_BUILD) 2%"
 
-# 🛡️ ต้องเป็น 4.0(X) เท่านั้น
-if [ "$CURRENT_VERSION_RAW" != "$REQUIRED_VERSION" ]; then
-    say "This update is only for v$REQUIRED_VERSION (yours: ${CURRENT_VERSION_RAW:-UNKNOWN}). Update canceled."
+# 🛡️ ต้องเป็น 4.0(X) หรือ 4.0 RG EDITION เท่านั้น (เครื่องแท้ 4.0 ธรรมดาไม่รับ)
+#    RG รับรูปแบบ: "4.0 RG EDITION", "4.0(RG)", "4.0 (RG)", "4.0-RG ..." (ไม่สนตัวพิมพ์เล็ก/ใหญ่)
+VERSION_UC=$(echo "$CURRENT_VERSION_RAW" | tr '[:lower:]' '[:upper:]')
+if [ "$VERSION_UC" != "4.0(X)" ] && ! [[ "$VERSION_UC" =~ ^4\.0[[:space:]\(_-]*RG ]]; then
+    say "This update is only for v4.0(X) and 4.0 RG EDITION (yours: ${CURRENT_VERSION_RAW:-UNKNOWN}). Update canceled."
     sleep 3; exit 0
 fi
 # 🛡️ และต้องเป็น build 261201 (กันเขียนทับเครื่องที่ใหม่กว่า)
