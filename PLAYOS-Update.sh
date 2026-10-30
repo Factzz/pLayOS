@@ -1,30 +1,24 @@
 #!/bin/bash
 # ==========================================================
-# PLAY OS - OTA Patch : PPSSPP
-# รับเฉพาะ  4.0(X) (เครื่องโคลน)  และ  4.0 RG EDITION   build 261201
+# PLAY OS - OTA Update : PPSSPP  (ตระกูล 4.x)
 #
-# อัปเดตเฉพาะ PPSSPP  -- ไม่เปลี่ยนเวอร์ชัน/บิลด์ (คงเดิม เช่น 4.0(X) / 261201)
-#   ppsspp.zip       -> /opt/ppsspp        (ลบของเดิมแล้ววางใหม่ ไม่วางทับ)
-#   ppsspp-2021.zip  -> /opt/ppsspp-2021   (ลบของเดิมแล้ววางใหม่ ไม่วางทับ)
-#   แล้วตั้งสิทธิ์: chmod +x <dir>/PPSSPPSDL และ chmod -R 755 <dir>
+#  อัปเดตเฉพาะ  4.0 RG EDITION  ->  4.0.1  build 261202
+#     PPSSPP ชุดของ RG (Release: PPSSPPRG) -- ลบของเดิมทิ้งทั้งหมดแล้ววางใหม่
+#     (คอนฟิกไม่เหมือนสายอื่น จึงไม่เอาของเดิมไปรวม)
+#     รับเฉพาะ 4.0 RG build 261201  /  ประทับ VERSION เป็น 4.0.1 (รักษารูปแบบข้อความเดิม
+#     เช่น "4.0 RG EDITION" -> "4.0.1 RG EDITION")  BUILD=261202
 #
-# เครื่องอื่น (เช่น 4.0 เครื่องแท้, สาย 3.x) หรือ build ไม่ใช่ 261201 -> ยกเลิก ไม่แตะอะไรเลย
-# รันซ้ำได้: ถ้าไฟล์เหมือนที่ติดตั้งล่าสุดแล้ว จะขึ้น "already the latest" แล้วข้าม
+#  เครื่องอื่นทั้งหมด (4.0(X), 4.0 เครื่องแท้, สาย 3.x, RG ที่อัปแล้ว/build อื่น)
+#     -> ยกเลิก ไม่แตะอะไรเลย
+#
+#     ppsspp.zip       -> /opt/ppsspp        (ลบของเดิมแล้ววางใหม่ ไม่วางทับ)
+#     ppsspp-2021.zip  -> /opt/ppsspp-2021   (ลบของเดิมแล้ววางใหม่ ไม่วางทับ)
+#     แล้วตั้งสิทธิ์: chmod +x <dir>/PPSSPPSDL และ chmod -R 755 <dir>
+#     ข้างใน zip ต้องมีไฟล์ PPSSPPSDL (ไฟล์ในราก หรือห่อด้วยโฟลเดอร์เดียวก็ได้)
+#     ไฟล์ใหญ่เกิน 25MB แบ่งเป็นชิ้น ppsspp.zip.001, .002, ... ได้ (ถ้าไม่มี .zip ไฟล์เดียว)
 #
 # แถบหลอดบนหน้าจอ: บรรทัดที่ขึ้นต้นด้วย ">>" คือข้อความสถานะ
 #   ถ้ามี "NN%" ในบรรทัด แถบจะเลื่อนตามเปอร์เซ็นต์จริง
-#
-# ไฟล์อยู่ที่ GitHub Release  https://github.com/Factzz/pLayOS/releases/tag/PPSSPP
-#   ppsspp.zip        (จะมีไฟล์ในราก หรือห่อด้วยโฟลเดอร์เดียว เช่น ppsspp/ ก็ได้)
-#   ppsspp-2021.zip   (เหมือนกัน)
-#   ข้างในต้องมีไฟล์ PPSSPPSDL
-#
-# ไฟล์ใหญ่เกิน 25MB (ข้อจำกัดอัปโหลดผ่านหน้าเว็บ GitHub) -> แบ่งเป็นชิ้นได้
-#   ppsspp.zip.001, ppsspp.zip.002, ppsspp.zip.003, ...   (เลขต่อเนื่อง 3 หลัก เริ่มที่ 001)
-#   ถ้ามี ppsspp.zip ไฟล์เดียวจะใช้ไฟล์นั้น ถ้าไม่มีจะโหลดชิ้นต่อกันจนหมดแล้วประกอบเอง
-#   วิธีแบ่ง (Linux/Mac/WSL):
-#     split -b 20m -d -a 3 --numeric-suffixes=1 ppsspp.zip ppsspp.zip.
-#   (Windows: 7-Zip > Add to archive > Split to volumes = 20M จะได้ .zip.001, .zip.002 ...)
 # ==========================================================
 
 if [ "$(id -u)" -ne 0 ]; then
@@ -35,16 +29,18 @@ INFO_FILE="/opt/system/playos_info.cfg"
 CURRENT_VERSION_RAW=$(grep -m1 '^VERSION=' "$INFO_FILE" 2>/dev/null | cut -d'"' -f2)
 CURRENT_BUILD=$(grep -m1 '^BUILD=' "$INFO_FILE" 2>/dev/null | cut -d'"' -f2 | tr -cd '0-9')
 
-REQUIRED_BUILD=261201
+# ----- RG (อัปเป็น 4.0.1 / 261202) -----
+RG_FROM_BUILD=261201              # รับเฉพาะ RG ที่ build นี้
+RG_NEW_BASE_VERSION="4.0.1"
+RG_NEW_BUILD=261202
+URL_BASE="https://github.com/Factzz/pLayOS/releases/download/PPSSPPRG"
 
-URL_BASE="https://github.com/Factzz/pLayOS/releases/download/PPSSPP"   # GitHub Release (tag: PPSSPP)
 PKGS=("ppsspp" "ppsspp-2021")     # ชื่อ = ชื่อโฟลเดอร์ใน /opt = ชื่อ zip (ไม่รวม .zip)
 OPT_DIR="/opt"
-STATE_FILE="/opt/system/ppsspp_patch.sha256"
 STAGE_DIR="/home/ark/.playos_stage"
 
 # ---------- log: รายละเอียดลงไฟล์ / หน้าจอแสดงแค่สถานะสั้นๆ ----------
-LOG_FILE="/home/ark/PLAYOS-update-$REQUIRED_BUILD.log"
+LOG_FILE="/home/ark/PLAYOS-update-$RG_NEW_BUILD.log"
 exec 3>&1
 exec >>"$LOG_FILE" 2>&1
 say() { echo ">> $*"; echo ">> $*" >&3; }
@@ -63,25 +59,36 @@ free -m 2>&1 | sed -n 2p
 
 say "PLAY OS Updater - current: ${CURRENT_VERSION_RAW:-unknown} (build $CURRENT_BUILD) 2%"
 
-# 🛡️ ต้องเป็น 4.0(X) หรือ 4.0 RG EDITION เท่านั้น (เครื่องแท้ 4.0 ธรรมดาไม่รับ)
-#    RG รับรูปแบบ: "4.0 RG EDITION", "4.0(RG)", "4.0 (RG)", "4.0-RG ..." (ไม่สนตัวพิมพ์เล็ก/ใหญ่)
+# ---------- ตรวจเวอร์ชัน: รับเฉพาะ 4.0 RG EDITION build 261201 ----------
 VERSION_UC=$(echo "$CURRENT_VERSION_RAW" | tr '[:lower:]' '[:upper:]')
-if [ "$VERSION_UC" != "4.0(X)" ] && ! [[ "$VERSION_UC" =~ ^4\.0[[:space:]\(_-]*RG ]]; then
-    say "This update is only for v4.0(X) and 4.0 RG EDITION (yours: ${CURRENT_VERSION_RAW:-UNKNOWN}). Update canceled."
+RG_PATTERN='^4\.0(\.[0-9]+)?[[:space:]\(_-]*RG'     # "4.0 RG EDITION", "4.0(RG)", "4.0.1 RG ..."
+OK=0
+
+if [[ "$VERSION_UC" =~ $RG_PATTERN ]]; then
+    RG_BASE=$(echo "$CURRENT_VERSION_RAW" | grep -oE '^[0-9]+(\.[0-9]+)*')
+    if [ "$RG_BASE" = "$RG_NEW_BASE_VERSION" ] || [ "$CURRENT_BUILD" -ge "$RG_NEW_BUILD" ]; then
+        CANCEL_MSG="Already up to date (v$RG_BASE, build $CURRENT_BUILD). Update canceled."
+    elif [ "$RG_BASE" = "4.0" ] && [ "$CURRENT_BUILD" -eq "$RG_FROM_BUILD" ]; then
+        OK=1
+    else
+        CANCEL_MSG="This update is only for 4.0 RG build $RG_FROM_BUILD (yours: $CURRENT_VERSION_RAW, build $CURRENT_BUILD). Update canceled."
+    fi
+else
+    CANCEL_MSG="This update is only for 4.0 RG EDITION (yours: ${CURRENT_VERSION_RAW:-UNKNOWN}). Update canceled."
+fi
+
+if [ "$OK" != "1" ]; then
+    say "$CANCEL_MSG"
     sleep 3; exit 0
 fi
-# 🛡️ และต้องเป็น build 261201 (กันเขียนทับเครื่องที่ใหม่กว่า)
-if [ "$CURRENT_BUILD" -ne "$REQUIRED_BUILD" ]; then
-    say "This update is only for build $REQUIRED_BUILD (yours: $CURRENT_BUILD). Update canceled."
-    sleep 3; exit 0
-fi
+echo "[source] $URL_BASE"
 
 # ---------- ฟังก์ชัน ----------
 cleanup_tmp() { rm -rf "$OPT_DIR"/.pp_new_* "$OPT_DIR"/.pp_old_* 2>/dev/null; }
 fail_exit() { rm -rf "$STAGE_DIR"; cleanup_tmp; sleep 3; exit 1; }
 
 PKG_IDX=0
-try_get() {  # try_get <ชื่อบน repo> <ไฟล์ปลายทาง> : ตั้ง GOT=1 ถ้าได้ไฟล์ / MISSING=1 ถ้า repo ตอบ 404
+try_get() {  # try_get <ชื่อบน repo> <ไฟล์ปลายทาง> : ตั้ง GOT=1 ถ้าได้ไฟล์ / MISSING=1 ถ้าเซิร์ฟเวอร์ตอบ 404
     local outtxt
     GOT=0; MISSING=0
     outtxt=$(wget -nv -t 3 -T 60 -O "$2" "$URL_BASE/$1" 2>&1)
@@ -137,23 +144,12 @@ cleanup_tmp
 for p in "${PKGS[@]}"; do fetch_pkg "$p"; done
 
 say "Verifying files... 48%"
-HASH=""
 for p in "${PKGS[@]}"; do
     if ! unzip -tq "$STAGE_DIR/$p.zip" >/dev/null 2>&1; then
         say "$p.zip is not a valid zip - nothing was changed."
         fail_exit
     fi
-    HASH="$HASH$(sha256sum "$STAGE_DIR/$p.zip" | cut -d' ' -f1)  $p.zip"$'\n'
 done
-
-# เหมือนที่ติดตั้งไว้ล่าสุดแล้ว (และโฟลเดอร์ยังครบ) -> ข้าม
-ALL_OK=1
-for p in "${PKGS[@]}"; do [ -x "$OPT_DIR/$p/PPSSPPSDL" ] || ALL_OK=0; done
-if [ "$ALL_OK" = "1" ] && [ -f "$STATE_FILE" ] && [ "$(cat "$STATE_FILE")" = "${HASH%$'\n'}" ]; then
-    rm -rf "$STAGE_DIR"
-    say "PPSSPP is already the latest. 100%"
-    sleep 3; exit 0
-fi
 
 # ==========================================
 # 1. แตกไฟล์ไปไว้ข้างๆ ก่อน (ยังไม่ลบของเดิม) แล้วตรวจว่ามี PPSSPPSDL จริง
@@ -182,7 +178,7 @@ done
 rm -rf "$STAGE_DIR"      # คืนพื้นที่ zip
 
 # ==========================================
-# 2. ลบของเดิม แล้ววางอันใหม่ (สลับโฟลเดอร์ ถ้าพลาดจะคืนของเดิม)
+# 2. ลบของเดิมทิ้งทั้งหมด แล้ววางอันใหม่ (สลับโฟลเดอร์ ถ้าพลาดจะคืนของเดิม)
 # ==========================================
 pct=76
 for p in "${PKGS[@]}"; do
@@ -204,9 +200,15 @@ for p in "${PKGS[@]}"; do
 done
 cleanup_tmp
 
-# จำว่าติดตั้งชุดไหนไว้ (ใช้ข้ามตอนรันซ้ำ) -- ไม่แตะ VERSION/BUILD
-printf '%s' "$HASH" > "$STATE_FILE"
-
-say "Update completed! (PPSSPP updated) Restarting... 100%"
+# ==========================================
+# 3. ท้ายสุด: ประทับเวอร์ชันใหม่ 4.0.1 / 261202 (รักษารูปแบบ VERSION เดิม)
+# ==========================================
+say "Finishing... 96%"
+NEW_VERSION_STR=$(echo "$CURRENT_VERSION_RAW" | sed -E "s/^4\.0/$RG_NEW_BASE_VERSION/")
+cat > "$INFO_FILE" <<EOT
+VERSION="$NEW_VERSION_STR"
+BUILD="$RG_NEW_BUILD"
+EOT
+say "Update completed! (PLAY OS v$NEW_VERSION_STR) Restarting... 100%"
 sleep 3
 exit 187
