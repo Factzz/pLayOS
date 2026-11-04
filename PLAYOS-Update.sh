@@ -2,22 +2,18 @@
 # ==========================================================
 # PLAY OS - OTA Update  (ตระกูล 4.x)
 #
-#  [1] 4.0 B  (เครื่องแท้ รุ่นเบต้าทดสอบ)  ->  4.0.1 B   build 261203
-#        แพ็กเกจ: GitHub Release tag "4.0B"  (PlayOS4.0-update261203.zip)
-#        - แตกแพ็กเกจแล้วคัดลอกไปที่ / (boot, etc, lib/modules, opt, usr/local/bin, home/ark)
-#        - ไม่รัน tmp/10312026.sh ของ dArkOSen ในแพ็กเกจ (ทำขั้นตอนที่จำเป็นในสคริปต์นี้แทน)
-#        - ไม่แตะ EmulationStation
-#        - เพิ่ม dsperate ใน es_systems.cfg + แก้โครงสร้าง (fix_dsperate)
-#        - ติดตั้ง OTG_fix.sh ที่ /opt/system/Advanced (ไม่รันอัตโนมัติ)
-#        - สำรองไฟล์เดิมที่จะถูกทับ (boot/etc/lib/usr) ไว้ที่ /home/ark/.playos_backup_261203
-#          ถ้าคัดลอกพลาดจะคืนของเดิมให้เอง
-#        *** ปล่อยจริง: เปลี่ยน B_PATTERN_ANY เป็น '^4\.0(\.[0-9]+)?$' (ดูหมายเหตุในโค้ด) ***
+#  4.0 (เครื่องแท้)  ->  4.0.1   build 261203
+#     แพ็กเกจ: GitHub Release tag "4.0B"  (PlayOS4.0-update261203.zip)
+#     - แตกแพ็กเกจแล้วคัดลอกไปที่ / (boot, etc, lib/modules, opt, usr/local/bin, home/ark)
+#     - ไม่รัน tmp/10312026.sh ของ dArkOSen ในแพ็กเกจ (ทำขั้นตอนที่จำเป็นในสคริปต์นี้แทน)
+#     - ไม่แตะ EmulationStation
+#     - เพิ่ม dsperate ใน es_systems.cfg + แก้โครงสร้าง (fix_dsperate)
+#     - ติดตั้ง OTG_fix.sh ที่ /opt/system/Advanced (ไม่รันอัตโนมัติ)
+#     - สำรองไฟล์เดิมที่จะถูกทับ (boot/etc/lib/usr) ไว้ที่ /home/ark/.playos_backup_261203
+#       ถ้าคัดลอกพลาดจะคืนของเดิมและลบไฟล์ใหม่ที่ใส่ไปแล้วให้เอง
 #
-#  [2] 4.0 RG EDITION  ->  4.0.1  build 261202                       [เหมือนเดิม]
-#        PPSSPP ชุดของ RG (Release: PPSSPPRG) ลบของเดิมแล้ววางใหม่
-#
-#  เครื่องอื่นทั้งหมด (4.0(X), 4.0 เครื่องแท้ที่ไม่ใช่ B, สาย 3.x, อัปแล้ว, build อื่น)
-#     -> ยกเลิก ไม่แตะอะไรเลย
+#  รับเฉพาะเครื่องที่ VERSION เป็น "4.0" เท่านั้น
+#  ไม่อัปเดต: 4.0(X), 4.0 RG EDITION, 4.0 B (เบต้า), สาย 3.x, 4.0.1 ขึ้นไป  -> ยกเลิก ไม่แตะอะไรเลย
 #
 # แถบหลอดบนหน้าจอ: บรรทัดที่ขึ้นต้นด้วย ">>" คือข้อความสถานะ
 #   ถ้ามี "NN%" ในบรรทัด แถบจะเลื่อนตามเปอร์เซ็นต์จริง
@@ -31,21 +27,11 @@ INFO_FILE="/opt/system/playos_info.cfg"
 CURRENT_VERSION_RAW=$(grep -m1 '^VERSION=' "$INFO_FILE" 2>/dev/null | cut -d'"' -f2)
 CURRENT_BUILD=$(grep -m1 '^BUILD=' "$INFO_FILE" 2>/dev/null | cut -d'"' -f2 | tr -cd '0-9')
 
-# ===== [2] RG =====
-RG_FROM_BUILD=261201              # รับเฉพาะ RG ที่ build นี้
-RG_NEW_BASE_VERSION="4.0.1"
-RG_NEW_BUILD=261202
-URL_RG="https://github.com/Factzz/pLayOS/releases/download/PPSSPPRG"
-PKGS=("ppsspp" "ppsspp-2021")     # ชื่อ = ชื่อโฟลเดอร์ใน /opt = ชื่อ zip (ไม่รวม .zip)
-OPT_DIR="/opt"
-
-# ===== [1] 4.0 B (เครื่องแท้ เบต้า) =====
+# ===== 4.0 (เครื่องแท้) =====
 B_NEW_BASE_VERSION="4.0.1"
 B_NEW_BUILD=261203
-# รับ VERSION แบบ "4.0 B" / "4.0B" / "4.0(B)" / "4.0 BETA"  (รวมรุ่นที่อัปแล้ว เช่น "4.0.1 B" ไว้เช็ก "อัปแล้ว")
-# >>> ตอนปล่อยจริงให้เปลี่ยนเป็น:  B_PATTERN_ANY='^4\.0(\.[0-9]+)?$'   (เครื่อง "4.0" ธรรมดา)
-#     แล้ว VERSION จะถูกประทับเป็น "4.0.1" เอง
-B_PATTERN_ANY='^4\.0(\.[0-9]+)?[[:space:]\(_-]*B(ETA)?\)?$'
+# รับ VERSION "4.0" เท่านั้น (รวม "4.0.x" ไว้เช็ก "อัปแล้ว")  ไม่รับ B / X / RG
+B_PATTERN_ANY='^4\.0(\.[0-9]+)?$'
 URL_B="https://github.com/Factzz/pLayOS/releases/download/4.0B"
 B_PKG_NAMES=("PlayOS4.0-update261203" "PlayOS4_0-update261203")   # ชื่อไฟล์ zip บน Release (ไม่รวม .zip) ลองตามลำดับ
 BACKUP_DIR="/home/ark/.playos_backup_261203"
@@ -74,21 +60,12 @@ free -m 2>&1 | sed -n 2p
 
 say "PLAY OS Updater - current: ${CURRENT_VERSION_RAW:-unknown} (build $CURRENT_BUILD) 2%"
 
-# ---------- เลือกโหมดจาก VERSION: MODE=B|RG|cancel ----------
+# ---------- ตรวจเวอร์ชัน: รับเฉพาะ 4.0 ----------
 VERSION_UC=$(echo "$CURRENT_VERSION_RAW" | tr '[:lower:]' '[:upper:]')
-RG_PATTERN='^4\.0(\.[0-9]+)?[[:space:]\(_-]*RG'     # "4.0 RG EDITION", "4.0(RG)", "4.0.1 RG ..."
 VERSION_BASE=$(echo "$CURRENT_VERSION_RAW" | grep -oE '^[0-9]+(\.[0-9]+)*')
 MODE="cancel"
 
-if [[ "$VERSION_UC" =~ $RG_PATTERN ]]; then
-    if [ "$VERSION_BASE" = "$RG_NEW_BASE_VERSION" ] || [ "$CURRENT_BUILD" -ge "$RG_NEW_BUILD" ]; then
-        CANCEL_MSG="Already up to date (v$VERSION_BASE, build $CURRENT_BUILD). Update canceled."
-    elif [ "$VERSION_BASE" = "4.0" ] && [ "$CURRENT_BUILD" -eq "$RG_FROM_BUILD" ]; then
-        MODE="RG"
-    else
-        CANCEL_MSG="This update is only for 4.0 RG build $RG_FROM_BUILD (yours: $CURRENT_VERSION_RAW, build $CURRENT_BUILD). Update canceled."
-    fi
-elif [[ "$VERSION_UC" =~ $B_PATTERN_ANY ]]; then
+if [[ "$VERSION_UC" =~ $B_PATTERN_ANY ]]; then
     if [ "$VERSION_BASE" = "$B_NEW_BASE_VERSION" ] || [ "$CURRENT_BUILD" -ge "$B_NEW_BUILD" ]; then
         CANCEL_MSG="Already up to date (v$VERSION_BASE, build $CURRENT_BUILD). Update canceled."
     elif [ "$VERSION_BASE" = "4.0" ]; then
@@ -97,7 +74,7 @@ elif [[ "$VERSION_UC" =~ $B_PATTERN_ANY ]]; then
         CANCEL_MSG="This update is only for v4.0 (yours: $CURRENT_VERSION_RAW). Update canceled."
     fi
 else
-    CANCEL_MSG="This update is not available for your version (yours: ${CURRENT_VERSION_RAW:-UNKNOWN}). Update canceled."
+    CANCEL_MSG="This update is only for v4.0 (yours: ${CURRENT_VERSION_RAW:-UNKNOWN}). Update canceled."
 fi
 
 if [ "$MODE" = "cancel" ]; then
@@ -107,8 +84,7 @@ fi
 echo "[mode] $MODE"
 
 # ---------- ฟังก์ชันร่วม ----------
-cleanup_tmp() { rm -rf "$OPT_DIR"/.pp_new_* "$OPT_DIR"/.pp_old_* 2>/dev/null; }
-fail_exit() { rm -rf "$STAGE_DIR"; cleanup_tmp; sleep 3; exit 1; }
+fail_exit() { rm -rf "$STAGE_DIR"; sleep 3; exit 1; }
 
 PKG_IDX=0
 try_get() {  # try_get <url> <ไฟล์ปลายทาง> : ตั้ง GOT=1 ถ้าได้ไฟล์ / MISSING=1 ถ้าเซิร์ฟเวอร์ตอบ 404
@@ -164,82 +140,7 @@ fetch_pkg() {
 }
 
 # ==========================================================
-#  [2] RG  ->  4.0.1 / 261202   (PPSSPP)
-# ==========================================================
-run_rg() {
-    say "Preparing update files... 5%"
-    rm -rf "$STAGE_DIR"; mkdir -p "$STAGE_DIR"
-    cleanup_tmp
-
-    for p in "${PKGS[@]}"; do fetch_pkg "$URL_RG" "$p"; done
-
-    say "Verifying files... 48%"
-    for p in "${PKGS[@]}"; do
-        if ! unzip -tq "$STAGE_DIR/$p.zip" >/dev/null 2>&1; then
-            say "$p.zip is not a valid zip - nothing was changed."
-            fail_exit
-        fi
-    done
-
-    # แตกไฟล์ไปไว้ข้างๆ ก่อน (ยังไม่ลบของเดิม) แล้วตรวจว่ามี PPSSPPSDL จริง
-    declare -A NEW_ROOT
-    local pct=52 tmp root dest old owner
-    for p in "${PKGS[@]}"; do
-        say "Unpacking $p... ${pct}%"
-        tmp="$OPT_DIR/.pp_new_$p"
-        rm -rf "$tmp"; mkdir -p "$tmp"
-        if ! unzip -q -o "$STAGE_DIR/$p.zip" -d "$tmp"; then
-            say "Failed to unpack $p.zip (disk full?) - nothing was changed."
-            fail_exit
-        fi
-        root="$tmp"
-        if [ "$(ls -A "$tmp" | wc -l)" = "1" ] && [ -d "$tmp/$(ls -A "$tmp")" ]; then
-            root="$tmp/$(ls -A "$tmp")"       # zip ห่อด้วยโฟลเดอร์เดียว (เช่น ppsspp/)
-        fi
-        if [ ! -f "$root/PPSSPPSDL" ]; then
-            say "$p.zip has no PPSSPPSDL inside - nothing was changed."
-            fail_exit
-        fi
-        NEW_ROOT[$p]="$root"
-        pct=$((pct + 10))
-    done
-    rm -rf "$STAGE_DIR"      # คืนพื้นที่ zip
-
-    # ลบของเดิมทิ้งทั้งหมด แล้ววางอันใหม่ (สลับโฟลเดอร์ ถ้าพลาดจะคืนของเดิม)
-    pct=76
-    for p in "${PKGS[@]}"; do
-        say "Installing $p... ${pct}%"
-        dest="$OPT_DIR/$p"; old="$OPT_DIR/.pp_old_$p"
-        owner=$(stat -c '%U:%G' "$dest" 2>/dev/null || echo "ark:ark")
-        rm -rf "$old"
-        [ -e "$dest" ] && mv "$dest" "$old"
-        if ! mv "${NEW_ROOT[$p]}" "$dest"; then
-            [ -e "$old" ] && mv "$old" "$dest"      # คืนของเดิม
-            say "Failed to install $p - please retry the update."
-            fail_exit
-        fi
-        chown -R "$owner" "$dest"
-        chmod +x "$dest/PPSSPPSDL"
-        chmod -R 755 "$dest"
-        rm -rf "$old"
-        pct=$((pct + 8))
-    done
-    cleanup_tmp
-
-    say "Finishing... 96%"
-    local newver
-    newver=$(echo "$CURRENT_VERSION_RAW" | sed -E "s/^4\.0/$RG_NEW_BASE_VERSION/")
-    cat > "$INFO_FILE" <<EOT
-VERSION="$newver"
-BUILD="$RG_NEW_BUILD"
-EOT
-    say "Update completed! (PLAY OS v$newver) Restarting... 100%"
-    sleep 3
-    exit 187
-}
-
-# ==========================================================
-#  [1] 4.0 B  ->  4.0.1 B / 261203
+#  4.0  ->  4.0.1 / 261203
 # ==========================================================
 avail_mb() { df -Pm "$1" 2>/dev/null | awk 'NR==2 {print $4}'; }
 fs_id() { stat -c %d "$1" 2>/dev/null; }
@@ -595,7 +496,7 @@ run_b() {
     systemctl enable --now night-filter.timer 2>&1
     depmod -a 2>&1
 
-    # --- ประทับเวอร์ชัน (ท้ายสุด) --- รักษารูปแบบเดิม เช่น "4.0 B" -> "4.0.1 B"
+    # --- ประทับเวอร์ชัน (ท้ายสุด) : "4.0" -> "4.0.1"
     say "Finishing... 96%"
     local newver
     newver=$(echo "$CURRENT_VERSION_RAW" | sed -E "s/^4\.0/$B_NEW_BASE_VERSION/")
@@ -609,4 +510,4 @@ EOT
     exit 187
 }
 
-if [ "$MODE" = "RG" ]; then run_rg; else run_b; fi
+run_b
