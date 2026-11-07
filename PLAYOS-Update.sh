@@ -1,19 +1,24 @@
 #!/bin/bash
 # ==========================================================
-# PLAY OS - OTA Update  (ตระกูล 4.x)
+# PLAY OS - OTA Update  (ตระกูล 4.0.x ทุกสาย)  ->  4.0.2   build 261207
 #
-#  4.0 (เครื่องแท้)  ->  4.0.1   build 261203
-#     แพ็กเกจ: GitHub Release tag "4.0B"  (PlayOS4.0-update261203.zip)
-#     - แตกแพ็กเกจแล้วคัดลอกไปที่ / (boot, etc, lib/modules, opt, usr/local/bin, home/ark)
-#     - ไม่รัน tmp/10312026.sh ของ dArkOSen ในแพ็กเกจ (ทำขั้นตอนที่จำเป็นในสคริปต์นี้แทน)
-#     - ไม่แตะ EmulationStation
-#     - เพิ่ม dsperate ใน es_systems.cfg + แก้โครงสร้าง (fix_dsperate)
-#     - ติดตั้ง OTG_fix.sh ที่ /opt/system/Advanced (ไม่รันอัตโนมัติ)
-#     - สำรองไฟล์เดิมที่จะถูกทับ (boot/etc/lib/usr) ไว้ที่ /home/ark/.playos_backup_261203
-#       ถ้าคัดลอกพลาดจะคืนของเดิมและลบไฟล์ใหม่ที่ใส่ไปแล้วให้เอง
+#  รับเครื่อง: 4.0 / 4.0 B / 4.0(X) / 4.0 RG EDITION / 4.0.1 (ทุก tag) ที่ต่ำกว่า 4.0.2
+#  ประทับเวอร์ชันโดยคงรูปแบบเดิม  เช่น  "4.0" -> "4.0.2", "4.0(X)" -> "4.0.2(X)",
+#                                      "4.0.1 RG EDITION" -> "4.0.2 RG EDITION"   BUILD=261207
+#  ไม่อัปเดต: 4.0.2 ขึ้นไป (ทุกบิลด์), สาย 3.x และเวอร์ชันอื่น -> ยกเลิก ไม่แตะอะไรเลย
 #
-#  รับเฉพาะเครื่องที่ VERSION เป็น "4.0" เท่านั้น
-#  ไม่อัปเดต: 4.0(X), 4.0 RG EDITION, 4.0 B (เบต้า), สาย 3.x, 4.0.1 ขึ้นไป  -> ยกเลิก ไม่แตะอะไรเลย
+#  แพ็กเกจ 4.0.2  (Release tag "4.0.2" : PlayOS4.0-update261207.zip)
+#     /usr/local/bin/playfe, playfe-led   และ   /opt/gamestore (แอป gamestore + assets)
+#     คัดลอกทับของเดิมแบบ atomic (ไม่ลบไฟล์อื่นในโฟลเดอร์)  ไม่แตะ EmulationStation
+#
+#  เครื่องแท้ (4.0 / 4.0 B) ที่ยังไม่ได้อัปเป็น 4.0.1 จะได้ชุด 4.0.1 ตามไปด้วยในรอบเดียว
+#     (Release tag "4.0B" : DSperate, GZDoom, Yabasanshiro, Stella, DTB, ไดรเวอร์ Wi-Fi,
+#      es_systems dsperate, OTG_fix ใน /opt/system/Advanced ฯลฯ)
+#     เครื่อง X และ RG ไม่ได้ชุด 4.0.1
+#
+#  ความปลอดภัย: เช็กพื้นที่/สิทธิ์เขียน /boot ก่อน, สำรองไฟล์เดิมที่จะถูกทับ
+#     (boot/etc/lib/usr + gamestore binary) ไว้ที่ /home/ark/.playos_backup_261207
+#     ถ้าคัดลอกพลาด จะคืนของเดิมและลบไฟล์ใหม่ที่ใส่ไปแล้วให้เอง
 #
 # แถบหลอดบนหน้าจอ: บรรทัดที่ขึ้นต้นด้วย ">>" คือข้อความสถานะ
 #   ถ้ามี "NN%" ในบรรทัด แถบจะเลื่อนตามเปอร์เซ็นต์จริง
@@ -27,21 +32,27 @@ INFO_FILE="/opt/system/playos_info.cfg"
 CURRENT_VERSION_RAW=$(grep -m1 '^VERSION=' "$INFO_FILE" 2>/dev/null | cut -d'"' -f2)
 CURRENT_BUILD=$(grep -m1 '^BUILD=' "$INFO_FILE" 2>/dev/null | cut -d'"' -f2 | tr -cd '0-9')
 
-# ===== 4.0 (เครื่องแท้) =====
-B_NEW_BASE_VERSION="4.0.1"
-B_NEW_BUILD=261203
-# รับ VERSION "4.0" เท่านั้น (รวม "4.0.x" ไว้เช็ก "อัปแล้ว")  ไม่รับ B / X / RG
-B_PATTERN_ANY='^4\.0(\.[0-9]+)?$'
-URL_B="https://github.com/Factzz/pLayOS/releases/download/4.0B"
-B_PKG_NAMES=("PlayOS4.0-update261203" "PlayOS4_0-update261203")   # ชื่อไฟล์ zip บน Release (ไม่รวม .zip) ลองตามลำดับ
-BACKUP_DIR="/home/ark/.playos_backup_261203"
+# ===== 4.0.2 (ทุกสาย) =====
+NEW_BASE_VERSION="4.0.2"
+NEW_BUILD=261207
+URL_P402="https://github.com/Factzz/pLayOS/releases/download/4.0.2"
+P402_NAMES=("PlayOS4.0-update261207" "PlayOS4_0-update261207")     # ชื่อไฟล์ zip บน Release (ไม่รวม .zip) ลองตามลำดับ
+
+# ===== ชุด 4.0.1 (เฉพาะเครื่องแท้/เบต้าที่ยังไม่มี) =====
+P401_VERSION="4.0.1"
+P401_BUILD=261203
+URL_P401="https://github.com/Factzz/pLayOS/releases/download/4.0B"
+P401_NAMES=("PlayOS4.0-update261203" "PlayOS4_0-update261203")
+GENUINE_PATTERN='^4\.0(\.[0-9]+)?([[:space:]\(_-]*B(ETA)?\)?)?$'   # "4.0", "4.0.1", "4.0 B", "4.0(B)" (ไม่รวม X / RG)
+
+BACKUP_DIR="/home/ark/.playos_backup_261207"
 ES_CFG="/etc/emulationstation/es_systems.cfg"
 OTG_DEST="/opt/system/Advanced/OTG_fix.sh"
 
 STAGE_DIR="/home/ark/.playos_stage"
 
 # ---------- log: รายละเอียดลงไฟล์ / หน้าจอแสดงแค่สถานะสั้นๆ ----------
-LOG_FILE="/home/ark/PLAYOS-update-$B_NEW_BUILD.log"
+LOG_FILE="/home/ark/PLAYOS-update-$NEW_BUILD.log"
 exec 3>&1
 exec >>"$LOG_FILE" 2>&1
 say() { echo ">> $*"; echo ">> $*" >&3; }
@@ -60,28 +71,38 @@ free -m 2>&1 | sed -n 2p
 
 say "PLAY OS Updater - current: ${CURRENT_VERSION_RAW:-unknown} (build $CURRENT_BUILD) 2%"
 
-# ---------- ตรวจเวอร์ชัน: รับเฉพาะ 4.0 ----------
+
+# ---------- ตรวจเวอร์ชัน: ตระกูล 4.0.x ทุกสาย ----------
+ver_lt() {  # true ถ้า $1 < $2
+    [ "$1" != "$2" ] && [ "$(printf '%s\n%s\n' "$1" "$2" | sort -V | head -n1)" = "$1" ]
+}
+older_than() {  # older_than <ver> <build> : เครื่องนี้ยังไม่ถึง ver/build นั้น
+    ver_lt "$VERSION_BASE" "$1" || { [ "$VERSION_BASE" = "$1" ] && [ "$CURRENT_BUILD" -lt "$2" ]; }
+}
+
 VERSION_UC=$(echo "$CURRENT_VERSION_RAW" | tr '[:lower:]' '[:upper:]')
 VERSION_BASE=$(echo "$CURRENT_VERSION_RAW" | grep -oE '^[0-9]+(\.[0-9]+)*')
-MODE="cancel"
+VERSION_MM=$(echo "$VERSION_BASE" | cut -d. -f1,2)
+MODE="cancel"; NEED_P401=0
 
-if [[ "$VERSION_UC" =~ $B_PATTERN_ANY ]]; then
-    if [ "$VERSION_BASE" = "$B_NEW_BASE_VERSION" ] || [ "$CURRENT_BUILD" -ge "$B_NEW_BUILD" ]; then
-        CANCEL_MSG="Already up to date (v$VERSION_BASE, build $CURRENT_BUILD). Update canceled."
-    elif [ "$VERSION_BASE" = "4.0" ]; then
-        MODE="B"
-    else
-        CANCEL_MSG="This update is only for v4.0 (yours: $CURRENT_VERSION_RAW). Update canceled."
-    fi
+if [ "$VERSION_MM" != "4.0" ]; then
+    CANCEL_MSG="This update only applies to 4.0.x (yours: ${CURRENT_VERSION_RAW:-UNKNOWN}). Update canceled."
+elif [ "$VERSION_BASE" = "$NEW_BASE_VERSION" ] || ver_lt "$NEW_BASE_VERSION" "$VERSION_BASE" || [ "$CURRENT_BUILD" -ge "$NEW_BUILD" ]; then
+    CANCEL_MSG="Already up to date (v$VERSION_BASE, build $CURRENT_BUILD). Update canceled."
 else
-    CANCEL_MSG="This update is only for v4.0 (yours: ${CURRENT_VERSION_RAW:-UNKNOWN}). Update canceled."
+    MODE="go"
+    # เครื่องแท้/เบต้าที่ยังไม่มี 4.0.1 -> เอาชุด 4.0.1 ตามไปด้วย (X และ RG ไม่ได้รับ 4.0.1)
+    if [[ "$VERSION_UC" =~ $GENUINE_PATTERN ]] && older_than "$P401_VERSION" "$P401_BUILD"; then
+        NEED_P401=1
+    fi
 fi
 
 if [ "$MODE" = "cancel" ]; then
     say "$CANCEL_MSG"
     sleep 3; exit 0
 fi
-echo "[mode] $MODE"
+echo "[mode] update  need_4.0.1=$NEED_P401"
+
 
 # ---------- ฟังก์ชันร่วม ----------
 fail_exit() { rm -rf "$STAGE_DIR"; sleep 3; exit 1; }
@@ -139,6 +160,7 @@ fetch_pkg() {
     return 0
 }
 
+
 # ==========================================================
 #  4.0  ->  4.0.1 / 261203
 # ==========================================================
@@ -171,18 +193,15 @@ copy_tree() {  # copy_tree <src_root> : คัดลอกทุกไฟล์�
     echo "[copy] $cnt file(s) copied from $src (fail=$COPY_FAIL)"
 }
 
-backup_existing() {  # backup_existing <src_root> : เก็บของเดิมที่จะถูกทับ (boot, etc, lib, usr, .asoundrc, es_systems.cfg)
+backup_existing() {  # backup_existing <src_root> : เก็บของเดิมที่จะถูกทับ (เรียกซ้ำได้ ไม่ล้างของที่สำรองไว้ก่อนหน้า)
     local src="$1" f rel
-    rm -rf "$BACKUP_DIR"; mkdir -p "$BACKUP_DIR"
+    mkdir -p "$BACKUP_DIR"
     while IFS= read -r -d '' f; do
         rel="${f#"$src"/}"
-        case "$rel" in boot/*|etc/*|usr/*|lib/*|home/ark/.asoundrc) ;; *) continue ;; esac
+        case "$rel" in boot/*|etc/*|usr/*|lib/*|home/ark/.asoundrc|opt/gamestore/gamestore|opt/gamestore/*.ttf) ;; *) continue ;; esac
         [ -f "/$rel" ] || continue
         mkdir -p "$BACKUP_DIR/$(dirname "$rel")" && cp -f "/$rel" "$BACKUP_DIR/$rel"
     done < <(find "$src" -type f -print0)
-    if [ -f "$ES_CFG" ]; then
-        mkdir -p "$BACKUP_DIR/etc/emulationstation" && cp -f "$ES_CFG" "$BACKUP_DIR/etc/emulationstation/es_systems.cfg"
-    fi
     echo "[backup] $(find "$BACKUP_DIR" -type f | wc -l) file(s) in $BACKUP_DIR"
 }
 
@@ -368,31 +387,66 @@ OTG_FIX_EOF
     chmod 755 "$OTG_DEST.new" && chown ark:ark "$OTG_DEST.new" && mv -f "$OTG_DEST.new" "$OTG_DEST"
 }
 
-run_b() {
-    local zip="" name need_stage need_root need_boot zip_mb un_mb pct
+
+# get_package <url-base> <ตัวแปรที่รับพาธ zip> <ชื่อไฟล์ที่ลองตามลำดับ...>
+get_package() {
+    local ub="$1" outvar="$2" n idx0=$PKG_IDX
+    shift 2
+    for n in "$@"; do
+        PKG_IDX=$idx0
+        if fetch_pkg "$ub" "$n" optional; then printf -v "$outvar" '%s' "$STAGE_DIR/$n.zip"; return 0; fi
+    done
+    return 1
+}
+
+# unpack_pkg <zip> <โฟลเดอร์ปลายทาง> : แตกแล้วตั้ง PKG_ROOT (ข้ามโฟลเดอร์ห่อเดียวที่ไม่ใช่โฟลเดอร์ระบบ)
+unpack_pkg() {
+    local zip="$1" dir="$2" only
+    mkdir -p "$dir"
+    unzip -q -o "$zip" -d "$dir" || return 1
+    rm -f "$zip"
+    PKG_ROOT="$dir"
+    if [ "$(ls -A "$dir" | wc -l)" = "1" ]; then
+        only="$(ls -A "$dir")"
+        case "$only" in
+            boot|etc|home|lib|opt|usr|roms|tmp|var|bin|sbin) ;;                 # เป็นโฟลเดอร์ระบบจริง ไม่ใช่ตัวห่อ
+            *) [ -d "$dir/$only" ] && PKG_ROOT="$dir/$only" ;;
+        esac
+    fi
+    rm -rf "$PKG_ROOT/tmp"                          # tmp/ = สคริปต์ของ dArkOSen ไม่ใช้
+    [ -n "$(find "$PKG_ROOT" -type f | head -n 1)" ]
+}
+
+run_update() {
+    local zip401="" zip402="" z roots=() root pct zip_mb=0 un_mb=0 need_stage need_root need_boot
+    local f rel
 
     say "Preparing update files... 5%"
     rm -rf "$STAGE_DIR"; mkdir -p "$STAGE_DIR"
 
-    # --- ดาวน์โหลดแพ็กเกจ (ลองชื่อไฟล์ตามลำดับ) ---
-    for name in "${B_PKG_NAMES[@]}"; do
-        PKG_IDX=0
-        if fetch_pkg "$URL_B" "$name" optional; then zip="$STAGE_DIR/$name.zip"; break; fi
-    done
-    if [ -z "$zip" ]; then
-        say "FAILED: update package not found on server - nothing was changed."
+    # --- ดาวน์โหลดแพ็กเกจ (ครบก่อนค่อยแตะระบบ) ---
+    if [ "$NEED_P401" = "1" ]; then
+        if ! get_package "$URL_P401" zip401 "${P401_NAMES[@]}"; then
+            say "FAILED: 4.0.1 package not found on server - nothing was changed."
+            fail_exit
+        fi
+    fi
+    if ! get_package "$URL_P402" zip402 "${P402_NAMES[@]}"; then
+        say "FAILED: 4.0.2 package not found on server - nothing was changed."
         fail_exit
     fi
 
-    say "Verifying package... 42%"
-    if ! unzip -tq "$zip" >/dev/null 2>&1; then
-        say "Update package is not a valid zip - nothing was changed."
-        fail_exit
-    fi
+    say "Verifying packages... 46%"
+    for z in $zip401 $zip402; do
+        if ! unzip -tq "$z" >/dev/null 2>&1; then
+            say "Update package is not a valid zip - nothing was changed."
+            fail_exit
+        fi
+        zip_mb=$(( zip_mb + $(stat -c %s "$z") / 1048576 + 1 ))
+        un_mb=$(( un_mb + $(unzip -l "$z" | tail -n 1 | awk '{print $1}') / 1048576 + 1 ))
+    done
 
     # --- เช็กพื้นที่ว่างก่อนแตะอะไร ---
-    zip_mb=$(( $(stat -c %s "$zip") / 1048576 + 1 ))
-    un_mb=$(( $(unzip -l "$zip" | tail -n 1 | awk '{print $1}') / 1048576 + 1 ))
     need_stage=$(( zip_mb + un_mb + 25 ))           # zip + ไฟล์ที่แตก + สำรอง
     need_root=$(( un_mb + 15 ))                     # ไฟล์ที่ลงระบบ
     need_boot=12
@@ -408,43 +462,44 @@ run_b() {
     fi
 
     # --- แตกแพ็กเกจใน stage ---
-    say "Unpacking package... 48%"
-    mkdir -p "$STAGE_DIR/pkg"
-    if ! unzip -q -o "$zip" -d "$STAGE_DIR/pkg"; then
-        say "Failed to unpack package - nothing was changed."
-        fail_exit
+    say "Unpacking packages... 50%"
+    local root401="" root402="" pkg_has_otg=0
+    if [ -n "$zip401" ]; then
+        if ! unpack_pkg "$zip401" "$STAGE_DIR/p401"; then say "Failed to unpack 4.0.1 package - nothing was changed."; fail_exit; fi
+        root401="$PKG_ROOT"; roots+=("$root401")
+        [ -f "$root401/opt/system/Advanced/OTG_fix.sh" ] && pkg_has_otg=1
     fi
-    rm -f "$zip"
-    local root="$STAGE_DIR/pkg"
-    if [ "$(ls -A "$root" | wc -l)" = "1" ] && [ -d "$root/$(ls -A "$root")" ]; then
-        root="$root/$(ls -A "$root")"               # แพ็กเกจห่อด้วยโฟลเดอร์เดียว (PlayOS4.0-update261203/)
-    fi
-    rm -rf "$root/tmp"                              # tmp/10312026.sh = สคริปต์ของ dArkOSen ไม่ใช้
-    if [ -z "$(find "$root" -type f | head -n 1)" ]; then
-        say "Update package is empty - nothing was changed."
-        fail_exit
-    fi
-    if [ -d "$root/boot" ]; then
-        if ! { touch /boot/.playos_w 2>/dev/null && rm -f /boot/.playos_w; }; then
-            say "Boot partition is not writable - nothing was changed."
-            fail_exit
-        fi
-        if [ "$(avail_mb /boot)" -lt "$need_boot" ] 2>/dev/null; then
-            say "Not enough free space on boot partition - nothing was changed."
-            fail_exit
-        fi
-    fi
-    # ไฟล์ OTG_fix.sh ในแพ็กเกจ (ถ้ามี) ใช้ตัวในแพ็กเกจ ไม่งั้นใช้ตัวที่ฝังไว้
-    local pkg_has_otg=0
-    [ -f "$root/opt/system/Advanced/OTG_fix.sh" ] && pkg_has_otg=1
+    if ! unpack_pkg "$zip402" "$STAGE_DIR/p402"; then say "Failed to unpack 4.0.2 package - nothing was changed."; fail_exit; fi
+    root402="$PKG_ROOT"; roots+=("$root402")
 
-    # --- สำรองของเดิม แล้วคัดลอก ---
-    say "Backing up current files... 55%"
-    backup_existing "$root"
+    for root in "${roots[@]}"; do
+        if [ -d "$root/boot" ]; then
+            if ! { touch /boot/.playos_w 2>/dev/null && rm -f /boot/.playos_w; }; then
+                say "Boot partition is not writable - nothing was changed."
+                fail_exit
+            fi
+            if [ "$(avail_mb /boot)" -lt "$need_boot" ] 2>/dev/null; then
+                say "Not enough free space on boot partition - nothing was changed."
+                fail_exit
+            fi
+        fi
+    done
+
+    # --- สำรองของเดิม แล้วคัดลอก (ทุกแพ็กเกจ แล้วค่อยทำขั้นตอนหลังติดตั้ง) ---
+    say "Backing up current files... 56%"
+    rm -rf "$BACKUP_DIR"; mkdir -p "$BACKUP_DIR"
+    for root in "${roots[@]}"; do backup_existing "$root"; done
+    if [ "$NEED_P401" = "1" ] && [ -f "$ES_CFG" ]; then
+        mkdir -p "$BACKUP_DIR/etc/emulationstation" && cp -f "$ES_CFG" "$BACKUP_DIR/etc/emulationstation/es_systems.cfg"
+    fi
 
     say "Installing update files... 62%"
     CREATED_LIST="$STAGE_DIR/created.list"; : > "$CREATED_LIST"; : > "$CREATED_LIST.dirs"
-    copy_tree "$root"
+    COPY_FAIL=0
+    for root in "${roots[@]}"; do
+        copy_tree "$root"
+        [ "$COPY_FAIL" = "1" ] && break
+    done
     if [ "$COPY_FAIL" = "1" ]; then
         say "Install failed - restoring previous files..."
         local cl="$CREATED_LIST" d
@@ -462,47 +517,55 @@ run_b() {
 
     # --- สิทธิ์การรัน + เจ้าของไฟล์ ---
     say "Setting permissions... 80%"
-    while IFS= read -r -d '' f; do
-        rel="${f#"$root"/}"
-        case "$rel" in
-            usr/local/bin/*)
-                chmod 755 "/$rel"; chown ark:ark "/$rel" ;;
-            home/ark/*)
-                chown ark:ark "/$rel" ;;
-        esac
-    done < <(find "$root" -type f -print0)
-    chmod +x /opt/gzdoom/gzdoom /opt/dsperate/dsperate /opt/yabasanshiro/yabasanshiro-pirry 2>/dev/null
-    [ -d /opt/gzdoom ] && chown -R ark:ark /opt/gzdoom
-    [ -d /opt/dsperate ] && chown -R ark:ark /opt/dsperate
-    [ -f /opt/yabasanshiro/yabasanshiro-pirry ] && chown ark:ark /opt/yabasanshiro/yabasanshiro-pirry
-
-    # --- เครื่องมือ OTG_fix.sh (ไม่รันอัตโนมัติ) ---
-    if [ "$pkg_has_otg" = "0" ]; then write_otg_fix; fi
-    chmod 755 "$OTG_DEST" 2>/dev/null; chown ark:ark "$OTG_DEST" 2>/dev/null
-
-    # --- es_systems.cfg: เพิ่ม dsperate ต่อจาก drastic + แก้กรณีซ้อนผิดโครงสร้าง ---
-    say "Updating system configuration... 86%"
-    if [ -f "$ES_CFG" ]; then
-        sed -i -E '/^[[:space:]]*<emulator name="drastic">/{N;N;/name="dsperate"/!s/^([[:space:]]*)(<emulator name="drastic">\n[[:space:]]*<\/emulator>)\n/\1\2\n\1<emulator name="dsperate">\n\1<\/emulator>\n/}' "$ES_CFG"
-        sed -i '/<emulator name="drastic">/{N;N;N;s#^\([[:space:]]*\)<emulator name="drastic">\n[[:space:]]*<emulator name="dsperate">\n[[:space:]]*</emulator>\n[[:space:]]*</emulator>#\1<emulator name="drastic">\n\1</emulator>\n\1<emulator name="dsperate">\n\1</emulator>#;}' "$ES_CFG"
-        echo "[es_systems] dsperate entries: $(grep -c '<emulator name="dsperate">' "$ES_CFG")"
-    else
-        echo "[es_systems] $ES_CFG not found - skipped"
+    for root in "${roots[@]}"; do
+        while IFS= read -r -d '' f; do
+            rel="${f#"$root"/}"
+            case "$rel" in
+                usr/local/bin/*)  chmod 755 "/$rel"; chown ark:ark "/$rel" ;;
+                home/ark/*)       chown ark:ark "/$rel" ;;
+            esac
+        done < <(find "$root" -type f -print0)
+    done
+    # 4.0.2: gamestore
+    if [ -d /opt/gamestore ]; then
+        chmod 755 /opt/gamestore/gamestore 2>/dev/null
+        chown -R ark:ark /opt/gamestore
     fi
 
-    # --- บริการ/โมดูล ---
-    say "Refreshing services... 90%"
-    systemctl daemon-reload 2>&1
-    systemctl enable --now night-filter.timer 2>&1
-    depmod -a 2>&1
+    # ---- ขั้นตอนหลังติดตั้งของชุด 4.0.1 (เฉพาะเครื่องที่ได้ชุดนี้) ----
+    if [ "$NEED_P401" = "1" ]; then
+        chmod +x /opt/gzdoom/gzdoom /opt/dsperate/dsperate /opt/yabasanshiro/yabasanshiro-pirry 2>/dev/null
+        [ -d /opt/gzdoom ] && chown -R ark:ark /opt/gzdoom
+        [ -d /opt/dsperate ] && chown -R ark:ark /opt/dsperate
+        [ -f /opt/yabasanshiro/yabasanshiro-pirry ] && chown ark:ark /opt/yabasanshiro/yabasanshiro-pirry
 
-    # --- ประทับเวอร์ชัน (ท้ายสุด) : "4.0" -> "4.0.1"
+        # เครื่องมือ OTG_fix.sh (ไม่รันอัตโนมัติ) -- ใช้ตัวในแพ็กเกจถ้ามี ไม่งั้นใช้ตัวที่ฝังไว้
+        if [ "$pkg_has_otg" = "0" ]; then write_otg_fix; fi
+        chmod 755 "$OTG_DEST" 2>/dev/null; chown ark:ark "$OTG_DEST" 2>/dev/null
+
+        # es_systems.cfg: เพิ่ม dsperate ต่อจาก drastic + แก้กรณีซ้อนผิดโครงสร้าง
+        say "Updating system configuration... 86%"
+        if [ -f "$ES_CFG" ]; then
+            sed -i -E '/^[[:space:]]*<emulator name="drastic">/{N;N;/name="dsperate"/!s/^([[:space:]]*)(<emulator name="drastic">\n[[:space:]]*<\/emulator>)\n/\1\2\n\1<emulator name="dsperate">\n\1<\/emulator>\n/}' "$ES_CFG"
+            sed -i '/<emulator name="drastic">/{N;N;N;s#^\([[:space:]]*\)<emulator name="drastic">\n[[:space:]]*<emulator name="dsperate">\n[[:space:]]*</emulator>\n[[:space:]]*</emulator>#\1<emulator name="drastic">\n\1</emulator>\n\1<emulator name="dsperate">\n\1</emulator>#;}' "$ES_CFG"
+            echo "[es_systems] dsperate entries: $(grep -c '<emulator name="dsperate">' "$ES_CFG")"
+        else
+            echo "[es_systems] $ES_CFG not found - skipped"
+        fi
+
+        say "Refreshing services... 90%"
+        systemctl daemon-reload 2>&1
+        systemctl enable --now night-filter.timer 2>&1
+        depmod -a 2>&1
+    fi
+
+    # --- ประทับเวอร์ชัน (ท้ายสุด) : คงรูปแบบเดิม เช่น "4.0(X)" -> "4.0.2(X)" ---
     say "Finishing... 96%"
     local newver
-    newver=$(echo "$CURRENT_VERSION_RAW" | sed -E "s/^4\.0/$B_NEW_BASE_VERSION/")
+    newver=$(echo "$CURRENT_VERSION_RAW" | sed -E "s/^4\.0(\.[0-9]+)?/$NEW_BASE_VERSION/")
     cat > "$INFO_FILE" <<EOT
 VERSION="$newver"
-BUILD="$B_NEW_BUILD"
+BUILD="$NEW_BUILD"
 EOT
     rm -rf "$STAGE_DIR"
     say "Update completed! (PLAY OS v$newver) Restarting... 100%"
@@ -510,4 +573,4 @@ EOT
     exit 187
 }
 
-run_b
+run_update
