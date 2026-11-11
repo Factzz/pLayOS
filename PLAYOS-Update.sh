@@ -1,23 +1,27 @@
 #!/bin/bash
 # ==========================================================
-# PLAY OS - OTA Update  (ตระกูล 4.0.x ทุกสาย)  ->  4.0.2   build 261207
+# PLAY OS - OTA Update  (ตระกูล 4.0.x ทุกสาย)  ->  4.0.3   build 261211
 #
-#  รับเครื่อง: 4.0 / 4.0 B / 4.0(X) / 4.0 RG EDITION / 4.0.1 (ทุก tag) ที่ต่ำกว่า 4.0.2
-#  ประทับเวอร์ชันโดยคงรูปแบบเดิม  เช่น  "4.0" -> "4.0.2", "4.0(X)" -> "4.0.2(X)",
-#                                      "4.0.1 RG EDITION" -> "4.0.2 RG EDITION"   BUILD=261207
-#  ไม่อัปเดต: 4.0.2 ขึ้นไป (ทุกบิลด์), สาย 3.x และเวอร์ชันอื่น -> ยกเลิก ไม่แตะอะไรเลย
+#  รับเครื่อง: 4.0 / 4.0 B / 4.0(X) / 4.0 RG EDITION / 4.0.1 / 4.0.2 (ทุก tag) ที่ต่ำกว่า 4.0.3
+#  ประทับเวอร์ชันโดยคงรูปแบบเดิม  เช่น  "4.0.2" -> "4.0.3", "4.0(X)" -> "4.0.3(X)",
+#                                      "4.0.2 RG EDITION" -> "4.0.3 RG EDITION"   BUILD=261211
+#  ไม่อัปเดต: 4.0.3 ขึ้นไป (ทุกบิลด์), สาย 3.x และเวอร์ชันอื่น -> ยกเลิก ไม่แตะอะไรเลย
 #
-#  แพ็กเกจ 4.0.2  (Release tag "4.0.2" : PlayOS4.0-update261207.zip)
-#     /usr/local/bin/playfe, playfe-led   และ   /opt/gamestore (แอป gamestore + assets)
-#     คัดลอกทับของเดิมแบบ atomic (ไม่ลบไฟล์อื่นในโฟลเดอร์)  ไม่แตะ EmulationStation
+#  แพ็กเกจ 4.0.3  (Release tag "4.0.3" : PlayOS4_0-update261211.zip)
+#     /usr/local/bin/playfe, playfe-led   และ   /opt/apps (สคริปต์แอป + gamelist.xml + images,
+#     เพิ่มแอป PortMaster)   คัดลอกทับของเดิมแบบ atomic (ไม่ลบไฟล์อื่นในโฟลเดอร์)
+#     ไม่แตะ EmulationStation
 #
-#  เครื่องแท้ (4.0 / 4.0 B) ที่ยังไม่ได้อัปเป็น 4.0.1 จะได้ชุด 4.0.1 ตามไปด้วยในรอบเดียว
+#  เครื่องที่ต่ำกว่า 4.0.2 จะได้ชุด 4.0.2 ตามไปด้วยในรอบเดียว
+#     (Release tag "4.0.2" : PlayOS4.0-update261207 = playfe + /opt/gamestore)
+#  เครื่องแท้ (4.0 / 4.0 B) ที่ยังไม่ได้อัปเป็น 4.0.1 จะได้ชุด 4.0.1 ตามไปด้วยอีกชั้น
 #     (Release tag "4.0B" : DSperate, GZDoom, Yabasanshiro, Stella, DTB, ไดรเวอร์ Wi-Fi,
 #      es_systems dsperate, OTG_fix ใน /opt/system/Advanced ฯลฯ)
 #     เครื่อง X และ RG ไม่ได้ชุด 4.0.1
+#     ลำดับติดตั้ง 4.0.1 -> 4.0.2 -> 4.0.3 (ไฟล์ใหม่กว่าทับไฟล์เก่า)
 #
 #  ความปลอดภัย: เช็กพื้นที่/สิทธิ์เขียน /boot ก่อน, สำรองไฟล์เดิมที่จะถูกทับ
-#     (boot/etc/lib/usr + gamestore binary) ไว้ที่ /home/ark/.playos_backup_261207
+#     (boot/etc/lib/usr + gamestore binary + /opt/apps) ไว้ที่ /home/ark/.playos_backup_261211
 #     ถ้าคัดลอกพลาด จะคืนของเดิมและลบไฟล์ใหม่ที่ใส่ไปแล้วให้เอง
 #
 # แถบหลอดบนหน้าจอ: บรรทัดที่ขึ้นต้นด้วย ">>" คือข้อความสถานะ
@@ -32,11 +36,17 @@ INFO_FILE="/opt/system/playos_info.cfg"
 CURRENT_VERSION_RAW=$(grep -m1 '^VERSION=' "$INFO_FILE" 2>/dev/null | cut -d'"' -f2)
 CURRENT_BUILD=$(grep -m1 '^BUILD=' "$INFO_FILE" 2>/dev/null | cut -d'"' -f2 | tr -cd '0-9')
 
-# ===== 4.0.2 (ทุกสาย) =====
-NEW_BASE_VERSION="4.0.2"
-NEW_BUILD=261207
+# ===== 4.0.3 (ทุกสาย) =====
+NEW_BASE_VERSION="4.0.3"
+NEW_BUILD=261211
+URL_P403="https://github.com/Factzz/pLayOS/releases/download/4.0.3"
+P403_NAMES=("PlayOS4_0-update261211" "PlayOS4.0-update261211")     # ชื่อไฟล์ zip บน Release (ไม่รวม .zip) ลองตามลำดับ
+
+# ===== ชุด 4.0.2 (เครื่องที่ยังต่ำกว่า 4.0.2) =====
+P402_VERSION="4.0.2"
+P402_BUILD=261207
 URL_P402="https://github.com/Factzz/pLayOS/releases/download/4.0.2"
-P402_NAMES=("PlayOS4.0-update261207" "PlayOS4_0-update261207")     # ชื่อไฟล์ zip บน Release (ไม่รวม .zip) ลองตามลำดับ
+P402_NAMES=("PlayOS4.0-update261207" "PlayOS4_0-update261207")
 
 # ===== ชุด 4.0.1 (เฉพาะเครื่องแท้/เบต้าที่ยังไม่มี) =====
 P401_VERSION="4.0.1"
@@ -45,7 +55,7 @@ URL_P401="https://github.com/Factzz/pLayOS/releases/download/4.0B"
 P401_NAMES=("PlayOS4.0-update261203" "PlayOS4_0-update261203")
 GENUINE_PATTERN='^4\.0(\.[0-9]+)?([[:space:]\(_-]*B(ETA)?\)?)?$'   # "4.0", "4.0.1", "4.0 B", "4.0(B)" (ไม่รวม X / RG)
 
-BACKUP_DIR="/home/ark/.playos_backup_261207"
+BACKUP_DIR="/home/ark/.playos_backup_261211"
 ES_CFG="/etc/emulationstation/es_systems.cfg"
 OTG_DEST="/opt/system/Advanced/OTG_fix.sh"
 
@@ -83,7 +93,7 @@ older_than() {  # older_than <ver> <build> : เครื่องนี้ย�
 VERSION_UC=$(echo "$CURRENT_VERSION_RAW" | tr '[:lower:]' '[:upper:]')
 VERSION_BASE=$(echo "$CURRENT_VERSION_RAW" | grep -oE '^[0-9]+(\.[0-9]+)*')
 VERSION_MM=$(echo "$VERSION_BASE" | cut -d. -f1,2)
-MODE="cancel"; NEED_P401=0
+MODE="cancel"; NEED_P401=0; NEED_P402=0
 
 if [ "$VERSION_MM" != "4.0" ]; then
     CANCEL_MSG="This update only applies to 4.0.x (yours: ${CURRENT_VERSION_RAW:-UNKNOWN}). Update canceled."
@@ -91,6 +101,10 @@ elif [ "$VERSION_BASE" = "$NEW_BASE_VERSION" ] || ver_lt "$NEW_BASE_VERSION" "$V
     CANCEL_MSG="Already up to date (v$VERSION_BASE, build $CURRENT_BUILD). Update canceled."
 else
     MODE="go"
+    # เครื่องที่ยังไม่มี 4.0.2 -> เอาชุด 4.0.2 ตามไปด้วย (ทุกสาย)
+    if older_than "$P402_VERSION" "$P402_BUILD"; then
+        NEED_P402=1
+    fi
     # เครื่องแท้/เบต้าที่ยังไม่มี 4.0.1 -> เอาชุด 4.0.1 ตามไปด้วย (X และ RG ไม่ได้รับ 4.0.1)
     if [[ "$VERSION_UC" =~ $GENUINE_PATTERN ]] && older_than "$P401_VERSION" "$P401_BUILD"; then
         NEED_P401=1
@@ -101,7 +115,7 @@ if [ "$MODE" = "cancel" ]; then
     say "$CANCEL_MSG"
     sleep 3; exit 0
 fi
-echo "[mode] update  need_4.0.1=$NEED_P401"
+echo "[mode] update  need_4.0.1=$NEED_P401 need_4.0.2=$NEED_P402"
 
 
 # ---------- ฟังก์ชันร่วม ----------
@@ -123,7 +137,7 @@ try_get() {  # try_get <url> <ไฟล์ปลายทาง> : ตั้ง 
 #   optional: ถ้าไม่พบบนเซิร์ฟเวอร์ คืนค่า 1 (ไม่หยุดสคริปต์)
 fetch_pkg() {
     local ub="$1" p="$2" opt="$3" out="$STAGE_DIR/$2.zip" n=1 part pct
-    local base=$((5 + PKG_IDX * 20))
+    local base=$((5 + PKG_IDX * 12))
 
     say "Downloading $p.zip... ${base}%"
     try_get "$ub/$p.zip" "$out"
@@ -137,7 +151,7 @@ fetch_pkg() {
     : > "$out"
     while [ "$n" -le 99 ]; do
         part=$(printf '%s.zip.%03d' "$p" "$n")
-        pct=$((base + n * 2)); [ "$pct" -gt $((base + 18)) ] && pct=$((base + 18))
+        pct=$((base + n)); [ "$pct" -gt $((base + 10)) ] && pct=$((base + 10))
         say "Downloading $part... ${pct}%"
         try_get "$ub/$part" "$STAGE_DIR/$part"
         if [ "$GOT" = "1" ]; then
@@ -198,7 +212,7 @@ backup_existing() {  # backup_existing <src_root> : เก็บของเด�
     mkdir -p "$BACKUP_DIR"
     while IFS= read -r -d '' f; do
         rel="${f#"$src"/}"
-        case "$rel" in boot/*|etc/*|usr/*|lib/*|home/ark/.asoundrc|opt/gamestore/gamestore|opt/gamestore/*.ttf) ;; *) continue ;; esac
+        case "$rel" in boot/*|etc/*|usr/*|lib/*|home/ark/.asoundrc|opt/gamestore/gamestore|opt/gamestore/*.ttf|opt/apps/*) ;; *) continue ;; esac
         [ -f "/$rel" ] || continue
         mkdir -p "$BACKUP_DIR/$(dirname "$rel")" && cp -f "/$rel" "$BACKUP_DIR/$rel"
     done < <(find "$src" -type f -print0)
@@ -418,7 +432,7 @@ unpack_pkg() {
 }
 
 run_update() {
-    local zip401="" zip402="" z roots=() root pct zip_mb=0 un_mb=0 need_stage need_root need_boot
+    local zip401="" zip402="" zip403="" z roots=() root pct zip_mb=0 un_mb=0 need_stage need_root need_boot
     local f rel
 
     say "Preparing update files... 5%"
@@ -431,13 +445,19 @@ run_update() {
             fail_exit
         fi
     fi
-    if ! get_package "$URL_P402" zip402 "${P402_NAMES[@]}"; then
-        say "FAILED: 4.0.2 package not found on server - nothing was changed."
+    if [ "$NEED_P402" = "1" ]; then
+        if ! get_package "$URL_P402" zip402 "${P402_NAMES[@]}"; then
+            say "FAILED: 4.0.2 package not found on server - nothing was changed."
+            fail_exit
+        fi
+    fi
+    if ! get_package "$URL_P403" zip403 "${P403_NAMES[@]}"; then
+        say "FAILED: 4.0.3 package not found on server - nothing was changed."
         fail_exit
     fi
 
     say "Verifying packages... 46%"
-    for z in $zip401 $zip402; do
+    for z in $zip401 $zip402 $zip403; do
         if ! unzip -tq "$z" >/dev/null 2>&1; then
             say "Update package is not a valid zip - nothing was changed."
             fail_exit
@@ -463,14 +483,18 @@ run_update() {
 
     # --- แตกแพ็กเกจใน stage ---
     say "Unpacking packages... 50%"
-    local root401="" root402="" pkg_has_otg=0
+    local root401="" root402="" root403="" pkg_has_otg=0
     if [ -n "$zip401" ]; then
         if ! unpack_pkg "$zip401" "$STAGE_DIR/p401"; then say "Failed to unpack 4.0.1 package - nothing was changed."; fail_exit; fi
         root401="$PKG_ROOT"; roots+=("$root401")
         [ -f "$root401/opt/system/Advanced/OTG_fix.sh" ] && pkg_has_otg=1
     fi
-    if ! unpack_pkg "$zip402" "$STAGE_DIR/p402"; then say "Failed to unpack 4.0.2 package - nothing was changed."; fail_exit; fi
-    root402="$PKG_ROOT"; roots+=("$root402")
+    if [ -n "$zip402" ]; then
+        if ! unpack_pkg "$zip402" "$STAGE_DIR/p402"; then say "Failed to unpack 4.0.2 package - nothing was changed."; fail_exit; fi
+        root402="$PKG_ROOT"; roots+=("$root402")
+    fi
+    if ! unpack_pkg "$zip403" "$STAGE_DIR/p403"; then say "Failed to unpack 4.0.3 package - nothing was changed."; fail_exit; fi
+    root403="$PKG_ROOT"; roots+=("$root403")
 
     for root in "${roots[@]}"; do
         if [ -d "$root/boot" ]; then
@@ -530,6 +554,11 @@ run_update() {
     if [ -d /opt/gamestore ]; then
         chmod 755 /opt/gamestore/gamestore 2>/dev/null
         chown -R ark:ark /opt/gamestore
+    fi
+    # 4.0.3: /opt/apps (สคริปต์แอปต้องรันได้ เช่น PortMaster.sh ในแพ็กเกจเป็น 644)
+    if [ -d /opt/apps ]; then
+        chmod 755 /opt/apps/*.sh 2>/dev/null
+        chown -R ark:ark /opt/apps
     fi
 
     # ---- ขั้นตอนหลังติดตั้งของชุด 4.0.1 (เฉพาะเครื่องที่ได้ชุดนี้) ----
