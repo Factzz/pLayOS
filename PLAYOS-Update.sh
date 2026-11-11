@@ -447,7 +447,14 @@ run_update() {
     local f rel
 
     say "Preparing update files... 5%"
-    rm -rf "$STAGE_DIR"; mkdir -p "$STAGE_DIR"
+    local sb="/home/ark"
+    if [ -d /roms ] && touch /roms/.playos_w 2>/dev/null; then
+        rm -f /roms/.playos_w
+        if [ "$(avail_mb /roms)" -gt "$(avail_mb /home/ark)" ] 2>/dev/null; then sb="/roms"; fi
+    fi
+    rm -rf /home/ark/.playos_stage /roms/.playos_stage
+    STAGE_DIR="$sb/.playos_stage"; mkdir -p "$STAGE_DIR"
+    echo "[stage] using $STAGE_DIR (free: /home/ark=$(avail_mb /home/ark)MB /roms=$(avail_mb /roms)MB)"
 
     # --- ดาวน์โหลดแพ็กเกจ (ครบก่อนค่อยแตะระบบ) ---
     if [ "$NEED_P401" = "1" ]; then
@@ -484,17 +491,17 @@ run_update() {
     done
 
     # --- เช็กพื้นที่ว่างก่อนแตะอะไร ---
-    need_stage=$(( zip_mb + un_mb * 2 + 25 ))       # zip + ไฟล์ที่แตก + สำรอง (เผื่อกรณีทับครบทุกไฟล์)
+    need_stage=$(( un_mb + 25 ))                    # zip โหลดเสร็จแล้ว (กินที่ไปแล้ว) -> เหลือต้องการที่สำหรับไฟล์ที่แตก
     need_root=$(( un_mb + 15 ))                     # ไฟล์ที่ลงระบบ
     need_boot=12
-    if [ "$(fs_id /)" = "$(fs_id /home/ark)" ]; then need_stage=$(( need_stage + need_root )); fi
-    echo "[space] zip=${zip_mb}MB unpacked=${un_mb}MB | need stage>=${need_stage}MB root>=${need_root}MB boot>=${need_boot}MB | free stage=$(avail_mb /home/ark)MB root=$(avail_mb /)MB boot=$(avail_mb /boot)MB"
-    if [ "$(avail_mb /home/ark)" -lt "$need_stage" ] 2>/dev/null; then
-        say "Not enough free space (need ${need_stage} MB) - nothing was changed."
+    if [ "$(fs_id /)" = "$(fs_id "$STAGE_DIR")" ]; then need_stage=$(( need_stage + need_root )); fi
+    echo "[space] zip=${zip_mb}MB unpacked=${un_mb}MB | need stage>=${need_stage}MB root>=${need_root}MB boot>=${need_boot}MB | free stage=$(avail_mb "$STAGE_DIR")MB root=$(avail_mb /)MB boot=$(avail_mb /boot)MB"
+    if [ "$(avail_mb "$STAGE_DIR")" -lt "$need_stage" ] 2>/dev/null; then
+        say "Not enough free space (need ${need_stage} MB, free $(avail_mb "$STAGE_DIR") MB) - nothing was changed."
         fail_exit
     fi
     if [ "$(avail_mb /)" -lt "$need_root" ] 2>/dev/null; then
-        say "Not enough free space on system (need ${need_root} MB) - nothing was changed."
+        say "Not enough free space on system (need ${need_root} MB, free $(avail_mb /) MB) - nothing was changed."
         fail_exit
     fi
 
@@ -531,6 +538,23 @@ run_update() {
     done
 
     # --- สำรองของเดิม แล้วคัดลอก (ทุกแพ็กเกจ แล้วค่อยทำขั้นตอนหลังติดตั้ง) ---
+    local bk_b=0 bk_mb need_bk
+    for root in "${roots[@]}"; do
+        while IFS= read -r -d '' f; do
+            rel="${f#"$root"/}"
+            case "$rel" in roms/*) continue ;; esac
+            [ -f "/$rel" ] && bk_b=$(( bk_b + $(stat -c %s "/$rel") ))
+        done < <(find "$root" -type f -print0)
+    done
+    bk_mb=$(( bk_b / 1048576 + 1 ))
+    need_bk=$(( bk_mb + 10 ))
+    if [ "$(fs_id /)" = "$(fs_id /home/ark)" ]; then need_bk=$(( need_bk + need_root )); fi
+    echo "[space] backup=${bk_mb}MB need home>=${need_bk}MB free home=$(avail_mb /home/ark)MB"
+    if [ "$(avail_mb /home/ark)" -lt "$need_bk" ] 2>/dev/null; then
+        say "Not enough free space for backup (need ${need_bk} MB, free $(avail_mb /home/ark) MB) - nothing was changed."
+        fail_exit
+    fi
+
     say "Backing up current files... 56%"
     rm -rf "$BACKUP_DIR"; mkdir -p "$BACKUP_DIR"
     for root in "${roots[@]}"; do backup_existing "$root"; done
