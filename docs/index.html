@@ -1295,7 +1295,7 @@ mr.oninput=meter;meter();
     catch(e){return"blocked"}}
   async function deliver(rec){
     res.className="bres";res.textContent="กำลังส่งข้อมูลให้ทีมงาน...";
-    const r=await send({name:rec.name,email:rec.email,_replyto:rec.email,group:rec.group,device:"TrimUI Brick Pro",result:rec.master?"ทดสอบ (ไม่นับโควต้า)":"ได้รับสิทธิ์",test:rec.master?"yes":"no",accepted_terms:"yes",_subject:(rec.master?"[ทดสอบ ไม่นับโควต้า] ":"")+"PlayOS Beta: "+rec.name+" ("+rec.group+")",submitted_at:new Date().toISOString()});
+    const r=await send({name:rec.name,email:rec.email,_replyto:rec.email,contact_email:rec.email,group:rec.group,device:"TrimUI Brick Pro",result:rec.master?"ทดสอบ (ไม่นับโควต้า)":"ได้รับสิทธิ์",test:rec.master?"yes":"no",accepted_terms:"yes",_subject:(rec.master?"[ทดสอบ ไม่นับโควต้า] ":"")+"PlayOS Beta: "+rec.name+" ("+rec.group+") "+rec.email,submitted_at:new Date().toISOString()});
     if(r!=="ok"){const body=encodeURIComponent("ชื่อ: "+rec.name+"\nอีเมล: "+rec.email+"\nกลุ่ม: "+rec.group+"\nรุ่น: TrimUI Brick Pro\nผลวงล้อ: ได้รับสิทธิ์");
       res.className="bres";res.innerHTML="<b class='r'>ส่งข้อมูลอัตโนมัติไม่สำเร็จ</b> "+(r==="blocked"?"(เชื่อมต่อ Formspree จากหน้านี้ไม่ได้)":"("+esc(r.replace("fail:",""))+")")+"<br><button class='btn' id='bretry'>ลองส่งอีกครั้ง</button> <a class='btn ghost' href='mailto:Deza.dx@gmail.com?subject="+encodeURIComponent("PlayOS Beta: "+rec.name)+"&body="+body+"'>ส่งทางอีเมลแทน</a>";$("bretry").onclick=()=>deliver(rec);return}
     rec.sent=true;const l=load(),m=l.find(x=>x.e===rec.e);if(m){m.sent=true;save(l)}
