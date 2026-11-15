@@ -1294,6 +1294,7 @@ mr.oninput=meter;meter();
       if(r.ok)return"ok";let m="";try{const j=await r.json();m=(j.errors&&j.errors.map(x=>x.message).join(", "))||j.error||""}catch(e){}return"fail:"+r.status+(m?" "+m:"")}
     catch(e){return"blocked"}}
   async function deliver(rec){
+    rec.email=rec.email||rec.e;
     res.className="bres";res.textContent="กำลังส่งข้อมูลให้ทีมงาน...";
     const r=await send({name:rec.name,email:rec.email,_replyto:rec.email,contact_email:rec.email,group:rec.group,device:"TrimUI Brick Pro",result:rec.master?"ทดสอบ (ไม่นับโควต้า)":"ได้รับสิทธิ์",test:rec.master?"yes":"no",accepted_terms:"yes",_subject:(rec.master?"[ทดสอบ ไม่นับโควต้า] ":"")+"PlayOS Beta: "+rec.name+" ("+rec.group+") "+rec.email,submitted_at:new Date().toISOString()});
     if(r!=="ok"){const body=encodeURIComponent("ชื่อ: "+rec.name+"\nอีเมล: "+rec.email+"\nกลุ่ม: "+rec.group+"\nรุ่น: TrimUI Brick Pro\nผลวงล้อ: ได้รับสิทธิ์");
@@ -1305,7 +1306,7 @@ mr.oninput=meter;meter();
     else{res.className="bres win";res.innerHTML="<b class='r'>เสียดายจัง รอบนี้ไม่ได้สิทธิ์</b><br>ขอบคุณที่ร่วมสนุก ติดตามรอบต่อไปได้ที่ <a href='https://web.facebook.com/profile.php?id=61595202162102' target='_blank' rel='noopener' style='text-decoration:underline'>เพจ Facebook</a>"}}
   sp.addEventListener("click",()=>{if(!cur||spinning)return;spinning=true;sp.disabled=true;
     const h=hash("pb4|"+cur.email),win=cur.master||(h%100)<WIN_RATE*100,sub=h>>>8,seg=win?WIN[sub%WIN.length]:LOSE[sub%LOSE.length];
-    const rec={n:norm(cur.name),e:cur.email,name:cur.name,group:cur.group,res:win?"win":"lose",sent:false,master:!!cur.master};
+    const rec={n:norm(cur.name),e:cur.email,email:cur.email,name:cur.name,group:cur.group,res:win?"win":"lose",sent:false,master:!!cur.master};
     if(!cur.master){const l=load();l.push(rec);save(l)}res.className="bres";res.textContent="วงล้อกำลังหมุน...";
     const j=((h>>>16)%21)-10,target=360*6-(seg+.5)*36-j;
     if(reduce){ws.style.transform="rotate("+target+"deg)";finish(rec)}
