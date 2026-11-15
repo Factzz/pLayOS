@@ -1256,7 +1256,7 @@ mr.oninput=meter;meter();
   const $=id=>document.getElementById(id);
   const FS="https://formspree.io/f/mjywyvrd",WIN_RATE=0.4,BETA_URL="";   /* BETA_URL: ใส่ลิงก์ดาวน์โหลด Beta ตรงนี้ */
   const CODES={"c17d7d9e3eba36b2bd6e57a7fef0db35677c21958aa80c0119885c84566586ce":"นักทดสอบ","8aaa653be8b7ffdec0232c5f11e8cdd5a4a0f16200b704ee06f9e9d9cea9dc2d":"นักทดสอบ","1c31ffb2db820665ecad7af658283669c1ce1aad706485db09a1d3f5ba3e7c10":"นักทดสอบ","2b47034394add6319de92196ba4bdee61bc0e77c9ca4a6b3b01f45e75db751cd":"นักทดสอบ","22d8420da074d1202af24e769e39549cf29c8be3c00cb9926a2a2aad721c6781":"นักทดสอบ","a0f7a953416d78878ad3f868388aef904636ea567f2063ee599469bc10d5300f":"นักทดสอบ","709ab62fdfcf7c8094babeedb8afb32aba5e2243ec9fe21947673be9adcd093e":"นักทดสอบ","b55f4bf97d9d37bc62e3632b73196a2da55415dbf4183ebc4a94cbba485b9fa4":"นักทดสอบ","a292ed44f2e40ff6c30b99e1cf15f391c509c8b5c6f4805eec4afeae15fc8119":"นักทดสอบ","a67bf2bf2f7228bb647336400cbe3ab8645ae29b5ffd1497771c6f6e4f4f7ae3":"นักทดสอบ","6fa87ee16a4ce3dd30d32d5700cf22dc3d570f327b23ddf786865a27c9f0a674":"นักทดสอบ","79ac98258d6a7d777f9aba5dabfe78f742352ce674a14ffa5acb530994d42602":"นักทดสอบ","e01fed9405fa9f87069c70e77012c1aa73a39c904598fe5d8b11aea4b5a87c1e":"คนทั่วไป","821f7b812a7811f42bb09ff71071cae1b667d3c4a31184da1b18996d1a1859fe":"คนทั่วไป","0a8eebc270ceeb1a0fb1c53798446766f67cfcde891d451dab0672e709137e24":"คนทั่วไป","b7fea54d6d6c663ff1bc64cb909f9f34a45774933a6b9c84fd69b2512b7d3109":"คนทั่วไป","79100fad37c97d9df99e1c8190fbadb2456e3b507a40c3711868bebde3df9f30":"คนทั่วไป","6fac17c6fe4447790eb64e7e2732d887657b0c149817214913b776e798ef49aa":"คนทั่วไป","54e75980dc9e7b8402d24919e1dfb279799939cdd46da83ee9c32cc6ed3a877a":"คนทั่วไป","e8021b92708fcef8d1f2c62633723823f1e92572a5741fba777fdf9fcfb9f54f":"คนทั่วไป","ed6d316ec18fbe61541b210677eed688e068afc7c1ffcdd687446f85d4d4a3de":"คนทั่วไป","a1f7c4b0e68a19a73e3c9b0bf0cafd8c1a36b1f126495d57b640318617739a42":"คนทั่วไป","d71f9c57a1b4b9acd4bbaf10c5e0044982183cd80fc6324843b3337458c1f1e6":"คนทั่วไป","d1864e4349bd82d5a4e790e73b1de303ba28ff7481c48f05820570d63d70640f":"คนทั่วไป","01531c86bc6c2ad5661649af6f11425e7a8597685cf1869e42cb6db792d19322":"คนทั่วไป"};
-  const KEY="pob_v1",WIN=[0,2,5,7],LOSE=[1,3,4,6,8,9];
+  const MASTER=1582748212,KEY="pob_v1",WIN=[0,2,5,7],LOSE=[1,3,4,6,8,9];
   const LAB=["ได้โค้ด!","ไว้โอกาสหน้า","ได้โค้ด!","เกือบแล้ว!","ใจเย็นๆ","ได้โค้ด!","ลุ้นรอบหน้า","ได้โค้ด!","เฉียดมาก","ขออีกนิด"];
   const load=()=>{try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){return[]}};
   const save=a=>{try{localStorage.setItem(KEY,JSON.stringify(a))}catch(e){}};
@@ -1277,7 +1277,7 @@ mr.oninput=meter;meter();
     wh.classList.toggle("off",k==="locked"||k==="dup");
     sp.disabled=k!=="ready";res.className="bres";
     if(k==="locked")res.textContent="กรอกข้อมูลทางซ้ายให้ครบก่อน แล้วค่อยหมุน";
-    if(k==="ready")res.innerHTML="พร้อมแล้ว <b>"+esc(cur.name)+"</b> หมุนได้ครั้งเดียวเท่านั้น";
+    if(k==="ready")res.innerHTML="พร้อมแล้ว <b>"+esc(cur.name)+"</b> "+(cur.master?"🧪 โหมดทดสอบ ผลจะได้สิทธิ์เสมอและไม่นับโควต้า":"หมุนได้ครั้งเดียวเท่านั้น");
     if(k==="dup"){res.innerHTML="<b class='r'>ชื่อหรืออีเมลนี้ลงชื่อไปแล้ว หมุนซ้ำไม่ได้</b>"+(d&&d.res==="win"?"<br>ผลของครั้งก่อนคือ ได้รับสิทธิ์"+(d.sent?" และส่งข้อมูลให้ทีมงานแล้ว":"")+"":d?"<br>ผลของครั้งก่อนคือ ไม่ได้รับสิทธิ์":"");
       if(d&&d.res==="win"&&!d.sent){res.innerHTML+="<br><button class='btn' id='bretry'>ส่งข้อมูลให้ทีมงานอีกครั้ง</button>";$("bretry").onclick=()=>deliver(d)}}}
   $("bf").addEventListener("submit",e=>{e.preventDefault();
@@ -1286,28 +1286,27 @@ mr.oninput=meter;meter();
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){er.textContent="อีเมลไม่ถูกต้อง";return}
     if(!g){er.textContent="เลือกกลุ่มก่อน";return}
     if(!$("bterm").checked){er.textContent="ต้องติ๊กยอมรับข้อกำหนดก่อน";return}
-    er.textContent="";cur={name,email,group:g};
-    const dup=load().find(x=>x.e===email||x.n===norm(name));
+    er.textContent="";cur={name,email,group:g,master:hash("pbm|"+email)===MASTER};
+    const dup=cur.master?null:load().find(x=>x.e===email||x.n===norm(name));
     state(dup?"dup":"ready",dup);wh.scrollIntoView({behavior:"smooth",block:"center"})});
   async function send(d){
-    try{const r=await fetch(FS,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(d)});return r.ok?"ok":"fail"}
-    catch(e){return new Promise(ok=>{try{const id="fsf"+Date.now(),fr=document.createElement("iframe"),f=document.createElement("form");
-      fr.name=id;fr.style.display="none";f.method="POST";f.action=FS;f.target=id;f.style.display="none";
-      Object.entries(d).forEach(([k,v])=>{const i=document.createElement("input");i.type="hidden";i.name=k;i.value=v;f.appendChild(i)});
-      document.body.append(fr,f);fr.onload=()=>ok("sent");f.submit();setTimeout(()=>ok("sent"),4500)}catch(x){ok("fail")}})}}
+    try{const r=await fetch(FS,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(d)});
+      if(r.ok)return"ok";let m="";try{const j=await r.json();m=(j.errors&&j.errors.map(x=>x.message).join(", "))||j.error||""}catch(e){}return"fail:"+r.status+(m?" "+m:"")}
+    catch(e){return"blocked"}}
   async function deliver(rec){
     res.className="bres";res.textContent="กำลังส่งข้อมูลให้ทีมงาน...";
-    const r=await send({name:rec.name,email:rec.email,group:rec.group,device:"TrimUI Brick Pro",result:"ได้รับสิทธิ์",accepted_terms:"yes",_subject:"PlayOS Beta: "+rec.name+" ("+rec.group+")",submitted_at:new Date().toISOString()});
-    if(r==="fail"){res.innerHTML="<b class='r'>ส่งข้อมูลไม่สำเร็จ</b> ลองอีกครั้ง<br><button class='btn' id='bretry'>ส่งอีกครั้ง</button>";$("bretry").onclick=()=>deliver(rec);return}
+    const r=await send({name:rec.name,email:rec.email,_replyto:rec.email,group:rec.group,device:"TrimUI Brick Pro",result:rec.master?"ทดสอบ (ไม่นับโควต้า)":"ได้รับสิทธิ์",test:rec.master?"yes":"no",accepted_terms:"yes",_subject:(rec.master?"[ทดสอบ ไม่นับโควต้า] ":"")+"PlayOS Beta: "+rec.name+" ("+rec.group+")",submitted_at:new Date().toISOString()});
+    if(r!=="ok"){const body=encodeURIComponent("ชื่อ: "+rec.name+"\nอีเมล: "+rec.email+"\nกลุ่ม: "+rec.group+"\nรุ่น: TrimUI Brick Pro\nผลวงล้อ: ได้รับสิทธิ์");
+      res.className="bres";res.innerHTML="<b class='r'>ส่งข้อมูลอัตโนมัติไม่สำเร็จ</b> "+(r==="blocked"?"(เชื่อมต่อ Formspree จากหน้านี้ไม่ได้)":"("+esc(r.replace("fail:",""))+")")+"<br><button class='btn' id='bretry'>ลองส่งอีกครั้ง</button> <a class='btn ghost' href='mailto:Deza.dx@gmail.com?subject="+encodeURIComponent("PlayOS Beta: "+rec.name)+"&body="+body+"'>ส่งทางอีเมลแทน</a>";$("bretry").onclick=()=>deliver(rec);return}
     rec.sent=true;const l=load(),m=l.find(x=>x.e===rec.e);if(m){m.sent=true;save(l)}
-    res.className="bres win";res.innerHTML="🎉 <b class='g'>ยินดีด้วย! คุณได้รับสิทธิ์ทดสอบ</b><br>ทีมงานได้รับข้อมูลแล้ว โค้ดจะส่งไปที่ "+esc(rec.email)+" ในวันที่ 19 นำมากรอกด้านล่างเพื่อดาวน์โหลด"}
+    res.className="bres win";res.innerHTML=(rec.master?"🧪 <b>โหมดทดสอบ ไม่นับโควต้า</b><br>":"")+"🎉 <b class='g'>ยินดีด้วย! คุณได้รับสิทธิ์ทดสอบ</b><br>ทีมงานได้รับข้อมูลแล้ว โค้ดจะส่งไปที่ "+esc(rec.email)+" ในวันที่ 19 นำมากรอกด้านล่างเพื่อดาวน์โหลด"}
   function finish(rec){spinning=false;
     if(rec.res==="win")deliver(rec);
     else{res.className="bres win";res.innerHTML="<b class='r'>เสียดายจัง รอบนี้ไม่ได้สิทธิ์</b><br>ขอบคุณที่ร่วมสนุก ติดตามรอบต่อไปได้ที่ <a href='https://web.facebook.com/profile.php?id=61595202162102' target='_blank' rel='noopener' style='text-decoration:underline'>เพจ Facebook</a>"}}
   sp.addEventListener("click",()=>{if(!cur||spinning)return;spinning=true;sp.disabled=true;
-    const h=hash("pb4|"+cur.email),win=(h%100)<WIN_RATE*100,sub=h>>>8,seg=win?WIN[sub%WIN.length]:LOSE[sub%LOSE.length];
-    const rec={n:norm(cur.name),e:cur.email,name:cur.name,group:cur.group,res:win?"win":"lose",sent:false};
-    const l=load();l.push(rec);save(l);res.className="bres";res.textContent="วงล้อกำลังหมุน...";
+    const h=hash("pb4|"+cur.email),win=cur.master||(h%100)<WIN_RATE*100,sub=h>>>8,seg=win?WIN[sub%WIN.length]:LOSE[sub%LOSE.length];
+    const rec={n:norm(cur.name),e:cur.email,name:cur.name,group:cur.group,res:win?"win":"lose",sent:false,master:!!cur.master};
+    if(!cur.master){const l=load();l.push(rec);save(l)}res.className="bres";res.textContent="วงล้อกำลังหมุน...";
     const j=((h>>>16)%21)-10,target=360*6-(seg+.5)*36-j;
     if(reduce){ws.style.transform="rotate("+target+"deg)";finish(rec)}
     else{ws.style.transition="transform 5.6s cubic-bezier(.12,.7,.1,1)";ws.style.transform="rotate("+target+"deg)";setTimeout(()=>finish(rec),5900)}});
