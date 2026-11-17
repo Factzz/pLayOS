@@ -1,24 +1,23 @@
 #!/bin/bash
 # ==========================================================
-# PLAY OS - OTA Update  (ตระกูล 4.0.x ทุกสาย)
+# PLAY OS - OTA Update  (สคริปต์เดียว ตรวจรุ่นเอง)  ->  4.1   build 261217
 #
-#  เครื่อง 4.0 แท้  (4.0 / 4.0 B / 4.0.1 / 4.0.2 / 4.0.3)  ->  4.0.4   build 261212
-#  เครื่องรุ่น X "(X)" และ RG "RG EDITION"                  ->  4.0.3   build 261211 (ไม่ได้ 4.0.4)
-#  ประทับเวอร์ชันโดยคงรูปแบบเดิม  เช่น "4.0" -> "4.0.4", "4.0 B" -> "4.0.4 B",
-#                                      "4.0.2(X)" -> "4.0.3(X)", "4.0.2 RG EDITION" -> "4.0.3 RG EDITION"
-#  ไม่อัปเดต (ยกเลิก ไม่แตะอะไรเลย): เครื่องที่ถึงเวอร์ชันปลายทางของตัวเองแล้ว,
-#     สาย 3.x และเวอร์ชันอื่นที่ไม่ใช่ 4.0.x
+#  ตรวจรุ่นจาก VERSION ใน /opt/system/playos_info.cfg แล้วเลือกแพ็กเกจให้เอง:
+#     แท้   "4.0" / "4.0 B" / "4.0.x"      -> PlayOS4_0-update261217.zip     ("4.0" -> "4.1")
+#     X     "4.0(X)" / "4.0.x(X)"          -> PlayOS4_0_X_-update261217.zip  ("4.0(X)" -> "4.1(X)")
+#     RG    "4.0 RG EDITION" / "4.0.x RG EDITION" -> PlayOS4_0RG-update261217.zip ("4.0 RG EDITION" -> "4.1 RG EDITION")
+#  ไม่อัปเดต (ยกเลิก ไม่แตะอะไรเลย): 4.1 ขึ้นไป, สาย 3.x และเวอร์ชัน/รุ่นอื่น
 #
-#  แพ็กเกจที่ติดตั้ง (ตามลำดับ 4.0.1 -> 4.0.4 ถ้าเครื่องยังไม่มี; ไฟล์ใหม่กว่าทับไฟล์เก่า)
-#     4.0.1 (tag "4.0B")  : DSperate, GZDoom, Yabasanshiro, Stella, DTB, Wi-Fi, OTG_fix ฯลฯ  [เครื่องแท้เท่านั้น]
-#     4.0.2 (tag "4.0.2") : playfe + /opt/gamestore                                         [ทุกสาย]
-#     4.0.3 (tag "4.0.3") : playfe ใหม่ + /opt/apps (เพิ่มแอป PortMaster)                    [ทุกสาย]
-#     4.0.4 (tag "4.0.4") : /boot/dtb/r36s, /usr/local/bin/*, RetroArch cores,
-#                           /opt/mupen64plus, /opt/scummvm, /opt/solarus, /opt/linapple    [เครื่องแท้เท่านั้น]
+#  แพ็กเกจ 4.1  (Release tag "4.1")
+#     /opt/oldbits-hub, /opt/apps, /opt/drastic (แท้ + X) หรือ /usr/local/bin/drastic.sh (RG)
 #     คัดลอกทับของเดิมแบบ atomic (ไม่ลบไฟล์อื่นในโฟลเดอร์)  ไม่แตะ EmulationStation
 #
+#  ชุดก่อนหน้าจะถูกดึงตามไปในรอบเดียว ถ้าเครื่องยังไม่มี:
+#     แท้     : 4.0.1 (tag "4.0B") -> 4.0.2 -> 4.0.3 -> 4.0.4 -> 4.1
+#     X / RG  : 4.0.2 -> 4.0.3 -> 4.1   (4.0.1 และ 4.0.4 เป็นของรุ่นแท้เท่านั้น)
+#
 #  ความปลอดภัย: เช็กพื้นที่/สิทธิ์เขียน /boot ก่อน, สำรองไฟล์เดิมทุกไฟล์ที่จะถูกทับ
-#     ไว้ที่ /home/ark/.playos_backup_261212
+#     ไว้ที่ /home/ark/.playos_backup_261217
 #     ถ้าคัดลอกพลาด จะคืนของเดิมและลบไฟล์ใหม่ที่ใส่ไปแล้วให้เอง
 #
 # แถบหลอดบนหน้าจอ: บรรทัดที่ขึ้นต้นด้วย ">>" คือข้อความสถานะ
@@ -33,13 +32,28 @@ INFO_FILE="/opt/system/playos_info.cfg"
 CURRENT_VERSION_RAW=$(grep -m1 '^VERSION=' "$INFO_FILE" 2>/dev/null | cut -d'"' -f2)
 CURRENT_BUILD=$(grep -m1 '^BUILD=' "$INFO_FILE" 2>/dev/null | cut -d'"' -f2 | tr -cd '0-9')
 
-# ===== 4.0.4 (เครื่อง 4.0 แท้เท่านั้น) =====
-NEW_BASE_VERSION="4.0.4"          # เวอร์ชันปลายทางของเครื่องแท้
-NEW_BUILD=261212
-NONGEN_BASE_VERSION="4.0.3"       # เวอร์ชันปลายทางของรุ่น X / RG (ไม่ได้ 4.0.4)
-NONGEN_BUILD=261211
+# ===== 4.1 (แพ็กเกจของรุ่นนี้) =====
+NEW_BASE_VERSION="4.1"
+NEW_BUILD=261217
+URL_P41="https://github.com/Factzz/pLayOS/releases/download/4.1"
+# ชื่อไฟล์ zip 4.1 บน Release (ไม่รวม .zip) ลองตามลำดับ -- เลือกตามรุ่นหลังตรวจเวอร์ชัน
+P41_NAMES_GENUINE=("PlayOS4_0-update261217" "PlayOS4.0-update261217")
+P41_NAMES_X=("PlayOS4_0_X_-update261217" "PlayOS4_0_X-update261217")
+P41_NAMES_RG=("PlayOS4_0RG-update261217" "PlayOS4.0RG-update261217")
+P41_NAMES=()
+VARIANT_LABEL="PLAY OS"
+CHAIN=0     # 1 = แท้ (ดึง 4.0.1-4.0.4) / 2 = X, RG (ดึง 4.0.2-4.0.3)
+
+# รูปแบบเวอร์ชันของแต่ละรุ่น
+PATTERN_GENUINE='^4\.0(\.[0-9]+)?([[:space:]\(_-]*B(ETA)?\)?)?$'
+PATTERN_X='^4\.0(\.[0-9]+)?[[:space:]]*\(X\)$'
+PATTERN_RG='^4\.0(\.[0-9]+)?[[:space:]]+RG([[:space:]]+EDITION)?$'
+
+# ===== 4.0.4 =====
+P404_VERSION="4.0.4"
+P404_BUILD=261212
 URL_P404="https://github.com/Factzz/pLayOS/releases/download/4.0.4"
-P404_NAMES=("4_0_4_261212" "PlayOS4_0-update261212" "PlayOS4.0-update261212")     # ชื่อไฟล์ zip บน Release (ไม่รวม .zip) ลองตามลำดับ
+P404_NAMES=("4_0_4_261212" "PlayOS4_0-update261212" "PlayOS4.0-update261212")
 
 # ===== ชุด 4.0.3 (เครื่องที่ยังต่ำกว่า 4.0.3) =====
 P403_VERSION="4.0.3"
@@ -60,7 +74,7 @@ URL_P401="https://github.com/Factzz/pLayOS/releases/download/4.0B"
 P401_NAMES=("PlayOS4.0-update261203" "PlayOS4_0-update261203")
 GENUINE_PATTERN='^4\.0(\.[0-9]+)?([[:space:]\(_-]*B(ETA)?\)?)?$'   # "4.0", "4.0.1", "4.0 B", "4.0(B)" (ไม่รวม X / RG)
 
-BACKUP_DIR="/home/ark/.playos_backup_261212"
+BACKUP_DIR="/home/ark/.playos_backup_261217"
 ES_CFG="/etc/emulationstation/es_systems.cfg"
 OTG_DEST="/opt/system/Advanced/OTG_fix.sh"
 
@@ -99,28 +113,36 @@ VERSION_UC=$(echo "$CURRENT_VERSION_RAW" | tr '[:lower:]' '[:upper:]')
 VERSION_BASE=$(echo "$CURRENT_VERSION_RAW" | grep -oE '^[0-9]+(\.[0-9]+)*')
 VERSION_MM=$(echo "$VERSION_BASE" | cut -d. -f1,2)
 MODE="cancel"; NEED_P401=0; NEED_P402=0; NEED_P403=0; NEED_P404=0
-TARGET_VERSION="$NEW_BASE_VERSION"; TARGET_BUILD="$NEW_BUILD"; IS_GENUINE=0
-if [[ "$VERSION_UC" =~ $GENUINE_PATTERN ]]; then IS_GENUINE=1; else TARGET_VERSION="$NONGEN_BASE_VERSION"; TARGET_BUILD="$NONGEN_BUILD"; fi
 
-if [ "$VERSION_MM" != "4.0" ]; then
-    CANCEL_MSG="This update only applies to PLAY OS 4.0 (yours: ${CURRENT_VERSION_RAW:-UNKNOWN}). Update canceled."
-elif [ "$VERSION_BASE" = "$TARGET_VERSION" ] || ver_lt "$TARGET_VERSION" "$VERSION_BASE" || [ "$CURRENT_BUILD" -ge "$TARGET_BUILD" ]; then
+# ---- ตรวจรุ่นจากสตริงเวอร์ชัน ----
+if [[ "$VERSION_UC" =~ $PATTERN_X ]]; then
+    VARIANT_LABEL="PLAY OS 4.0(X)"; CHAIN=2; P41_NAMES=("${P41_NAMES_X[@]}")
+elif [[ "$VERSION_UC" =~ $PATTERN_RG ]]; then
+    VARIANT_LABEL="PLAY OS 4.0 RG EDITION"; CHAIN=2; P41_NAMES=("${P41_NAMES_RG[@]}")
+elif [[ "$VERSION_UC" =~ $PATTERN_GENUINE ]]; then
+    VARIANT_LABEL="PLAY OS 4.0"; CHAIN=1; P41_NAMES=("${P41_NAMES_GENUINE[@]}")
+fi
+
+if [ -z "$VERSION_BASE" ]; then
+    CANCEL_MSG="Cannot read current version (yours: UNKNOWN). Update canceled."
+elif [ "$VERSION_MM" != "4.0" ]; then
+    if [ "${VERSION_BASE%%.*}" = "4" ] && ! ver_lt "$VERSION_BASE" "$NEW_BASE_VERSION"; then
+        CANCEL_MSG="Already up to date (v$VERSION_BASE, build $CURRENT_BUILD). Update canceled."
+    else
+        CANCEL_MSG="This update only applies to PLAY OS 4.0 (yours: ${CURRENT_VERSION_RAW:-UNKNOWN}). Update canceled."
+    fi
+elif [ "$CHAIN" = "0" ]; then
+    CANCEL_MSG="This update is not for this model (yours: ${CURRENT_VERSION_RAW:-UNKNOWN}). Update canceled."
+elif [ "$CURRENT_BUILD" -ge "$NEW_BUILD" ]; then
     CANCEL_MSG="Already up to date (v$VERSION_BASE, build $CURRENT_BUILD). Update canceled."
 else
     MODE="go"
-    # 4.0.4 เฉพาะเครื่อง 4.0 แท้ (X / RG หยุดที่ 4.0.3)
-    if [ "$IS_GENUINE" = "1" ]; then NEED_P404=1; fi
-    # เครื่องที่ยังไม่มี 4.0.3 -> เอาชุด 4.0.3 ตามไปด้วย
-    if older_than "$P403_VERSION" "$P403_BUILD"; then
-        NEED_P403=1
-    fi
-    # เครื่องที่ยังไม่มี 4.0.2 -> เอาชุด 4.0.2 ตามไปด้วย
-    if older_than "$P402_VERSION" "$P402_BUILD"; then
-        NEED_P402=1
-    fi
-    # เครื่องแท้/เบต้าที่ยังไม่มี 4.0.1 -> เอาชุด 4.0.1 ตามไปด้วย (X และ RG ไม่ได้รับ 4.0.1)
-    if [ "$IS_GENUINE" = "1" ] && older_than "$P401_VERSION" "$P401_BUILD"; then
-        NEED_P401=1
+    # ---- ชุดก่อนหน้า: เครื่องที่ยังไม่มีชุดไหน -> ดึงตามไปด้วย ----
+    older_than "$P403_VERSION" "$P403_BUILD" && NEED_P403=1
+    older_than "$P402_VERSION" "$P402_BUILD" && NEED_P402=1
+    if [ "$CHAIN" = "1" ]; then      # 4.0.1 และ 4.0.4 เฉพาะรุ่นแท้
+        older_than "$P404_VERSION" "$P404_BUILD" && NEED_P404=1
+        older_than "$P401_VERSION" "$P401_BUILD" && NEED_P401=1
     fi
 fi
 
@@ -128,7 +150,7 @@ if [ "$MODE" = "cancel" ]; then
     say "$CANCEL_MSG"
     sleep 3; exit 0
 fi
-echo "[mode] update genuine=$IS_GENUINE target=$TARGET_VERSION need_4.0.1=$NEED_P401 need_4.0.2=$NEED_P402 need_4.0.3=$NEED_P403 need_4.0.4=$NEED_P404"
+echo "[mode] update $VARIANT_LABEL  need_4.0.1=$NEED_P401 need_4.0.2=$NEED_P402 need_4.0.3=$NEED_P403 need_4.0.4=$NEED_P404 -> 4.1"
 
 
 # ---------- ฟังก์ชันร่วม ----------
@@ -150,7 +172,7 @@ try_get() {  # try_get <url> <ไฟล์ปลายทาง> : ตั้ง 
 #   optional: ถ้าไม่พบบนเซิร์ฟเวอร์ คืนค่า 1 (ไม่หยุดสคริปต์)
 fetch_pkg() {
     local ub="$1" p="$2" opt="$3" out="$STAGE_DIR/$2.zip" n=1 part pct
-    local base=$((5 + PKG_IDX * 10))
+    local base=$((5 + PKG_IDX * 8))
 
     say "Downloading $p.zip... ${base}%"
     try_get "$ub/$p.zip" "$out"
@@ -164,7 +186,7 @@ fetch_pkg() {
     : > "$out"
     while [ "$n" -le 99 ]; do
         part=$(printf '%s.zip.%03d' "$p" "$n")
-        pct=$((base + n)); [ "$pct" -gt $((base + 8)) ] && pct=$((base + 8))
+        pct=$((base + n)); [ "$pct" -gt $((base + 6)) ] && pct=$((base + 6))
         say "Downloading $part... ${pct}%"
         try_get "$ub/$part" "$STAGE_DIR/$part"
         if [ "$GOT" = "1" ]; then
@@ -445,7 +467,7 @@ unpack_pkg() {
 }
 
 run_update() {
-    local zip401="" zip402="" zip403="" zip404="" z roots=() root pct zip_mb=0 un_mb=0 need_stage need_root need_boot
+    local zip401="" zip402="" zip403="" zip404="" zip41="" z roots=() root pct zip_mb=0 un_mb=0 need_stage need_root need_boot
     local f rel
 
     say "Preparing update files... 5%"
@@ -483,9 +505,13 @@ run_update() {
             fail_exit
         fi
     fi
+    if ! get_package "$URL_P41" zip41 "${P41_NAMES[@]}"; then
+        say "FAILED: 4.1 package not found on server - nothing was changed."
+        fail_exit
+    fi
 
     say "Verifying packages... 46%"
-    for z in $zip401 $zip402 $zip403 $zip404; do
+    for z in $zip401 $zip402 $zip403 $zip404 $zip41; do
         if ! unzip -tq "$z" >/dev/null 2>&1; then
             say "Update package is not a valid zip - nothing was changed."
             fail_exit
@@ -511,7 +537,7 @@ run_update() {
 
     # --- แตกแพ็กเกจใน stage ---
     say "Unpacking packages... 50%"
-    local root401="" root402="" root403="" root404="" pkg_has_otg=0
+    local root401="" root402="" root403="" root404="" root41="" pkg_has_otg=0
     if [ -n "$zip401" ]; then
         if ! unpack_pkg "$zip401" "$STAGE_DIR/p401"; then say "Failed to unpack 4.0.1 package - nothing was changed."; fail_exit; fi
         root401="$PKG_ROOT"; roots+=("$root401")
@@ -529,9 +555,11 @@ run_update() {
         if ! unpack_pkg "$zip404" "$STAGE_DIR/p404"; then say "Failed to unpack 4.0.4 package - nothing was changed."; fail_exit; fi
         root404="$PKG_ROOT"; roots+=("$root404")
     fi
+    if ! unpack_pkg "$zip41" "$STAGE_DIR/p41"; then say "Failed to unpack 4.1 package - nothing was changed."; fail_exit; fi
+    root41="$PKG_ROOT"; roots+=("$root41")      # 4.1 ใส่ทีหลังสุด -> ทับชุดก่อนหน้า
 
     for root in "${roots[@]}"; do
-        if [ -d "$root/boot" ]; then
+        if [ -n "$(find "$root/boot" -type f 2>/dev/null | head -n 1)" ]; then
             if ! { touch /boot/.playos_w 2>/dev/null && rm -f /boot/.playos_w; }; then
                 say "Boot partition is not writable - nothing was changed."
                 fail_exit
@@ -611,6 +639,13 @@ run_update() {
     for z in /opt/linapple/linapple /opt/mupen64plus/mupen64plus /opt/scummvm/scummvm /opt/solarus/solarus-run; do
         [ -f "$z" ] && chmod 755 "$z"
     done
+    # 4.1: DraStic / OldBits Hub (ไฟล์รันได้) + เจ้าของไฟล์
+    for z in /opt/drastic/drastic /opt/drastic/drastic.nearest /opt/drastic/drastic.bilinear /opt/drastic/drastic_hotkeys \
+             /opt/oldbits-hub/lbhub /opt/oldbits-hub/intro/lbintro /opt/oldbits-hub/assets/r36_launcher.bash /opt/oldbits-hub/assets/lbreport.bash; do
+        [ -f "$z" ] && chmod 755 "$z"
+    done
+    [ -d /opt/drastic ] && chown -R ark:ark /opt/drastic
+    [ -d /opt/oldbits-hub ] && chown -R ark:ark /opt/oldbits-hub
     # 4.0.3: /opt/apps (สคริปต์แอปต้องรันได้ เช่น PortMaster.sh ในแพ็กเกจเป็น 644)
     if [ -d /opt/apps ]; then
         chmod 755 /opt/apps/*.sh 2>/dev/null
@@ -647,10 +682,10 @@ run_update() {
     # --- ประทับเวอร์ชัน (ท้ายสุด) : คงรูปแบบเดิม เช่น "4.0(X)" -> "4.0.2(X)" ---
     say "Finishing... 96%"
     local newver
-    newver=$(echo "$CURRENT_VERSION_RAW" | sed -E "s/^4\.0(\.[0-9]+)?/$TARGET_VERSION/")
+    newver=$(echo "$CURRENT_VERSION_RAW" | sed -E "s/^4\.0(\.[0-9]+)?/$NEW_BASE_VERSION/")
     cat > "$INFO_FILE" <<EOT
 VERSION="$newver"
-BUILD="$TARGET_BUILD"
+BUILD="$NEW_BUILD"
 EOT
     rm -rf "$STAGE_DIR"
     say "Update completed! (PLAY OS v$newver) Restarting... 100%"
