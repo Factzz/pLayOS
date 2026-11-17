@@ -445,6 +445,7 @@ get_package() {
         PKG_IDX=$idx0
         if fetch_pkg "$ub" "$n" optional; then printf -v "$outvar" '%s' "$STAGE_DIR/$n.zip"; return 0; fi
     done
+    say "Not found (404): tag ${ub##*/} / $1.zip"
     return 1
 }
 
