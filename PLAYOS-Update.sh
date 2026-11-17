@@ -3,9 +3,9 @@
 # PLAY OS - OTA Update  (สคริปต์เดียว ตรวจรุ่นเอง)  ->  4.1   build 261217
 #
 #  ตรวจรุ่นจาก VERSION ใน /opt/system/playos_info.cfg แล้วเลือกแพ็กเกจให้เอง:
-#     แท้   "4.0" / "4.0 B" / "4.0.x"      -> PlayOS4_0-update261217.zip     ("4.0" -> "4.1")
-#     X     "4.0(X)" / "4.0.x(X)"          -> PlayOS4_0_X_-update261217.zip  ("4.0(X)" -> "4.1(X)")
-#     RG    "4.0 RG EDITION" / "4.0.x RG EDITION" -> PlayOS4_0RG-update261217.zip ("4.0 RG EDITION" -> "4.1 RG EDITION")
+#     แท้   "4.0" / "4.0 B" / "4.0.x"      -> PlayOS4.0-update261217.zip     ("4.0" -> "4.1")
+#     X     "4.0(X)" / "4.0.x(X)"          -> PlayOS4.0.X.-update261217.zip  ("4.0(X)" -> "4.1(X)")
+#     RG    "4.0 RG EDITION" / "4.0.x RG EDITION" -> PlayOS4.0RG-update261217.zip ("4.0 RG EDITION" -> "4.1 RG EDITION")
 #  ไม่อัปเดต (ยกเลิก ไม่แตะอะไรเลย): 4.1 ขึ้นไป, สาย 3.x และเวอร์ชัน/รุ่นอื่น
 #
 #  แพ็กเกจ 4.1  (Release tag "4.1")
@@ -37,9 +37,9 @@ NEW_BASE_VERSION="4.1"
 NEW_BUILD=261217
 URL_P41="https://github.com/Factzz/pLayOS/releases/download/4.1"
 # ชื่อไฟล์ zip 4.1 บน Release (ไม่รวม .zip) ลองตามลำดับ -- เลือกตามรุ่นหลังตรวจเวอร์ชัน
-P41_NAMES_GENUINE=("PlayOS4_0-update261217" "PlayOS4.0-update261217")
-P41_NAMES_X=("PlayOS4_0_X_-update261217" "PlayOS4_0_X-update261217")
-P41_NAMES_RG=("PlayOS4_0RG-update261217" "PlayOS4.0RG-update261217")
+P41_NAMES_GENUINE=("PlayOS4.0-update261217" "PlayOS4_0-update261217")
+P41_NAMES_X=("PlayOS4.0.X.-update261217" "PlayOS4_0_X_-update261217" "PlayOS4.0.X-update261217" "PlayOS4_0_X-update261217")
+P41_NAMES_RG=("PlayOS4.0RG-update261217" "PlayOS4_0RG-update261217")
 P41_NAMES=()
 VARIANT_LABEL="PLAY OS"
 CHAIN=0     # 1 = แท้ (ดึง 4.0.1-4.0.4) / 2 = X, RG (ดึง 4.0.2-4.0.3)
