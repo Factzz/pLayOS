@@ -351,7 +351,7 @@ kbd{font-family:ui-monospace,Menlo,monospace;font-size:.74rem;font-weight:500;pa
 <header class="hero" id="top"><div class="wrap">
   <h1>PlayOS 4.0</h1>
   <p>หน้าตาใหม่ทั้งหมด และเป็นระบบเดียวที่มีเกมเอ็กซ์คลูซีฟของตัวเอง ลองเล่นก่อนใครตรงนี้เลย ไม่ต้องติดตั้ง</p>
-  <div class="cta"><a class="btn" href="#demo">ลองหน้าตาใหม่</a><a class="btn" href="#beta" style="background:var(--ink);color:var(--bg)">ลงชื่อทดสอบ Beta</a><a class="btn ghost" href="#download">ดาวน์โหลด</a><a class="btn ghost" href="#diff">ดูว่าต่างจาก 3.0 อย่างไร</a></div>
+  <div class="cta"><a class="btn" href="#demo">ลองหน้าตาใหม่</a><a class="btn" href="#beta" style="background:var(--ink);color:var(--bg)">ดาวน์โหลด Beta</a><a class="btn ghost" href="#download">ดาวน์โหลด</a><a class="btn ghost" href="#diff">ดูว่าต่างจาก 3.0 อย่างไร</a></div>
 <div id="heroSoon" class="cd"><div class="cdl" id="cdl"></div><div class="cdb"><div><b id="cdD">00</b><span>วัน</span></div><div><b id="cdH">00</b><span>ชั่วโมง</span></div><div><b id="cdM">00</b><span>นาที</span></div><div><b id="cdS">00</b><span>วินาที</span></div></div></div></div></header>
 
 <section class="stage" id="demo"><div class="wrap">
@@ -364,40 +364,10 @@ kbd{font-family:ui-monospace,Menlo,monospace;font-size:.74rem;font-weight:500;pa
 </div></section>
 
 <section class="s" id="beta"><div class="wrap">
-  <h2>ร่วมทดสอบ PlayOS 4.0 Beta</h2>
-  <p class="lead">เบต้าที่ทำออกมาสำหรับ TrimUI Brick Pro เปิดรับ 25 สิทธิ์ แบ่งเป็นกลุ่มนักทดสอบ 12 สิทธิ์ และกลุ่มคนทั่วไป 13 สิทธิ์ ลงชื่อแล้วหมุนวงล้อสุ่มดวง ถ้าได้สิทธิ์ ทีมงานจะส่งโค้ดทางอีเมลในวันที่ 19</p>
-  <div class="bz">
-    <div class="box">
-      <h3>1. ลงชื่อ</h3>
-      <form id="bf" novalidate>
-        <label class="fl">ชื่อ<input id="bn" type="text" autocomplete="name" maxlength="60" placeholder="ชื่อที่ให้เรียก"></label>
-        <label class="fl">อีเมล (ใช้รับโค้ด)<input id="be" type="email" autocomplete="email" maxlength="100" placeholder="you@example.com"></label>
-        <fieldset class="grp"><legend>เลือกกลุ่ม</legend>
-          <label class="opt"><input type="radio" name="bg" value="นักทดสอบ"><span><b>นักทดสอบ</b> 12 สิทธิ์<small>พร้อมลองเล่นและแจ้งปัญหาที่เจอ</small></span></label>
-          <label class="opt"><input type="radio" name="bg" value="คนทั่วไป"><span><b>คนทั่วไป</b> 13 สิทธิ์<small>อยากได้ลองเล่นก่อนใคร</small></span></label>
-        </fieldset>
-        <div class="terms"><b>ข้อกำหนด</b><ul>
-          <li>ติดตั้งเอง ถ้าลงไม่เป็น ทีมงานจะไม่ตอบคำถามเรื่องการติดตั้งใดๆ ทั้งสิ้น</li>
-          <li>นี่คือเวอร์ชันเบต้า เป็นตัวทดสอบ จึงมีบางอย่างเล่นไม่ได้ และจะไม่รับข้อร้องเรียนว่าทำไมใช้งานบางอย่างไม่ได้</li>
-          <li>ช่วงนี้เกมพอร์ตจะเล่นไม่ได้ เพราะตัวเกมยังไม่ได้ปรับแต่ง ยังเป็นเวอร์ชันของ R36 อยู่</li>
-          <li>1 คนหมุนได้ครั้งเดียว ชื่อหรืออีเมลซ้ำไม่ได้ ถ้าใช้ชื่อเดียวกันแต่เปลี่ยนอีเมลก็จะไม่ผ่าน จะเข้าหน้าหมุนได้แต่หมุนไม่ได้</li>
-          <li>ผู้ที่ได้รับเลือกจะได้รับโค้ดทางอีเมลในวันที่ 19 และต้องนำโค้ดมากรอกในหน้านี้จึงจะดาวน์โหลดได้</li>
-        </ul></div>
-        <label class="ck"><input type="checkbox" id="bterm"> ฉันอ่านและยอมรับข้อกำหนดทั้งหมดข้างต้น</label>
-        <div class="berr" id="berr" role="alert"></div>
-        <button class="btn" type="submit">ไปหมุนวงล้อ</button>
-      </form>
-    </div>
-    <div class="box" id="wheelbox">
-      <h3>2. หมุนวงล้อสุ่มดวง</h3>
-      <div class="wheel off" id="wheel"><i class="ptr"></i><div class="wspin" id="wspin"><canvas id="wc" width="680" height="680"></canvas></div><span class="hub">🎲</span></div>
-      <button class="btn" id="bspin" disabled style="display:block;margin:20px auto 0">หมุนเลย</button>
-      <div class="bres" id="bres">กรอกข้อมูลทางซ้ายให้ครบก่อน แล้วค่อยหมุน</div>
-    </div>
-  </div>
+  <h2>ดาวน์โหลด PlayOS 4.0 Beta</h2>
+  <p class="lead">กรอกโค้ดที่ได้รับ เพื่อรับลิงก์ดาวน์โหลด</p>
   <div class="box" id="bredeem" style="margin-top:20px">
-    <h3>3. ได้โค้ดแล้ว? กรอกเพื่อรับลิงก์ดาวน์โหลด</h3>
-    <p>โค้ดจะส่งทางอีเมลวันที่ 19 กรอกโค้ดที่ได้รับตรงนี้ จึงจะดาวน์โหลดได้</p>
+    <h3>กรอกโค้ด</h3>
     <div class="cin"><label>โค้ด<input id="rc2" type="text" placeholder="BETA-X-XXXX-XXXX" autocomplete="off" spellcheck="false" style="width:240px;text-transform:uppercase"></label><button class="btn" id="rb" type="button">ยืนยันโค้ด</button></div>
     <div class="bres" id="rres"></div>
   </div>
@@ -1190,7 +1160,7 @@ mr.oninput=meter;meter();
 (function(){
   const T1=new Date("2026-10-29T00:00:00+07:00"),T2=new Date("2026-12-01T00:00:00+07:00");
   const U={os3:"https://www.mediafire.com/file/s9i3e5bbp1rfnpd/PLAYOS3.0.5.7z/file",x3:"https://www.mediafire.com/file/zsxshb4sy5sjol6/X3.0.5.7z/file",
-    os4:"https://www.mediafire.com/file/bwmryr0zheo9t0m/OS4.7z/file",x4:"https://www.mediafire.com/file/pubze383sj09wv7/X4.7z/file",rg4:"https://www.mediafire.com/file/c0rx2xde07so1dw/RG4.7z/file"};
+    os4:"https://www.mediafire.com/file/bwmryr0zheo9t0m/OS4.7z/file",x4:"https://www.mediafire.com/file/sdpzjy8ksoyx69v/X4.7z/file",rg4:"https://www.mediafire.com/file/c0rx2xde07so1dw/RG4.7z/file"};
   const left=(d,n)=>Math.max(1,Math.ceil((d-n)/864e5));
   function state(n){const v4=n>=T1,rg=n>=T2;return{
     sub:rg?"PlayOS 4.0 ทุกรุ่นเปิดให้ดาวน์โหลดแล้ว":v4?"PlayOS 4.0 เปิดให้ดาวน์โหลดแล้ว ส่วน RG Edition เปิด 1 ธันวาคม":"PlayOS 4.0 เปิดให้ดาวน์โหลด 29 ตุลาคม ระหว่างนี้ดาวน์โหลด PlayOS 3.0 หรือ PlayOS-X ได้เลย",
@@ -1263,54 +1233,6 @@ mr.oninput=meter;meter();
   const norm=s=>s.toLowerCase().replace(/\s+/g,"");
   const hash=s=>{let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}h^=h>>>16;h=Math.imul(h,2246822507);h^=h>>>13;h=Math.imul(h,3266489909);h^=h>>>16;return h>>>0};
   const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-  const ws=$("wspin"),res=$("bres"),sp=$("bspin"),wh=$("wheel");
-  const reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
-  let cur=null,spinning=false;
-  function drawWheel(){const c=$("wc"),x=c.getContext("2d"),R=340,n=10,a=2*Math.PI/n;
-    for(let i=0;i<n;i++){const win=WIN.includes(i);
-      x.beginPath();x.moveTo(R,R);x.arc(R,R,R-4,i*a-Math.PI/2,(i+1)*a-Math.PI/2);x.closePath();
-      x.fillStyle=win?(i%4===0?"#30D158":"#0A84FF"):(i%2?"#3A3F6B":"#55497F");x.fill();x.strokeStyle="rgba(255,255,255,.55)";x.lineWidth=3;x.stroke();
-      x.save();x.translate(R,R);x.rotate((i+.5)*a-Math.PI/2);x.textAlign="right";x.fillStyle="#fff";
-      x.font=(win?"700 40px":"600 34px")+" 'Noto Sans Thai',sans-serif";x.fillText(LAB[i],R-34,13);x.restore()}}
-  drawWheel();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(drawWheel);
-  function state(k,d){
-    wh.classList.toggle("off",k==="locked"||k==="dup");
-    sp.disabled=k!=="ready";res.className="bres";
-    if(k==="locked")res.textContent="กรอกข้อมูลทางซ้ายให้ครบก่อน แล้วค่อยหมุน";
-    if(k==="ready")res.innerHTML="พร้อมแล้ว <b>"+esc(cur.name)+"</b> "+(cur.master?"🧪 โหมดทดสอบ ผลจะได้สิทธิ์เสมอและไม่นับโควต้า":"หมุนได้ครั้งเดียวเท่านั้น");
-    if(k==="dup"){res.innerHTML="<b class='r'>ชื่อหรืออีเมลนี้ลงชื่อไปแล้ว หมุนซ้ำไม่ได้</b>"+(d&&d.res==="win"?"<br>ผลของครั้งก่อนคือ ได้รับสิทธิ์"+(d.sent?" และส่งข้อมูลให้ทีมงานแล้ว":"")+"":d?"<br>ผลของครั้งก่อนคือ ไม่ได้รับสิทธิ์":"");
-      if(d&&d.res==="win"&&!d.sent){res.innerHTML+="<br><button class='btn' id='bretry'>ส่งข้อมูลให้ทีมงานอีกครั้ง</button>";$("bretry").onclick=()=>deliver(d)}}}
-  $("bf").addEventListener("submit",e=>{e.preventDefault();
-    const name=$("bn").value.trim().replace(/\s+/g," "),email=$("be").value.trim().toLowerCase(),g=(document.querySelector("input[name=bg]:checked")||{}).value,er=$("berr");
-    if(name.length<2){er.textContent="กรอกชื่อ อย่างน้อย 2 ตัวอักษร";return}
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){er.textContent="อีเมลไม่ถูกต้อง";return}
-    if(!g){er.textContent="เลือกกลุ่มก่อน";return}
-    if(!$("bterm").checked){er.textContent="ต้องติ๊กยอมรับข้อกำหนดก่อน";return}
-    er.textContent="";cur={name,email,group:g,master:hash("pbm|"+email)===MASTER};
-    const dup=cur.master?null:load().find(x=>x.e===email||x.n===norm(name));
-    state(dup?"dup":"ready",dup);wh.scrollIntoView({behavior:"smooth",block:"center"})});
-  async function send(d){
-    try{const r=await fetch(FS,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(d)});
-      if(r.ok)return"ok";let m="";try{const j=await r.json();m=(j.errors&&j.errors.map(x=>x.message).join(", "))||j.error||""}catch(e){}return"fail:"+r.status+(m?" "+m:"")}
-    catch(e){return"blocked"}}
-  async function deliver(rec){
-    rec.email=rec.email||rec.e;
-    res.className="bres";res.textContent="กำลังส่งข้อมูลให้ทีมงาน...";
-    const r=await send({name:rec.name,email:rec.email,_replyto:rec.email,contact_email:rec.email,group:rec.group,device:"TrimUI Brick Pro",result:rec.master?"ทดสอบ (ไม่นับโควต้า)":"ได้รับสิทธิ์",test:rec.master?"yes":"no",accepted_terms:"yes",_subject:(rec.master?"[ทดสอบ ไม่นับโควต้า] ":"")+"PlayOS Beta: "+rec.name+" ("+rec.group+") "+rec.email,submitted_at:new Date().toISOString()});
-    if(r!=="ok"){const body=encodeURIComponent("ชื่อ: "+rec.name+"\nอีเมล: "+rec.email+"\nกลุ่ม: "+rec.group+"\nรุ่น: TrimUI Brick Pro\nผลวงล้อ: ได้รับสิทธิ์");
-      res.className="bres";res.innerHTML="<b class='r'>ส่งข้อมูลอัตโนมัติไม่สำเร็จ</b> "+(r==="blocked"?"(เชื่อมต่อ Formspree จากหน้านี้ไม่ได้)":"("+esc(r.replace("fail:",""))+")")+"<br><button class='btn' id='bretry'>ลองส่งอีกครั้ง</button> <a class='btn ghost' href='mailto:Deza.dx@gmail.com?subject="+encodeURIComponent("PlayOS Beta: "+rec.name)+"&body="+body+"'>ส่งทางอีเมลแทน</a>";$("bretry").onclick=()=>deliver(rec);return}
-    rec.sent=true;const l=load(),m=l.find(x=>x.e===rec.e);if(m){m.sent=true;save(l)}
-    res.className="bres win";res.innerHTML=(rec.master?"🧪 <b>โหมดทดสอบ ไม่นับโควต้า</b><br>":"")+"🎉 <b class='g'>ยินดีด้วย! คุณได้รับสิทธิ์ทดสอบ</b><br>ทีมงานได้รับข้อมูลแล้ว โค้ดจะส่งไปที่ "+esc(rec.email)+" ในวันที่ 19 นำมากรอกด้านล่างเพื่อดาวน์โหลด"}
-  function finish(rec){spinning=false;
-    if(rec.res==="win")deliver(rec);
-    else{res.className="bres win";res.innerHTML="<b class='r'>เสียดายจัง รอบนี้ไม่ได้สิทธิ์</b><br>ขอบคุณที่ร่วมสนุก ติดตามรอบต่อไปได้ที่ <a href='https://web.facebook.com/profile.php?id=61595202162102' target='_blank' rel='noopener' style='text-decoration:underline'>เพจ Facebook</a>"}}
-  sp.addEventListener("click",()=>{if(!cur||spinning)return;spinning=true;sp.disabled=true;
-    const h=hash("pb4|"+cur.email),win=cur.master||(h%100)<WIN_RATE*100,sub=h>>>8,seg=win?WIN[sub%WIN.length]:LOSE[sub%LOSE.length];
-    const rec={n:norm(cur.name),e:cur.email,email:cur.email,name:cur.name,group:cur.group,res:win?"win":"lose",sent:false,master:!!cur.master};
-    if(!cur.master){const l=load();l.push(rec);save(l)}res.className="bres";res.textContent="วงล้อกำลังหมุน...";
-    const j=((h>>>16)%21)-10,target=360*6-(seg+.5)*36-j;
-    if(reduce){ws.style.transform="rotate("+target+"deg)";finish(rec)}
-    else{ws.style.transition="transform 5.6s cubic-bezier(.12,.7,.1,1)";ws.style.transform="rotate("+target+"deg)";setTimeout(()=>finish(rec),5900)}});
   async function sha(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
   $("rb").addEventListener("click",async()=>{const c=$("rc2").value.toUpperCase().replace(/[^A-Z0-9]/g,""),o=$("rres");
     if(c.length<8){o.className="bres";o.textContent="กรอกโค้ดให้ครบก่อน";return}
